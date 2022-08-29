@@ -2,7 +2,10 @@ import React from 'react';
 
 const Nav = () => {
     return (
-        <p>Nav!</p>
+      <div>
+        <header>Meet Me in the Middle</header>
+        <button>Log in with Google</button>
+      </div>
     )
 };
 
