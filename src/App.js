@@ -9,12 +9,15 @@ import Login from './Components/login';
 import Logout from './Components/logout';
 import getFetch from './apiCalls.js';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 
 const clientId = "1043160436627-t0siob1vmac373h292mh0dohemkjrr5m.apps.googleusercontent.com"
 
 function App() {
+  const [userEmail, setUserEmail] = useState(null)
+  const [userName, setUserName] = useState(null)
+  // if userEmail is null, show not logged in page 
 
   useEffect(() => {
     function start() {
@@ -31,10 +34,20 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Login />
-        <Logout />
+        <Login 
+          userEmail={userEmail}
+          setUserEmail={setUserEmail}
+          userName={userName}
+          setUserName={setUserName}
+        />
+        <Logout 
+          userEmail={userEmail}
+          setUserEmail={setUserEmail}
+          userName={userName}
+          setUserName={setUserName}
+        />
         <Routes>
-          <Route path='/' element={<Homepage/>}/>
+          <Route path='/' element={<Homepage userEmail={userEmail} userName={userName}/>}/>
           <Route path='/results' element={<ResultsPage/>}/>
         </Routes>
       </div>
