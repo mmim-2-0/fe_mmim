@@ -22,6 +22,8 @@ function App() {
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
   const [searchResponses, setSearchResponses] = useState([])
+  const [addressTwoEmail, setAddressTwoEmail] = useState('')
+  const [addressTwoManual, setAddressTwoManual] = useState('')
 
 
 
@@ -65,6 +67,10 @@ function App() {
             setAddressTwo={setAddressTwo}
             searchResponses={searchResponses}
             setSearchResponses={setSearchResponses}
+            addressTwoEmail={addressTwoEmail}
+            setAddressTwoEmail={setAddressTwoEmail}
+            addressTwoManual={addressTwoManual}
+            setAddressTwoManual={setAddressTwoManual}
             />}
           />
           <Route path='/results' element={<ResultsPage/>}/>
