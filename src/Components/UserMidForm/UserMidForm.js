@@ -3,7 +3,6 @@ import getLocations from '../../apiCalls.js';
 import { useEffect } from 'react';
 
 
-
 const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual }) => {
     
     useEffect(() => {
