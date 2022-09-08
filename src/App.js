@@ -55,6 +55,8 @@ function App() {
           setUserEmail={setUserEmail}
           userName={userName}
           setUserName={setUserName}
+          token={token}
+          setToken={setToken}
         />
         <Routes>
           <Route path='/' element={<Homepage 

@@ -32,7 +32,19 @@ const getUser = (name, email) => {
   })
 }
 
-export { getLocations, getUser };
+const logoutUser = (token) => {
+  return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/sessions?token=${token}`, {
+    method: 'DELETE'
+  }).then(response => {
+    if (!response.ok) {
+      throw Error(response.text)
+    } else {
+      return response.json()
+    }
+  })
+}
+
+export { getLocations, getUser, logoutUser };
 
 // denver, austin, cafe
 

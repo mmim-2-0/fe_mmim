@@ -7,9 +7,11 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
     const onSuccess = (res) => {
         // console.log("this is res",res)
         console.log('Login success! current user:', res.profileObj)
-        setUserEmail(res.profileObj.email)
-        setUserName(res.profileObj.givenName)
-        getUser(res.profileObj.givenName, res.profileObj.email).then(data => setToken(data.data.attributes.token))
+        getUser(res.profileObj.givenName, res.profileObj.email).then(data => {
+            setUserEmail(res.profileObj.email)
+            setUserName(res.profileObj.givenName)
+            setToken(data.data.attributes.token)
+        })
     }
 
     const onFailure = (res) => {
