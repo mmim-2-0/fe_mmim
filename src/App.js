@@ -24,8 +24,7 @@ function App() {
   const [searchResponses, setSearchResponses] = useState([])
   const [addressTwoEmail, setAddressTwoEmail] = useState('')
   const [addressTwoManual, setAddressTwoManual] = useState('')
-
-
+  const [token, setToken] = useState(null)
 
   useEffect(() => {
     function start() {
@@ -48,6 +47,8 @@ function App() {
           setUserEmail={setUserEmail}
           userName={userName}
           setUserName={setUserName}
+          token={token}
+          setToken={setToken}
         />
         <Logout 
           userEmail={userEmail}

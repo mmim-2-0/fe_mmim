@@ -1,5 +1,5 @@
 import React from 'react';
-import getLocations from '../../apiCalls.js';
+import { getLocations } from '../../apiCalls.js';
 import { useEffect } from 'react';
 
 
