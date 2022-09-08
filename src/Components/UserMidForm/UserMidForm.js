@@ -40,6 +40,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             })
         }
         if (addressTwoEmail) {
+            // update to different fetch call for user search 
             getLocations(addressOne, addressTwoEmail, searchCategory)
             .then(data => {
                 console.log(data)
