@@ -1,5 +1,5 @@
 import React from 'react';
-import getLocations from '../../apiCalls.js';
+import { getLocations } from '../../apiCalls.js';
 import { useEffect } from 'react';
 
 
@@ -40,6 +40,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             })
         }
         if (addressTwoEmail) {
+            // update to different fetch call for user search 
             getLocations(addressOne, addressTwoEmail, searchCategory)
             .then(data => {
                 console.log(data)
