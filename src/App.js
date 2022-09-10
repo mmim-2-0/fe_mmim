@@ -25,6 +25,8 @@ function App() {
   const [addressTwoEmail, setAddressTwoEmail] = useState('')
   const [addressTwoManual, setAddressTwoManual] = useState('')
   const [token, setToken] = useState(null)
+  const [userDefaultAddress, setUserDefaultAddress] = useState(null)
+  const [defaultFormView, setDefaultFormView] = useState(false)
 
   useEffect(() => {
     function start() {
@@ -74,6 +76,10 @@ function App() {
             setAddressTwoEmail={setAddressTwoEmail}
             addressTwoManual={addressTwoManual}
             setAddressTwoManual={setAddressTwoManual}
+            userDefaultAddress={userDefaultAddress}
+            setUserDefaultAddress={setUserDefaultAddress}
+            defaultFormView={defaultFormView}
+            setDefaultFormView={setDefaultFormView}
             />}
           />
           <Route path='/results' element={<ResultsPage/>}/>
