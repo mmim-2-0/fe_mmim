@@ -1,9 +1,10 @@
 import React from 'react';
 import { getLocations } from '../../apiCalls.js';
 import { useEffect } from 'react';
+import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm'
 
 
-const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual }) => {
+const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView }) => {
     
     useEffect(() => {
         setAddressOne(null)
@@ -48,10 +49,19 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             })
         }
     }
+
+    const defaultAddressFormHandler = () => {
+        console.log('button!')
+        setDefaultFormView(true);
+    }
     
     return (
         <section>
-            <button>Set your default address</button>
+            {!userDefaultAddress && <button onClick={defaultAddressFormHandler}>Set your default address</button>}
+            {userDefaultAddress && <button onClick={defaultAddressFormHandler}>Change your default address</button>}
+            {defaultFormView && <DefaultAddressForm 
+                setUserDefaultAddress={setUserDefaultAddress}
+            />}
             {/* Add logic to save a user's default address - this would have to be a PUT?
             Then, when we add logic to create or get a user when they login with google, 
             we will have to make sure that their address is updated in state? */}
@@ -74,6 +84,26 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     </section>
     )
 };
+
+// Olivia's plan for 9.10:
+// Saving a user default address
+// Only allow if a user is logged in (this button should only be accessible this way anyway)
+// When a user clicks this button - have something in State trigger another form below this button?
+// Probably not a pop up, but can reevaluate?
+// When they type in their default address, and click 'save', store this address in State AND 
+// Send a PUT request to update this user's address in the backend
+// Add a line to useState and set the default address when a user logs in if there is a saved address
+// Will this button change to 'change default address' if a user already has a default address saved?
+// And will need to keep functionality for a user to still physically type their address if they don't want to
+// use the default
+
+
+// Next steps for Olivia 9.10:
+// Get the navigation bar set up with the different 'tabs' Karlo has laid out in his wireframe
+// I don't want to do any styling yet, but I can get the different tabs going at least
+// Router? Do we want to implement the newest version or do we not care? Message Nikki & Rachel about this
+// 
+
 
 
 export default UserMidForm;
