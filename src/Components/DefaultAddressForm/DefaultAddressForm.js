@@ -1,13 +1,15 @@
 import React from 'react';
+import { updateDefaultAddress } from '../../apiCalls.js';
 
-const DefaultAddressForm = ({ setUserDefaultAddress }) => {
+
+const DefaultAddressForm = ({ setUserDefaultAddress, userDefaultAddress, userName, userEmail, token }) => {
     
     const defaultAddressHandler = (e) => {
         setUserDefaultAddress(e.target.value)
     }
 
     const submitDefaultAddress = () => {
-        // Fetch PUT to update the user's default address in the backend!
+        updateDefaultAddress(token, userName, userEmail, userDefaultAddress)
     }
 
     return (
