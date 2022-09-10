@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm'
 
 
-const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView }) => {
+const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token }) => {
     
     useEffect(() => {
         setAddressOne(null)
@@ -32,7 +32,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 
     const submitUserForm = (e) => {
         e.preventDefault()
-        console.log('submit!')
         if (addressTwoManual) {
             getLocations(addressOne, addressTwoManual, searchCategory)
             .then(data => {
@@ -51,7 +50,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     }
 
     const defaultAddressFormHandler = () => {
-        console.log('button!')
+        // console.log('button!')
         setDefaultFormView(true);
     }
     
@@ -61,14 +60,18 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             {userDefaultAddress && <button onClick={defaultAddressFormHandler}>Change your default address</button>}
             {defaultFormView && <DefaultAddressForm 
                 setUserDefaultAddress={setUserDefaultAddress}
+                userDefaultAddress={userDefaultAddress}
+                userName={userName}
+                userEmail={userEmail}
+                token={token}
             />}
-            {/* Add logic to save a user's default address - this would have to be a PUT?
-            Then, when we add logic to create or get a user when they login with google, 
-            we will have to make sure that their address is updated in state? */}
             <form>
-            <p>User Mid Form!</p>
+            <h2>Address One:</h2>
             <input type='text' placeholder='Address 1' onChange={addressOneHandler}></input>
-            <p>AND</p>
+            <p>OR</p>
+            <button>Use Your Current Default Address</button>
+            {/* <p>AND</p> */}
+            <h2>Address Two:</h2>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>
             <input type='text' placeholder='Address 2' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
@@ -94,8 +97,10 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 // Send a PUT request to update this user's address in the backend
 // Add a line to useState and set the default address when a user logs in if there is a saved address
 // Will this button change to 'change default address' if a user already has a default address saved?
-// And will need to keep functionality for a user to still physically type their address if they don't want to
-// use the default
+// And will need to keep functionality for a user to still physically type their address if they don't want to use the default
+
+// All of the above are done!
+// Now: we need logic to make sure we're searching correctly based on which addresses a user is using. Ex: Their default address & searchng for another user by their address. OR Their default address & searching for a midpoint by physically typing an address in
 
 
 // Next steps for Olivia 9.10:
