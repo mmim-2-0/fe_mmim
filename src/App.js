@@ -25,6 +25,8 @@ function App() {
   const [addressTwoEmail, setAddressTwoEmail] = useState('')
   const [addressTwoManual, setAddressTwoManual] = useState('')
   const [token, setToken] = useState(null)
+  const [userDefaultAddress, setUserDefaultAddress] = useState(null)
+  const [defaultFormView, setDefaultFormView] = useState(false)
 
   useEffect(() => {
     function start() {
@@ -38,7 +40,6 @@ function App() {
     gapi.load('client:auth2', start)
   })
 
-  // console.log(getFetch())
   return (
     <Router>
       <div className="App">
@@ -49,6 +50,7 @@ function App() {
           setUserName={setUserName}
           token={token}
           setToken={setToken}
+          setUserDefaultAddress={setUserDefaultAddress}
         />
         <Logout 
           userEmail={userEmail}
@@ -62,6 +64,7 @@ function App() {
           <Route path='/' element={<Homepage 
             userEmail={userEmail} 
             userName={userName}
+            token={token}
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}
             addressOne={addressOne}
@@ -74,6 +77,10 @@ function App() {
             setAddressTwoEmail={setAddressTwoEmail}
             addressTwoManual={addressTwoManual}
             setAddressTwoManual={setAddressTwoManual}
+            userDefaultAddress={userDefaultAddress}
+            setUserDefaultAddress={setUserDefaultAddress}
+            defaultFormView={defaultFormView}
+            setDefaultFormView={setDefaultFormView}
             />}
           />
           <Route path='/results' element={<ResultsPage/>}/>

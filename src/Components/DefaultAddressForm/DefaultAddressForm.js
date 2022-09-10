@@ -1,8 +1,22 @@
 import React from 'react';
+import { updateDefaultAddress } from '../../apiCalls.js';
 
-const DefaultAddressForm = () => {
+
+const DefaultAddressForm = ({ setUserDefaultAddress, userDefaultAddress, userName, userEmail, token }) => {
+    
+    const defaultAddressHandler = (e) => {
+        setUserDefaultAddress(e.target.value)
+    }
+
+    const submitDefaultAddress = () => {
+        updateDefaultAddress(token, userName, userEmail, userDefaultAddress)
+    }
+
     return (
-        <p>Default Address Form!</p>
+        <form>
+            <input type="text" placeholder="Set your default address here." onChange={defaultAddressHandler}></input>
+            <button onClick={submitDefaultAddress}>Save your address</button>
+        </form>
     )
 };
 

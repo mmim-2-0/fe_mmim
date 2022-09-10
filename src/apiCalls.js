@@ -44,7 +44,29 @@ const logoutUser = (token) => {
   })
 }
 
-export { getLocations, getUser, logoutUser };
+const updateDefaultAddress = (token, name, email, address) => {
+  return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/users`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      "token": token,
+      "name": name,
+      "email": email,
+      "address": address
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw Error(response.text)
+    } else {
+      return response.json()
+    }
+  })
+}
+
+export { getLocations, getUser, logoutUser, updateDefaultAddress };
 
 // denver, austin, cafe
 
