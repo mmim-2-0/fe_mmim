@@ -4,7 +4,7 @@ import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
 
 
-const Homepage = ({ userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual }) => {
+const Homepage = ({ userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView }) => {
   // if userEmail is null, render defaultMidForm, if not null, render userMidForm
     return (
     <div>
@@ -31,6 +31,10 @@ const Homepage = ({ userEmail, userName, searchCategory, setSearchCategory, addr
         setAddressTwoEmail={setAddressTwoEmail}
         addressTwoManual={addressTwoManual}
         setAddressTwoManual={setAddressTwoManual}
+        userDefaultAddress={userDefaultAddress}
+        setUserDefaultAddress={setUserDefaultAddress}
+        defaultFormView={defaultFormView}
+        setDefaultFormView={setDefaultFormView}
       />}
     </div>
     )
