@@ -40,7 +40,6 @@ function App() {
     gapi.load('client:auth2', start)
   })
 
-  // console.log(getFetch())
   return (
     <Router>
       <div className="App">
@@ -51,6 +50,7 @@ function App() {
           setUserName={setUserName}
           token={token}
           setToken={setToken}
+          setUserDefaultAddress={setUserDefaultAddress}
         />
         <Logout 
           userEmail={userEmail}
@@ -64,6 +64,7 @@ function App() {
           <Route path='/' element={<Homepage 
             userEmail={userEmail} 
             userName={userName}
+            token={token}
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}
             addressOne={addressOne}
