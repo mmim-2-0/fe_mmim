@@ -21,6 +21,7 @@ function App() {
   const [searchCategory, setSearchCategory] = useState('cafe')
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
+  const [searchCenter, setSearchCenter] = useState([45.4, -75.7])
   const [searchResponses, setSearchResponses] = useState([])
   const [addressTwoEmail, setAddressTwoEmail] = useState('')
   const [addressTwoManual, setAddressTwoManual] = useState('')
@@ -81,9 +82,15 @@ function App() {
             setUserDefaultAddress={setUserDefaultAddress}
             defaultFormView={defaultFormView}
             setDefaultFormView={setDefaultFormView}
+            searchCenter={searchCenter}
+            setSearchCenter={setSearchCenter}
             />}
           />
-          <Route path='/results' element={<ResultsPage/>}/>
+          <Route path='/results' element={<ResultsPage
+            searchResponses={searchResponses}
+            searchCenter={searchCenter}
+            />}
+          />
         </Routes>
       </div>
     </Router>

@@ -3,11 +3,14 @@ import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import Result from '../Result/Result';
 
-const ResultsPage = () => {
+const ResultsPage = ({ searchResponses, searchCenter }) => {
     return (
     <div>
       <Nav />
-      <Map />
+      <Map
+        searchResponses={searchResponses}
+        searchCenter={searchCenter}
+      />
       <Result />
     </div>
     )
