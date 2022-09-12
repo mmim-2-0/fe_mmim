@@ -1,5 +1,6 @@
 import React from 'react';
 import { getLocations } from '../../apiCalls.js';
+import { Link } from 'react-router-dom';
 
 
 const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses }) => {
@@ -17,7 +18,7 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
     }
 
     const submitDefaultForm = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         console.log('submit!')
         getLocations(addressOne, addressTwo, searchCategory)
         .then(data => {
@@ -37,7 +38,9 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
                 <option value="park">Park</option>
                 <option value="library">Library</option>
             </select>
-            <button onClick={submitDefaultForm}>Find a Midpoint</button>
+            <Link to="/results">
+              <button onClick={submitDefaultForm}>Find Midpoint</button>
+            </Link>
         </form>
     )
 

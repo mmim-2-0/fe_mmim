@@ -17,7 +17,7 @@ const clientId = "1043160436627-t0siob1vmac373h292mh0dohemkjrr5m.apps.googleuser
 function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
-  // if userEmail is null, show not logged in page 
+  // if userEmail is null, show not logged in page
   const [searchCategory, setSearchCategory] = useState('cafe')
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
@@ -43,7 +43,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Login 
+        <Login
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -52,7 +52,7 @@ function App() {
           setToken={setToken}
           setUserDefaultAddress={setUserDefaultAddress}
         />
-        <Logout 
+        <Logout
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -61,8 +61,8 @@ function App() {
           setToken={setToken}
         />
         <Routes>
-          <Route path='/' element={<Homepage 
-            userEmail={userEmail} 
+          <Route path='/' element={<Homepage
+            userEmail={userEmail}
             userName={userName}
             token={token}
             searchCategory={searchCategory}
