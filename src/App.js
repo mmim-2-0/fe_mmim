@@ -88,7 +88,9 @@ function App() {
           />
           <Route path='/results' element={<ResultsPage
             searchResponses={searchResponses}
+            setSearchResponses={setSearchResponses}
             searchCenter={searchCenter}
+            setSearchCenter={setSearchCenter}
             addressOne={addressOne}
             addressTwo={addressTwo}
             />}

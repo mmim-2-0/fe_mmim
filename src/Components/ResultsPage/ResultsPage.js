@@ -1,12 +1,32 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
+import { getLocations } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 
-const ResultsPage = ({ searchResponses, searchCenter, addressOne, addressTwo }) => {
+const ResultsPage = ({ setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo }) => {
+
+    let updateCategory = (category) => {
+      getLocations(addressOne, addressTwo, category)
+      .then(data => {
+          console.log(data)
+          setSearchResponses(data.data.attributes.locations)
+          setSearchCenter(data.data.attributes.map_argument.map_center)
+      })
+    }
+
     return (
     <div>
       <Nav />
+      <div>
+        <h1>Find Meeting Location</h1>
+        <button onClick={() => updateCategory("cafe")}>cafe</button>
+        <button onClick={() => updateCategory("restaurant")}>restaurant</button>
+        <button onClick={() => updateCategory("bar")}>bar</button>
+        <button onClick={() => updateCategory("library")}>library</button>
+        <button onClick={() => updateCategory("Park")}>park</button>
+      </div>
+
       <Map
         searchResponses={searchResponses}
         searchCenter={searchCenter}
