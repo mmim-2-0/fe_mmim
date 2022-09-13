@@ -1,5 +1,5 @@
 import React from 'react';
-import { L, count, marker } from 'leaflet';
+import { L, Icon, count, marker } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useEffect } from 'react';
 
@@ -35,8 +35,16 @@ const Map = ({ searchResponses, searchCenter }) => {
 
     console.log(searchResponses)
 
+    const searchMarkers = searchResponses.map(result => (
+      <Marker
+        key={result.url}
+        position={result.coordinates}
+      />
+    ))
+
     return (
       <MapContainer center={searchCenter} zoom={12}scrollWheelZoom={false}>
+        {searchMarkers}
         <TileLayer
            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
