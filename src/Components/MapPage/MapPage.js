@@ -1,13 +1,13 @@
 import React from 'react';
 import Map from '../Map/Map'
-import AllResults from '../AllResults/AllResults'
+import ResultsContainer from '../ResultsContainer/ResultsContainer'
 
 const MapPage = () => {
     return (
         <section>
             <p>Map Page!</p>
             <Map />
-            <AllResults />
+            <ResultsContainer />
             <>
                 <p>Didn't find what you're looking for?</p>
                 <select>

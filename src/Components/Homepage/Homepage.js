@@ -4,12 +4,12 @@ import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
 
 
-const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView }) => {
+const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter }) => {
   // if userEmail is null, render defaultMidForm, if not null, render userMidForm
     return (
     <div>
       <Nav userName={userName}/>
-      {!userEmail ? <DefaultMidForm 
+      {!userEmail ? <DefaultMidForm
         searchCategory={searchCategory}
         setSearchCategory={setSearchCategory}
         addressOne={addressOne}
@@ -18,7 +18,9 @@ const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategor
         setAddressTwo={setAddressTwo}
         searchResponses={searchResponses}
         setSearchResponses={setSearchResponses}
-      /> : <UserMidForm 
+        searchCenter={searchCenter}
+        setSearchCenter={setSearchCenter}
+      /> : <UserMidForm
         userName={userName}
         userEmail={userEmail}
         token={token}
@@ -38,6 +40,8 @@ const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategor
         setUserDefaultAddress={setUserDefaultAddress}
         defaultFormView={defaultFormView}
         setDefaultFormView={setDefaultFormView}
+        searchCenter={searchCenter}
+        setSearchCenter={setSearchCenter}
       />}
     </div>
     )

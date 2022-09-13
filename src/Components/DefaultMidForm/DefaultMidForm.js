@@ -1,8 +1,11 @@
 import React from 'react';
 import { getLocations } from '../../apiCalls.js';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses }) => {
+const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, searchCenter, setSearchCenter }) => {
+
+    let navigate = useNavigate();
 
     const categoryChangeHandler = (e) => {
         setSearchCategory(e.target.value)
@@ -23,7 +26,9 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
         .then(data => {
             console.log(data)
             setSearchResponses(data.data.attributes.locations)
+            setSearchCenter(data.data.attributes.map_argument.map_center)
         })
+        .then(data => navigate(`/results`))
     }
 
     return (
@@ -37,7 +42,7 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
                 <option value="park">Park</option>
                 <option value="library">Library</option>
             </select>
-            <button onClick={submitDefaultForm}>Find a Midpoint</button>
+              <button onClick={submitDefaultForm}>Find Midpoint</button>
         </form>
     )
 
