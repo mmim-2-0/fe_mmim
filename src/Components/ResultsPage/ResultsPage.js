@@ -4,12 +4,13 @@ import Map from '../Map/Map';
 import { getLocations } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 
-const ResultsPage = ({ setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo }) => {
+const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo }) => {
 
     let updateCategory = (category) => {
       getLocations(addressOne, addressTwo, category)
       .then(data => {
           console.log(data)
+          setSearchCategory(category)
           setSearchResponses(data.data.attributes.locations)
           setSearchCenter(data.data.attributes.map_argument.map_center)
       })
@@ -24,7 +25,7 @@ const ResultsPage = ({ setSearchResponses, searchResponses, setSearchCenter, sea
         <button onClick={() => updateCategory("restaurant")}>restaurant</button>
         <button onClick={() => updateCategory("bar")}>bar</button>
         <button onClick={() => updateCategory("library")}>library</button>
-        <button onClick={() => updateCategory("Park")}>park</button>
+        <button onClick={() => updateCategory("park")}>park</button>
       </div>
 
       <Map

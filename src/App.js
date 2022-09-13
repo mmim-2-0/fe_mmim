@@ -87,6 +87,8 @@ function App() {
             />}
           />
           <Route path='/results' element={<ResultsPage
+            searchCategory={searchCategory}
+            setSearchCategory={setSearchCategory}
             searchResponses={searchResponses}
             setSearchResponses={setSearchResponses}
             searchCenter={searchCenter}
