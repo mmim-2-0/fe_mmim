@@ -1,7 +1,7 @@
 import { GoogleLogin } from 'react-google-login'
 import  { getUser } from '../apiCalls.js'
 
-const clientId = "1043160436627-t0siob1vmac373h292mh0dohemkjrr5m.apps.googleusercontent.com"
+const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com"
 
 const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress }) => {
     const onSuccess = (res) => {

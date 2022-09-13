@@ -12,7 +12,7 @@ import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 
-const clientId = "1043160436627-t0siob1vmac373h292mh0dohemkjrr5m.apps.googleusercontent.com"
+const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com"
 
 function App() {
   const [userEmail, setUserEmail] = useState(null)
