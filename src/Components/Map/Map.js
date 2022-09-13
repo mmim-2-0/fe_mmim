@@ -33,8 +33,6 @@ const Map = ({ searchResponses, searchCenter }) => {
       console.log('useeffect!')
     }, [searchCenter])
 
-    console.log(searchResponses)
-
     const searchMarkers = searchResponses.map(result => (
       <Marker
         key={result.url}
@@ -50,8 +48,6 @@ const Map = ({ searchResponses, searchCenter }) => {
            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
          />
       </MapContainer>
-
-
     )
 };
 

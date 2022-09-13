@@ -1,9 +1,9 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
-import Result from '../Result/Result';
+import ResultsContainer from '../ResultsContainer/ResultsContainer';
 
-const ResultsPage = ({ searchResponses, searchCenter }) => {
+const ResultsPage = ({ searchResponses, searchCenter, addressOne, addressTwo }) => {
     return (
     <div>
       <Nav />
@@ -11,9 +11,27 @@ const ResultsPage = ({ searchResponses, searchCenter }) => {
         searchResponses={searchResponses}
         searchCenter={searchCenter}
       />
-      <Result />
+      <ResultsContainer
+        searchResponses={searchResponses}
+        addressOne={addressOne}
+        addressTwo={addressTwo}
+      />
+
     </div>
     )
 };
 
 export default ResultsPage;
+
+
+// <>
+//     <p>Didn't find what you're looking for?</p>
+//     <select>
+//         <option>Cafe</option>
+//         <option>Restaurant</option>
+//         <option>Bar</option>
+//         <option>Park</option>
+//         <option>Library</option>
+//     </select>
+//     <button>Update category</button>
+// </>
