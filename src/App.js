@@ -17,6 +17,7 @@ const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleuserc
 function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
+  const [userId, setUserId] = useState(null)
   // if userEmail is null, show not logged in page
   const [searchCategory, setSearchCategory] = useState('cafe')
   const [addressOne, setAddressOne] = useState(null)
@@ -52,6 +53,7 @@ function App() {
           token={token}
           setToken={setToken}
           setUserDefaultAddress={setUserDefaultAddress}
+          setUserId={setUserId}
         />
         <Logout
           userEmail={userEmail}
@@ -95,6 +97,7 @@ function App() {
             setSearchCenter={setSearchCenter}
             addressOne={addressOne}
             addressTwo={addressTwo}
+            addressTwoManual={addressTwoManual}
             />}
           />
         </Routes>
@@ -104,3 +107,9 @@ function App() {
 }
 
 export default App;
+
+// Change result options to checkboxes tha tallow up to three to be checked (disable once three are selected)
+// Store checked results in state (array)
+// Create a 'send meeting invitation' button and date/time input (default date/time to get fetch working for now?)
+// Don't allow button to submit until time is provided
+// When button submitted, fire fetch sendMeetingOptions
