@@ -17,6 +17,7 @@ const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleuserc
 function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
+  const [userId, setUserId] = useState(null)
   // if userEmail is null, show not logged in page
   const [searchCategory, setSearchCategory] = useState('cafe')
   const [addressOne, setAddressOne] = useState(null)
@@ -52,6 +53,7 @@ function App() {
           token={token}
           setToken={setToken}
           setUserDefaultAddress={setUserDefaultAddress}
+          setUserId={setUserId}
         />
         <Logout
           userEmail={userEmail}
