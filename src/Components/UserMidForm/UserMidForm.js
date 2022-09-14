@@ -7,7 +7,7 @@ import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddre
 const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token }) => {
     
     useEffect(() => {
-        setAddressOne(null)
+        setAddressOne(userDefaultAddress || null)
         setAddressTwo(null)
         setSearchCategory('cafe')
     }, [])
@@ -30,6 +30,9 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
         setAddressTwoEmail('')
     }
 
+
+    // Refactor this function to work the same as with a guest user
+    // Need logic before this to figure out which addresses to use for each user?
     const submitUserForm = (e) => {
         e.preventDefault()
         if (addressTwoManual) {
@@ -40,7 +43,9 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             })
         }
         if (addressTwoEmail) {
-            // update to different fetch call for user search 
+            // additional endpoint to fetch other user's default address based on their email
+            // Then, setAddressTwoEmail once that fetch resolves
+            // Then, fire the getLocations fetch in a .then() after the second address is set in state
             getLocations(addressOne, addressTwoEmail, searchCategory)
             .then(data => {
                 console.log(data)
@@ -50,7 +55,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     }
 
     const defaultAddressFormHandler = () => {
-        // console.log('button!')
         setDefaultFormView(true);
     }
     
@@ -67,10 +71,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             />}
             <form>
             <h2>Address One:</h2>
-            <input type='text' placeholder='Address 1' onChange={addressOneHandler}></input>
-            <p>OR</p>
-            <button>Use Your Current Default Address</button>
-            {/* <p>AND</p> */}
+            <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
             <h2>Address Two:</h2>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>
