@@ -97,6 +97,7 @@ function App() {
             setSearchCenter={setSearchCenter}
             addressOne={addressOne}
             addressTwo={addressTwo}
+            addressTwoManual={addressTwoManual}
             />}
           />
         </Routes>
@@ -106,3 +107,9 @@ function App() {
 }
 
 export default App;
+
+// Change result options to checkboxes tha tallow up to three to be checked (disable once three are selected)
+// Store checked results in state (array)
+// Create a 'send meeting invitation' button and date/time input (default date/time to get fetch working for now?)
+// Don't allow button to submit until time is provided
+// When button submitted, fire fetch sendMeetingOptions
