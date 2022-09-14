@@ -1,7 +1,7 @@
 import React from 'react';
 import Result from '../Result/Result';
 
-const ResultsContainer = ({ searchResponses, addressOne, addressTwo }) => {
+const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoManual }) => {
 
     console.log(searchResponses)
     let displayedResults = searchResponses.map(response => {
@@ -12,7 +12,7 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo }) => {
       <div>
         <h1>Meet Me in The Middle</h1>
         <p>{addressOne}</p>
-        <p>{addressTwo}</p>
+        <p>{addressTwo || addressTwoManual}</p>
         <h2>Results ({searchResponses.length})</h2>
         {displayedResults}
       </div>
