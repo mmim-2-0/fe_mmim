@@ -8,7 +8,7 @@ const DefaultAddressForm = ({ setUserDefaultAddress, userDefaultAddress, userNam
         setUserDefaultAddress(e.target.value)
     }
 
-    const submitDefaultAddress = () => {
+    const submitDefaultAddress = (e) => {
         updateDefaultAddress(token, userName, userEmail, userDefaultAddress)
     }
 
