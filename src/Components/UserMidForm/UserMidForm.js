@@ -1,11 +1,14 @@
 import React from 'react';
 import { getLocations } from '../../apiCalls.js';
 import { useEffect } from 'react';
-import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm'
+import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token }) => {
+const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter }) => {
     
+    let navigate = useNavigate();
+
     useEffect(() => {
         setAddressOne(userDefaultAddress || null)
         setAddressTwo(null)
@@ -40,7 +43,9 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             .then(data => {
                 console.log(data)
                 setSearchResponses(data.data.attributes.locations)
+                setSearchCenter(data.data.attributes.map_argument.map_center)
             })
+            .then(data => navigate(`/results`))
         }
         if (addressTwoEmail) {
             // additional endpoint to fetch other user's default address based on their email
@@ -50,7 +55,9 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             .then(data => {
                 console.log(data)
                 setSearchResponses(data.data.attributes.locations)
+                setSearchCenter(data.data.attributes.map_argument.map_center)
             })
+            .then(data => navigate(`/results`))
         }
     }
 
