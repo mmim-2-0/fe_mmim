@@ -3,7 +3,7 @@ import  { getUser } from '../apiCalls.js'
 
 const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com"
 
-const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress }) => {
+const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId }) => {
     const onSuccess = (res) => {
         // console.log("this is res",res)
         console.log('Login success! current user:', res.profileObj)
@@ -12,6 +12,7 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
             setUserName(res.profileObj.givenName)
             setToken(data.data.attributes.token)
             setUserDefaultAddress(data.data.attributes.address)
+            setUserId(data.data.id)
         })
     }
 
