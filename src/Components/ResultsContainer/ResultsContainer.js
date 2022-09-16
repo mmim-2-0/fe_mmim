@@ -1,7 +1,10 @@
 import React from 'react';
 import Result from '../Result/Result';
 
+
 const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations }) => {
+
+  
 
     console.log(searchResponses)
     let displayedResults = searchResponses.map((response, index) => {
