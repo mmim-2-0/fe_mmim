@@ -5,22 +5,18 @@ import { useState } from 'react';
 const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id, searchResponses }) => {
 
   const [checked, setChecked] = useState(false)
-  // add a function to checkbox where it keeps track of how many are checked
-    // add check box to state, if state length is 3 or 3 boxes are checked, disable other checkboxes
-    // once all fields are filled out, send meeting invitation POST 
-    
-    // on check, push info to empty array, uncheck removes from array 
-      // reassign checkedMeeting locations to the helper array 
 
     const handleCheckBox = () => {
-      if (!checked) {
+      if (!checked && checkedMeetingLocations.length < 3) {
         setChecked(true)
+        setCheckedMeetingLocations(checkedMeetingLocations => [...checkedMeetingLocations, searchResponses[id]])
       } else if (checked) {
         setChecked(false)
+        setCheckedMeetingLocations(checkedMeetingLocations.filter(meetingLocation => {
+          return meetingLocation !== searchResponses[id]
+        }))
       }
     }
-
-    const 
 
     return (
       <div>
