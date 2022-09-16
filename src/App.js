@@ -29,6 +29,7 @@ function App() {
   const [token, setToken] = useState(null)
   const [userDefaultAddress, setUserDefaultAddress] = useState(null)
   const [defaultFormView, setDefaultFormView] = useState(false)
+  const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([])
 
   useEffect(() => {
     function start() {
@@ -98,6 +99,8 @@ function App() {
             addressOne={addressOne}
             addressTwo={addressTwo}
             addressTwoManual={addressTwoManual}
+            checkedMeetingLocations={checkedMeetingLocations}
+            setCheckedMeetingLocations={setCheckedMeetingLocations}
             />}
           />
         </Routes>
