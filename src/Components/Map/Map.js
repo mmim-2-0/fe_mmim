@@ -5,29 +5,7 @@ import { useEffect } from 'react';
 
 
 const Map = ({ searchResponses, searchCenter }) => {
-  // function initMap(locations) {
-  //
-  //   var map = L.map('map');
-  //   var zoom = map.getBoundsZoom([
-  //     locations[1].slice(1,3),
-  //     locations[2].slice(1,3),
-  //     locations[3].slice(1,3),
-  //     locations[4].slice(1,3),
-  //     locations[5].slice(1,3)
-  //   ]);
-  //
-  //   map.setView([locations[0][1], locations[0][2]], zoom - 1)
-  //
-  //   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  //     maxZoom: 19,
-  //     attribution: '© OpenStreetMap'
-  //   }).addTo(map);
-  //
-  //
-  //   for (count = 1; count < locations.length; count++) {
-  //     marker = L.marker([locations[count][1], locations[count][2]]).addTo(map);
-  //   };
-  // };
+  // find a way to render all five markers within map 
 
     useEffect(() => {
       console.log('useeffect!')
@@ -41,7 +19,7 @@ const Map = ({ searchResponses, searchCenter }) => {
     ))
 
     return (
-      <MapContainer center={searchCenter} zoom={12}scrollWheelZoom={false}>
+      <MapContainer center={searchCenter} zoom={12} scrollWheelZoom={false}>
         {searchMarkers}
         <TileLayer
            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

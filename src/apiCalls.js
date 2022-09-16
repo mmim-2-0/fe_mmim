@@ -12,6 +12,20 @@ const getLocations = (locationOne, locationTwo, category) => {
     })
 }
 
+const getGuestUser = (token, guestEmail) => {
+  return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/guest_user?token=${token}&guest_email=${guestEmail}`)
+    .then(response => {
+      if (!response.ok) {
+        throw Error(response.text)
+      } else {
+        return response.json()
+      }
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
 const getUser = (name, email) => {
   return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/sessions`, {
     method: 'POST',
@@ -72,7 +86,7 @@ const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
     body: JSON.stringify({
       "token": token,
       "guest_email": guestEmail,
-      "time": time,
+      "time": "December 17, 2022 03:24:00",
       "locations": locations
     }),
     headers: {
@@ -88,7 +102,7 @@ const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
   })
 }
 
-export { getLocations, getUser, logoutUser, updateDefaultAddress, sendMeetingOptions };
+export { getLocations, getUser, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser };
 
 // denver, austin, cafe
 
