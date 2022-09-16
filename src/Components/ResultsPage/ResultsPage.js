@@ -4,7 +4,7 @@ import Map from '../Map/Map';
 import { getLocations } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 
-const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations }) => {
+const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId }) => {
 
     let updateCategory = (category) => {
       getLocations(addressOne, addressTwo, category)
@@ -39,6 +39,9 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
         addressTwoManual={addressTwoManual}
         checkedMeetingLocations={checkedMeetingLocations}
         setCheckedMeetingLocations={setCheckedMeetingLocations}
+        userEmail={userEmail}
+        token={token}
+        userId={userId}
       />
 
     </div>

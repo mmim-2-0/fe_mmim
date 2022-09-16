@@ -101,6 +101,9 @@ function App() {
             addressTwoManual={addressTwoManual}
             checkedMeetingLocations={checkedMeetingLocations}
             setCheckedMeetingLocations={setCheckedMeetingLocations}
+            userEmail={userEmail}
+            token={token}
+            userId={userId}
             />}
           />
         </Routes>

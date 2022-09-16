@@ -2,7 +2,7 @@ import React from 'react';
 import Result from '../Result/Result';
 
 
-const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations }) => {
+const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId }) => {
 
   
 
@@ -16,6 +16,7 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
           checkedMeetingLocations={checkedMeetingLocations}
           setCheckedMeetingLocations={setCheckedMeetingLocations}
           searchResponses={searchResponses}
+          userEmail={userEmail}
         />
       )
     })
@@ -27,12 +28,12 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
         <p>{addressTwo || addressTwoManual}</p>
         <h2>Results ({searchResponses.length})</h2>
         {displayedResults}
-        <div className='meeting-invite-container'>
+        {userEmail ? <div className='meeting-invite-container'>
           <p>Select a date / time and enter the other party's email for your meeting invitation:</p>
           <input type="datetime-local" />
           <input type='email' placeholder="Email" />
           <button>Send Meeting Invitation</button>
-        </div>
+        </div> : <p>Login to send a friend a meeting invite</p>}
       </div>
     )
 };
