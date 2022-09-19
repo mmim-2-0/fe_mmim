@@ -116,12 +116,12 @@ const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
   })
 }
 
-const acceptMeeting = (userId, meetingId, token, locationId) => {
+const patchMeeting = (status, userId, meetingId, token, locationId) => {
   return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/users/${userId}/meetings/${meetingId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       "token": token,
-      "status": "accepted",
+      "status": status,
       "location_id": locationId,
     }),
     headers: {
@@ -140,7 +140,7 @@ const acceptMeeting = (userId, meetingId, token, locationId) => {
 
 
 
-export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, acceptMeeting };
+export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
 
 // denver, austin, cafe
 

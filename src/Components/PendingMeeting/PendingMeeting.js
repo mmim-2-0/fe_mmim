@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { acceptMeeting } from '../../apiCalls';
+import { patchMeeting } from '../../apiCalls';
 
 
 const PendingMeeting = ({ meetingInfo, userId, token }) => {
@@ -8,13 +8,13 @@ const PendingMeeting = ({ meetingInfo, userId, token }) => {
     const [selectedLocation, setSelectedLocation] = useState('')
 
     const acceptMeetingInvite = (e) => {
-      e.preventDefault()
-      let stringLocation = selectedLocation.toString()
-      console.log("userId", userId)
-      console.log("meetingId", meetingInfo.id)
-      console.log("token", token)
-      console.log("selectedLocation", stringLocation)
-      acceptMeeting(userId, meetingInfo.id, token, stringLocation)
+      
+      patchMeeting("accepted", userId, meetingInfo.id, token, selectedLocation)
+    }
+
+    const declineMeetingInvite = (e) => {
+      
+      patchMeeting("declined", userId, meetingInfo.id, token, selectedLocation)
     }
 
     const displayLocationOptions = (array) => {
@@ -33,7 +33,7 @@ const PendingMeeting = ({ meetingInfo, userId, token }) => {
       <form>Choose a Location:
         {displayLocationOptions(meetingInfo.attributes.locations)}
         <button onClick={(e) => acceptMeetingInvite(e)}>Accept Meeting</button>
-        <button>Decline Meeting</button>
+        <button onClick={(e) => declineMeetingInvite(e)}>Decline Meeting</button>
       </form>
     </div>
     )
