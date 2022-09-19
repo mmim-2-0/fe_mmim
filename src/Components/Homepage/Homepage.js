@@ -2,9 +2,11 @@ import React from 'react';
 import Nav from '../Nav/Nav';
 import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
+import PendingMeetings from '../PendingMeetings/PendingMeetings';
 
 
-const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter }) => {
+
+const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings }) => {
   // if userEmail is null, render defaultMidForm, if not null, render userMidForm
     return (
     <div>
@@ -42,6 +44,10 @@ const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategor
         setDefaultFormView={setDefaultFormView}
         searchCenter={searchCenter}
         setSearchCenter={setSearchCenter}
+      />      
+      }
+      {userMeetings.length && <PendingMeetings 
+        userMeetings={userMeetings}
       />}
     </div>
     )

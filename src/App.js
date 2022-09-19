@@ -84,6 +84,7 @@ function App() {
             setDefaultFormView={setDefaultFormView}
             searchCenter={searchCenter}
             setSearchCenter={setSearchCenter}
+            userMeetings={userMeetings}
             />}
           />
           <Route path='/results' element={<ResultsPage

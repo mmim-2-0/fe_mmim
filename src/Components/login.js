@@ -12,7 +12,7 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
             setToken(data.data.attributes.token)
             setUserDefaultAddress(data.data.attributes.address)
             setUserId(data.data.id)
-            getUserMeetings(data.data.id, data.data.attributes.token).then((response) => console.log(response))
+            getUserMeetings(data.data.id, data.data.attributes.token).then((response) => setUserMeetings(response.data))
             // set state in another .then to save users meetings
             // display meetings
         })
@@ -28,7 +28,7 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
 
     return (
         <div id='signInButton'>
-            <GoogleLogin 
+            <GoogleLogin
                 clientId={clientId}
                 buttonText='Login'
                 onSuccess={onSuccess}
