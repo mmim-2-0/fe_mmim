@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail }) => {
 
-  const [meetingTime, setMeetingTime] = useState(null)
+  const [meetingTime, setMeetingTime] = useState('')
 
     console.log(searchResponses)
     let displayedResults = searchResponses.map((response, index) => {
@@ -23,13 +23,19 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
     })
 
     const handleTimeInput = (e) => {
-      
       setMeetingTime(e.target.value)
+      // setMeetingTime('2022-09-30T17:46')
       // console.log(typeOf meetingTime)
     }
 
     const postMeetingLocations = () => {
-      sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations)
+      console.log('id', userId)
+      console.log('token', token)
+      console.log('email', addressTwoEmail)
+      console.log('time', meetingTime)
+      console.log('locations', checkedMeetingLocations)
+      // console.log(typeOf meetingTime)
+      sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
     }
 
     return (
@@ -41,7 +47,7 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
         {displayedResults}
         {addressTwoEmail ? <div className='meeting-invite-container'>
           <p>Select a date / time and enter the other party's email for your meeting invitation:</p>
-          <input type="datetime-local" onChange={handleTimeInput}/>
+          <input type="datetime-local" onChange={handleTimeInput} value={meetingTime}/>
           <button onClick={postMeetingLocations}>Send Meeting Invitation</button>
         </div> : <p>Login to send a friend a meeting invite</p>}
       </div>
