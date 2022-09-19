@@ -65,6 +65,7 @@ function App() {
           <Route path='/' element={<Homepage
             userEmail={userEmail}
             userName={userName}
+            userId={userId}
             token={token}
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}

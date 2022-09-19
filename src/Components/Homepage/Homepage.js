@@ -6,7 +6,7 @@ import PendingMeetings from '../PendingMeetings/PendingMeetings';
 
 
 
-const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings }) => {
+const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings }) => {
   // if userEmail is null, render defaultMidForm, if not null, render userMidForm
     return (
     <div>
@@ -48,6 +48,8 @@ const Homepage = ({ token, userEmail, userName, searchCategory, setSearchCategor
       }
       {userMeetings.length && <PendingMeetings 
         userMeetings={userMeetings}
+        userId={userId}
+        token={token}
       />}
     </div>
     )

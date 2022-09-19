@@ -1,34 +1,20 @@
 import React from 'react';
+import PendingMeeting from '../PendingMeeting/PendingMeeting';
+import { acceptMeeting } from '../../apiCalls';
 
 
-const PendingMeetings = ({ userMeetings }) => {
+const PendingMeetings = ({ userMeetings, userId, token }) => {
 
     const pendingMeetings = userMeetings.filter(meeting => meeting.attributes.status === "pending")
-
-    const displayLocationOptions = (array) => {
-      return array.map((location, index) => (
-        <div key={index}>
-        <input type='radio' name="location" value={location.name}></input>
-        <label>{location.name}</label>
-        </div>
-      ))
-    }
     
-    const displayPendingMeetings = pendingMeetings.map((meeting, index) => ((
-      <div key={index}>
-        <p>{meeting.attributes.host_name}'s meeting with {meeting.attributes.guest_name}</p>
-        <p>Time: {meeting.attributes.time}</p>
-        <form>Choose a Location:
-          {displayLocationOptions(meeting.attributes.locations)}
-        </form>
-        <button>Accept Meeting</button>
-        <button>Decline Meeting</button>
-      </div>
-    )))
-
-      //options
-      //button to accept / decline meeeting
-
+    const displayPendingMeetings = pendingMeetings.map((meeting, index) => {
+      return <PendingMeeting 
+        userId={userId}
+        meetingInfo={meeting}
+        token={token}
+        key={index}
+      />
+})
 
     return (
       <div>
