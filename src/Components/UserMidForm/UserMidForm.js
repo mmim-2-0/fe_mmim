@@ -99,27 +99,5 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     )
 };
 
-// Olivia's plan for 9.10:
-// Saving a user default address
-// Only allow if a user is logged in (this button should only be accessible this way anyway)
-// When a user clicks this button - have something in State trigger another form below this button?
-// Probably not a pop up, but can reevaluate?
-// When they type in their default address, and click 'save', store this address in State AND 
-// Send a PUT request to update this user's address in the backend
-// Add a line to useState and set the default address when a user logs in if there is a saved address
-// Will this button change to 'change default address' if a user already has a default address saved?
-// And will need to keep functionality for a user to still physically type their address if they don't want to use the default
-
-// All of the above are done!
-// Now: we need logic to make sure we're searching correctly based on which addresses a user is using. Ex: Their default address & searchng for another user by their address. OR Their default address & searching for a midpoint by physically typing an address in
-
-
-// Next steps for Olivia 9.10:
-// Get the navigation bar set up with the different 'tabs' Karlo has laid out in his wireframe
-// I don't want to do any styling yet, but I can get the different tabs going at least
-// Router? Do we want to implement the newest version or do we not care? Message Nikki & Rachel about this
-// 
-
-
 
 export default UserMidForm;

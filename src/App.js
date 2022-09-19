@@ -1,13 +1,8 @@
 import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
-import Nav from './Components/Nav/Nav';
-import DefaultMidForm from './Components/DefaultMidForm/DefaultMidForm';
-import UserMidForm from './Components/UserMidForm/UserMidForm';
-import MapPage from './Components/MapPage/MapPage';
 import Login from './Components/login';
 import Logout from './Components/logout';
-// import getFetch from './apiCalls.js';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
@@ -18,7 +13,6 @@ function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
   const [userId, setUserId] = useState(null)
-  // if userEmail is null, show not logged in page
   const [searchCategory, setSearchCategory] = useState('cafe')
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
@@ -30,6 +24,7 @@ function App() {
   const [userDefaultAddress, setUserDefaultAddress] = useState(null)
   const [defaultFormView, setDefaultFormView] = useState(false)
   const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([])
+  const [userMeetings, setUserMeetings] = useState([]);
 
   useEffect(() => {
     function start() {
@@ -37,7 +32,6 @@ function App() {
         clientId: clientId,
         scope: ""
       })
-      // getFetch('denver', 'austin', 'cafe')
     }
 
     gapi.load('client:auth2', start)
@@ -55,6 +49,9 @@ function App() {
           setToken={setToken}
           setUserDefaultAddress={setUserDefaultAddress}
           setUserId={setUserId}
+          userId={userId}
+          userMeetings={userMeetings}
+          setUserMeetings={setUserMeetings}
         />
         <Logout
           userEmail={userEmail}
@@ -68,6 +65,7 @@ function App() {
           <Route path='/' element={<Homepage
             userEmail={userEmail}
             userName={userName}
+            userId={userId}
             token={token}
             searchCategory={searchCategory}
             setSearchCategory={setSearchCategory}
@@ -87,6 +85,7 @@ function App() {
             setDefaultFormView={setDefaultFormView}
             searchCenter={searchCenter}
             setSearchCenter={setSearchCenter}
+            userMeetings={userMeetings}
             />}
           />
           <Route path='/results' element={<ResultsPage
@@ -114,9 +113,3 @@ function App() {
 }
 
 export default App;
-
-// Change result options to checkboxes tha tallow up to three to be checked (disable once three are selected)
-// Store checked results in state (array)
-// Create a 'send meeting invitation' button and date/time input (default date/time to get fetch working for now?)
-// Don't allow button to submit until time is provided
-// When button submitted, fire fetch sendMeetingOptions

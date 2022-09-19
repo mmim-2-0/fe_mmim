@@ -46,6 +46,20 @@ const getUser = (name, email) => {
   })
 }
 
+const getUserMeetings = (id, token) => {
+  return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/users/${id}/meetings?token=${token}`)
+  .then(response => {
+    if (!response.ok) {
+      throw Error(response.text)
+    } else {
+      return response.json()
+    }
+  })
+  .catch(err => {
+      console.log(err)
+  })
+}
+
 const logoutUser = (token) => {
   return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/sessions?token=${token}`, {
     method: 'DELETE'
@@ -86,7 +100,7 @@ const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
     body: JSON.stringify({
       "token": token,
       "guest_email": guestEmail,
-      "time": "December 17, 2022 03:24:00",
+      "time": time,
       "locations": locations
     }),
     headers: {
@@ -102,7 +116,31 @@ const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
   })
 }
 
-export { getLocations, getUser, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser };
+const patchMeeting = (status, userId, meetingId, token, locationId) => {
+  return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/users/${userId}/meetings/${meetingId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      "token": token,
+      "status": status,
+      "location_id": locationId,
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    if (!response.ok) {
+      throw Error(response.text)
+    } else {
+      console.log("accept meeting worked")
+      // return response.json()
+    }
+  })
+}
+
+
+
+export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
 
 // denver, austin, cafe
 
