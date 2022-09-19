@@ -1,12 +1,11 @@
 import { GoogleLogin } from 'react-google-login'
-import  { getUser } from '../apiCalls.js'
+import  { getUser, getUserMeetings } from '../apiCalls.js'
 
 const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com"
 
-const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId }) => {
+const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId, userId, userMeetings, setUserMeetings }) => {
     const onSuccess = (res) => {
-        // console.log("this is res",res)
-        console.log('Login success! current user:', res.profileObj)
+        // console.log('Login success! current user:', res.profileObj)
         getUser(res.profileObj.givenName, res.profileObj.email).then(data => {
             setUserEmail(res.profileObj.email)
             setUserName(res.profileObj.givenName)
@@ -14,7 +13,16 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
             setUserDefaultAddress(data.data.attributes.address)
             setUserId(data.data.id)
         })
+        .then(() => {
+            console.log(typeof userId)
+            // getUserMeetings(Number(userId), token)
+            getUserMeetings(userId, token)
+            .then((response) => {
+                console.log(response)
+            })
+        })
     }
+    // having trouble knowing if this getUserMeetings fetch is working. Try to get a meeting send to me to check?
 
     const onFailure = (res) => {
         console.log('login failed! res:', res)
