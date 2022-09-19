@@ -12,17 +12,15 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
             setToken(data.data.attributes.token)
             setUserDefaultAddress(data.data.attributes.address)
             setUserId(data.data.id)
-        })
-        .then(() => {
-            console.log(typeof userId)
-            // getUserMeetings(Number(userId), token)
-            getUserMeetings(userId, token)
-            .then((response) => {
-                console.log(response)
-            })
+            getUserMeetings(data.data.id, data.data.attributes.token).then((response) => console.log(response))
+            // set state in another .then to save users meetings
+            // display meetings
         })
     }
-    // having trouble knowing if this getUserMeetings fetch is working. Try to get a meeting send to me to check?
+
+    // const fetchMeetings = () => {
+    //     getUserMeetings(userId, token).then((response) => console.log(response))
+    // }
 
     const onFailure = (res) => {
         console.log('login failed! res:', res)
@@ -38,6 +36,7 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
                 cookiePolicy={'single_host_origin'}
                 isSignedIn={true}
             />
+            {/* <button onClick={(fetchMeetings)}>fetch</button> */}
         </div>
     )
 }
