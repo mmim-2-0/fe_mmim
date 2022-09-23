@@ -40,7 +40,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Login
+        {!userEmail && <Login
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -52,8 +52,8 @@ function App() {
           userId={userId}
           userMeetings={userMeetings}
           setUserMeetings={setUserMeetings}
-        />
-        <Logout
+        />}
+        {userEmail && <Logout
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -63,7 +63,7 @@ function App() {
           setUserDefaultAddress={setUserDefaultAddress}
           setUserId={setUserId}
           setUserMeetings={setUserMeetings}
-        />
+        />}
         <Routes>
           <Route path='/' element={<Homepage
             userEmail={userEmail}
