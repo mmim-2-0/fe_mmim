@@ -22,7 +22,7 @@ const Logout = ({ userEmail, setUserEmail, userName, setUserName, token, setToke
         <div id="signOutButton">
             <GoogleLogout 
                 clientId={clientId}
-                buttonText={'Logout'}
+                buttonText={'Logout of Google'}
                 onLogoutSuccess={onSuccess}
             />
         </div>

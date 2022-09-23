@@ -32,18 +32,26 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
     }
 
     return (
-        <form>
-            <input type='text' placeholder='Address 1' onChange={addressOneHandler}></input>
-            <input type='text' placeholder='Address 2' onChange={addressTwoHandler}></input>
-            <select onChange={categoryChangeHandler}>
-                <option value="cafe">Cafe</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="bar">Bar</option>
-                <option value="park">Park</option>
-                <option value="library">Library</option>
-            </select>
-              <button onClick={submitDefaultForm}>Find Midpoint</button>
-        </form>
+        <section>
+            <h1>Find a place to meet.</h1>
+            <form>
+                <p><b>Your</b> starting point is...</p>
+                <p>Enter an address, or just a City or Zip Code</p>
+                <input type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
+                <p><b>Other</b> party's starting point is...</p>
+                <p>Enter an address, or just a City or Zip Code</p>
+                <input type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
+                <p>Meet at a...</p>
+                <select onChange={categoryChangeHandler}>
+                    <option value="cafe">Cafe</option>
+                    <option value="restaurant">Restaurant</option>
+                    <option value="bar">Bar</option>
+                    <option value="park">Park</option>
+                    <option value="library">Library</option>
+                </select>
+                <button onClick={submitDefaultForm}>Search the Middle </button>
+            </form>
+        </section>
     )
 
     // Store both address inputs in state (maybe location1 & location2?)

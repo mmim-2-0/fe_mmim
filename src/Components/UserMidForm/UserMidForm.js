@@ -70,6 +70,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     
     return (
         <section>
+            <h1>Find a place to meet.</h1>
             {!userDefaultAddress && <button onClick={defaultAddressFormHandler}>Set your default address</button>}
             {userDefaultAddress && <button onClick={defaultAddressFormHandler}>Change your default address</button>}
             {defaultFormView && <DefaultAddressForm 

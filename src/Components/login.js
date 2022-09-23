@@ -30,7 +30,7 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
         <div id='signInButton'>
             <GoogleLogin
                 clientId={clientId}
-                buttonText='Login'
+                buttonText='Continue with Google'
                 onSuccess={onSuccess}
                 onFailure={onFailure}
                 cookiePolicy={'single_host_origin'}
