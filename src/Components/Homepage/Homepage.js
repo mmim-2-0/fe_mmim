@@ -46,7 +46,7 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setSearchCenter={setSearchCenter}
       />      
       }
-      {userMeetings.length && <PendingMeetings 
+      {(userMeetings.length > 0) && <PendingMeetings 
         userMeetings={userMeetings}
         userId={userId}
         token={token}

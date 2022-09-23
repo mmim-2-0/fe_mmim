@@ -60,6 +60,9 @@ function App() {
           setUserName={setUserName}
           token={token}
           setToken={setToken}
+          setUserDefaultAddress={setUserDefaultAddress}
+          setUserId={setUserId}
+          setUserMeetings={setUserMeetings}
         />
         <Routes>
           <Route path='/' element={<Homepage
