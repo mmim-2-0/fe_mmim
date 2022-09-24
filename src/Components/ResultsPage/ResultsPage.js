@@ -25,11 +25,11 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     <div>
       <div>
         <h1>Choose a place to meet</h1>
-        <CafeIcon setSearchCategory={updateCategory}/>
-        <RestaurantIcon setSearchCategory={updateCategory}/>
-        <BarIcon setSearchCategory={updateCategory}/>
-        <LibraryIcon setSearchCategory={updateCategory}/>
-        <ParkIcon setSearchCategory={updateCategory}/>
+        <CafeIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+        <RestaurantIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+        <BarIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+        <LibraryIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+        <ParkIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
       </div>
 
       <Map

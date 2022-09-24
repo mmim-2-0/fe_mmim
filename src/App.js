@@ -113,3 +113,7 @@ function App() {
 }
 
 export default App;
+
+// Nav bar basic styling
+// Overlay on satellite image
+// Flex boxes on right side bar

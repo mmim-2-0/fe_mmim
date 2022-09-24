@@ -10,10 +10,16 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
     <div>
       <section className="homepage">
       <div>
-        <img className="homepageImage" src={homepageImage} alt="Nighttime aerial view of city"/>
-        <header>Meet Me in the Middle</header>
-        <p>Whether you’re meeting a friend or buying a dresser, Meet Me in the Middle makes it easy.</p>
-        <p>Use MMiM to find the right place between your two locations.</p>
+        {/* <img className="homepageImage" src={homepageImage} alt="Nighttime aerial view of city"/> */}
+        <div className="homepageImage" alt="Nighttime aerial view of city">
+          <div className="overlay-text">
+            <header className="overlay-h">Meet Me in the Middle</header>
+            <div className="overlay-p">
+              <p>Whether you’re meeting a friend or buying a dresser, Meet Me in the Middle makes it easy.</p>
+              <p>Use MMiM to find the right place between your two locations.</p>
+            </div>
+          </div>
+        </div>
       </div>
       {!userEmail ? <DefaultMidForm
         searchCategory={searchCategory}

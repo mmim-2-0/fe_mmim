@@ -8,7 +8,7 @@ import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { Link, useNavigate } from 'react-router-dom';
-
+import './UserMidForm.css';
 
 const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter }) => {
     
@@ -70,13 +70,13 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     }
     
     return (
-        <section>
-            <h1>Find a place to meet.</h1>
+        <section className="user-mid">
+            <h2>Find a place to meet.</h2>
             <form>
             <p><b>Your</b> starting point is...</p>
             <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
-            {!userDefaultAddress && <button onClick={defaultAddressFormHandler}>Set your default address</button>}
-            {userDefaultAddress && <button onClick={defaultAddressFormHandler}>Change your default address</button>}
+            {!userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Set your default address</button>}
+            {userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Change your default address</button>}
             {defaultFormView && <DefaultAddressForm 
                 setUserDefaultAddress={setUserDefaultAddress}
                 userDefaultAddress={userDefaultAddress}
@@ -84,17 +84,19 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
                 userEmail={userEmail}
                 token={token}
             />}
-            <p><b>Other</b> party's starting point is...</p>
+            <p className="second-address-label"><b>Other</b> party's starting point is...</p>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>
             <input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
-            <p>Meet at a...</p>
-            <CafeIcon setSearchCategory={setSearchCategory}/>
-            <RestaurantIcon setSearchCategory={setSearchCategory}/>
-            <BarIcon setSearchCategory={setSearchCategory}/>
-            <LibraryIcon setSearchCategory={setSearchCategory}/>
-            <ParkIcon setSearchCategory={setSearchCategory}/>
-            <button onClick={submitUserForm}>Search the Middle</button>
+            <p className="icon-label">Meet at a...</p>
+            <div className="category-icons">
+                <CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <RestaurantIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <BarIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <LibraryIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+            </div>
+            <button className="search-button" onClick={submitUserForm}><strong>Search the Middle</strong></button>
         </form>
     </section>
     )

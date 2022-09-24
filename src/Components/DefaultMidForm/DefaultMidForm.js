@@ -6,6 +6,7 @@ import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { Link, useNavigate } from 'react-router-dom';
+import './DefaultMidForm.css';
 
 const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, searchCenter, setSearchCenter }) => {
 
@@ -32,22 +33,24 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
     }
 
     return (
-        <section>
-            <h1>Find a place to meet.</h1>
+        <section className="default-mid">
+            <h2>Find a place to meet.</h2>
             <form>
                 <p><b>Your</b> starting point is...</p>
                 <p>Enter an address, or just a City or Zip Code</p>
                 <input type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
-                <p><b>Other</b> party's starting point is...</p>
+                <p className="second-address-label"><b>Other</b> party's starting point is...</p>
                 <p>Enter an address, or just a City or Zip Code</p>
                 <input type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
-                <p>Meet at a...</p>
-                <CafeIcon setSearchCategory={setSearchCategory}/>
-                <RestaurantIcon setSearchCategory={setSearchCategory}/>
-                <BarIcon setSearchCategory={setSearchCategory}/>
-                <LibraryIcon setSearchCategory={setSearchCategory}/>
-                <ParkIcon setSearchCategory={setSearchCategory}/>
-                <button onClick={submitDefaultForm}>Search the Middle</button>
+                <p className="icon-label">Meet at a...</p>
+                <div className="category-icons">
+                    <CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <RestaurantIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <BarIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <LibraryIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                </div>
+                <button className="search-button" onClick={submitDefaultForm}><strong>Search the Middle</strong></button>
             </form>
         </section>
     )

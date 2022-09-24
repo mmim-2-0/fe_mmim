@@ -1,13 +1,18 @@
 import React from 'react';
 import Login from '../login';
 import Logout from '../logout';
+import './Nav.css';
 
 const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId, userId, userMeetings, setUserMeetings }) => {
     return (
       <div className="Nav">
-        <button>home</button>
-        <button>our team</button>
-        <button>meeting dashboard</button>
+        <div className="title-div">
+          <h1 className="page-title">MMiM</h1>
+          <div className="title-block"></div>
+        </div>
+        <button className="nav-button">home</button>
+        <button className="nav-button">our team</button>
+        <button className="nav-button">meeting dashboard</button>
         {!userEmail ? <Login
           userEmail={userEmail}
           setUserEmail={setUserEmail}
