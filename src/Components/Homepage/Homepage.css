@@ -1,9 +1,38 @@
 .homepageImage {
-  width: 66vw;
-  height: 100vh;
+  background-image: url('../../assets/homepageImage.jpg');
+  width: 60vw;
+  height: 90vh;
   object-fit: cover;
+  margin-left: 4em;
+  background-size: cover;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .homepage {
   display: flex;
+}
+
+.overlay-text {
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+}
+
+.overlay-h {
+  font-size: 4em;
+  margin-bottom: 0.4em;
+}
+
+.overlay-p {
+  font-size: 1.4em;;
 }
