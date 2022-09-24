@@ -1,6 +1,7 @@
 import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
+import Nav from './Components/Nav/Nav'
 import Login from './Components/login';
 import Logout from './Components/logout';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
@@ -13,7 +14,7 @@ function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
   const [userId, setUserId] = useState(null)
-  const [searchCategory, setSearchCategory] = useState('cafe')
+  const [searchCategory, setSearchCategory] = useState("cafe")
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
   const [searchCenter, setSearchCenter] = useState([45.4, -75.7])
@@ -40,7 +41,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {!userEmail && <Login
+        <Nav
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -52,18 +53,7 @@ function App() {
           userId={userId}
           userMeetings={userMeetings}
           setUserMeetings={setUserMeetings}
-        />}
-        {userEmail && <Logout
-          userEmail={userEmail}
-          setUserEmail={setUserEmail}
-          userName={userName}
-          setUserName={setUserName}
-          token={token}
-          setToken={setToken}
-          setUserDefaultAddress={setUserDefaultAddress}
-          setUserId={setUserId}
-          setUserMeetings={setUserMeetings}
-        />}
+        />
         <Routes>
           <Route path='/' element={<Homepage
             userEmail={userEmail}

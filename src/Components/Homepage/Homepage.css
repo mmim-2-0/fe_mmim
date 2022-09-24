@@ -1,0 +1,9 @@
+.homepageImage {
+  width: 66vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.homepage {
+  display: flex;
+}

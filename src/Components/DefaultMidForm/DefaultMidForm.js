@@ -1,14 +1,19 @@
 import React from 'react';
 import { getLocations } from '../../apiCalls.js';
+import BarIcon from '../../assets/Bar icon.js';
+import CafeIcon from '../../assets/Cafe icon.js';
+import LibraryIcon from '../../assets/Library icon.js';
+import ParkIcon from '../../assets/Park icon.js';
+import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { Link, useNavigate } from 'react-router-dom';
-
 
 const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, searchCenter, setSearchCenter }) => {
 
     let navigate = useNavigate();
 
     const categoryChangeHandler = (e) => {
-        setSearchCategory(e.target.value)
+        // console.log(e.target)
+        // setSearchCategory(e.target.value)
     }
 
     const addressOneHandler = (e) => {
@@ -42,14 +47,12 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
                 <p>Enter an address, or just a City or Zip Code</p>
                 <input type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
                 <p>Meet at a...</p>
-                <select onChange={categoryChangeHandler}>
-                    <option value="cafe">Cafe</option>
-                    <option value="restaurant">Restaurant</option>
-                    <option value="bar">Bar</option>
-                    <option value="park">Park</option>
-                    <option value="library">Library</option>
-                </select>
-                <button onClick={submitDefaultForm}>Search the Middle </button>
+                <CafeIcon setSearchCategory={setSearchCategory}/>
+                <RestaurantIcon setSearchCategory={setSearchCategory}/>
+                <BarIcon setSearchCategory={setSearchCategory}/>
+                <LibraryIcon setSearchCategory={setSearchCategory}/>
+                <ParkIcon setSearchCategory={setSearchCategory}/>
+                <button onClick={submitDefaultForm}>Search the Middle</button>
             </form>
         </section>
     )
@@ -67,3 +70,13 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 };
 
 export default DefaultMidForm;
+
+
+{/* <select onChange={categoryChangeHandler}>
+<option value="cafe">Cafe</option>
+<option value="restaurant">Restaurant</option>
+<option value="bar">Bar</option>
+<option value="park">Park</option>
+<option value="library">Library</option>
+</select>
+<button onClick={submitDefaultForm}>Search the Middle </button> */}
