@@ -2,6 +2,11 @@ import React from 'react';
 import { getLocations, getGuestUser } from '../../apiCalls.js';
 import { useEffect } from 'react';
 import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm';
+import BarIcon from '../../assets/Bar icon.js';
+import CafeIcon from '../../assets/Cafe icon.js';
+import LibraryIcon from '../../assets/Library icon.js';
+import ParkIcon from '../../assets/Park icon.js';
+import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -17,10 +22,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     
     const addressOneHandler = (e) => {
         setAddressOne(e.target.value)
-    }
-    
-    const categoryChangeHandler = (e) => {
-        setSearchCategory(e.target.value)
     }
 
     const addressTwoHandlerEmail = (e) => {
@@ -71,6 +72,9 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     return (
         <section>
             <h1>Find a place to meet.</h1>
+            <form>
+            <p><b>Your</b> starting point is...</p>
+            <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
             {!userDefaultAddress && <button onClick={defaultAddressFormHandler}>Set your default address</button>}
             {userDefaultAddress && <button onClick={defaultAddressFormHandler}>Change your default address</button>}
             {defaultFormView && <DefaultAddressForm 
@@ -80,21 +84,17 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
                 userEmail={userEmail}
                 token={token}
             />}
-            <form>
-            <h2>Address One:</h2>
-            <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
-            <h2>Address Two:</h2>
+            <p><b>Other</b> party's starting point is...</p>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>
-            <input type='text' placeholder='Address 2' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
-            <select onChange={categoryChangeHandler}>
-                <option value="cafe">Cafe</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="bar">Bar</option>
-                <option value="park">Park</option>
-                <option value="library">Library</option>
-            </select>
-            <button onClick={submitUserForm}>Find a Midpoint</button>
+            <input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
+            <p>Meet at a...</p>
+            <CafeIcon setSearchCategory={setSearchCategory}/>
+            <RestaurantIcon setSearchCategory={setSearchCategory}/>
+            <BarIcon setSearchCategory={setSearchCategory}/>
+            <LibraryIcon setSearchCategory={setSearchCategory}/>
+            <ParkIcon setSearchCategory={setSearchCategory}/>
+            <button onClick={submitUserForm}>Search the Middle</button>
         </form>
     </section>
     )
