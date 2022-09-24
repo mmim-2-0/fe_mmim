@@ -18,7 +18,6 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
 
     return (
     <div>
-      <Nav />
       <div>
         <h1>Find Meeting Location</h1>
         <button onClick={() => updateCategory("cafe")}>cafe</button>
