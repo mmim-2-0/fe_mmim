@@ -1,16 +1,17 @@
 import React from 'react';
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
+import BarIcon from '../../assets/Bar icon.js';
+import CafeIcon from '../../assets/Cafe icon.js';
+import LibraryIcon from '../../assets/Library icon.js';
+import ParkIcon from '../../assets/Park icon.js';
+import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { getLocations } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 
 const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail }) => {
 
     let updateCategory = (category) => {
-      console.log("addressOne", addressOne)
-      console.log("addressTwo", addressTwo)
-      console.log("Category", category)
-
       getLocations(addressOne, addressTwo || addressTwoManual, category)
       .then(data => {
           console.log(data)
@@ -23,12 +24,12 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     return (
     <div>
       <div>
-        <h1>Find Meeting Location</h1>
-        <button onClick={() => updateCategory("cafe")}>cafe</button>
-        <button onClick={() => updateCategory("restaurant")}>restaurant</button>
-        <button onClick={() => updateCategory("bar")}>bar</button>
-        <button onClick={() => updateCategory("library")}>library</button>
-        <button onClick={() => updateCategory("park")}>park</button>
+        <h1>Choose a place to meet</h1>
+        <CafeIcon setSearchCategory={updateCategory}/>
+        <RestaurantIcon setSearchCategory={updateCategory}/>
+        <BarIcon setSearchCategory={updateCategory}/>
+        <LibraryIcon setSearchCategory={updateCategory}/>
+        <ParkIcon setSearchCategory={updateCategory}/>
       </div>
 
       <Map
