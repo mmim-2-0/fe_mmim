@@ -2,6 +2,7 @@ import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
 import Nav from './Components/Nav/Nav'
+import DashboardPage from './Components/DashboardPage/DashboardPage';
 import Login from './Components/login';
 import Logout from './Components/logout';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
@@ -97,6 +98,12 @@ function App() {
             token={token}
             userId={userId}
             addressTwoEmail={addressTwoEmail}
+            />}
+          />
+          <Route path='/dashboard' element={<DashboardPage
+            userMeetings={userMeetings}
+            userId={userId}
+            token={token}
             />}
           />
         </Routes>
