@@ -7,7 +7,11 @@ import ResultsContainer from '../ResultsContainer/ResultsContainer';
 const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail }) => {
 
     let updateCategory = (category) => {
-      getLocations(addressOne, addressTwo, category)
+      console.log("addressOne", addressOne)
+      console.log("addressTwo", addressTwo)
+      console.log("Category", category)
+
+      getLocations(addressOne, addressTwo || addressTwoManual, category)
       .then(data => {
           console.log(data)
           setSearchCategory(category)
