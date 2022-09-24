@@ -11,11 +11,6 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 
     let navigate = useNavigate();
 
-    const categoryChangeHandler = (e) => {
-        // console.log(e.target)
-        // setSearchCategory(e.target.value)
-    }
-
     const addressOneHandler = (e) => {
         setAddressOne(e.target.value)
     }
@@ -57,26 +52,9 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
         </section>
     )
 
-    // Store both address inputs in state (maybe location1 & location2?)
-    // Store the dropdown option in state as well!
+    //need to update styling so user knows which icon has been selected
+    //update styling for overlay description over image
 
-    // Attach a fetch to the 'find a midpoint' button that will use state as query params
-    // Store the 5 responses in state?
-
-    // When we render the responses, we can access them because they're in state
-
-    // Are US zip codes working yet?
-    // Is there an option to not choose a category/keyword? Does case matters
 };
 
 export default DefaultMidForm;
-
-
-{/* <select onChange={categoryChangeHandler}>
-<option value="cafe">Cafe</option>
-<option value="restaurant">Restaurant</option>
-<option value="bar">Bar</option>
-<option value="park">Park</option>
-<option value="library">Library</option>
-</select>
-<button onClick={submitDefaultForm}>Search the Middle </button> */}
