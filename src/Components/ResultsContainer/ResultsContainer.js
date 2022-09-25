@@ -41,8 +41,6 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
     return (
       <div>
         <h1>Meet Me in The Middle</h1>
-        <p>{addressOne}</p>
-        <p>{addressTwo || addressTwoManual}</p>
         <h2>Results ({searchResponses.length})</h2>
         {displayedResults}
         {addressTwoEmail ? <div className='meeting-invite-container'>

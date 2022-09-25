@@ -2,8 +2,13 @@ import React from 'react';
 import { getLocations, getGuestUser } from '../../apiCalls.js';
 import { useEffect } from 'react';
 import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm';
+import BarIcon from '../../assets/Bar icon.js';
+import CafeIcon from '../../assets/Cafe icon.js';
+import LibraryIcon from '../../assets/Library icon.js';
+import ParkIcon from '../../assets/Park icon.js';
+import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { Link, useNavigate } from 'react-router-dom';
-
+import './UserMidForm.css';
 
 const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter }) => {
     
@@ -17,10 +22,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     
     const addressOneHandler = (e) => {
         setAddressOne(e.target.value)
-    }
-    
-    const categoryChangeHandler = (e) => {
-        setSearchCategory(e.target.value)
     }
 
     const addressTwoHandlerEmail = (e) => {
@@ -69,9 +70,13 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     }
     
     return (
-        <section>
-            {!userDefaultAddress && <button onClick={defaultAddressFormHandler}>Set your default address</button>}
-            {userDefaultAddress && <button onClick={defaultAddressFormHandler}>Change your default address</button>}
+        <section className="user-mid">
+            <h2>Find a place to meet.</h2>
+            <form>
+            <p><b>Your</b> starting point is...</p>
+            <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
+            {!userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Set your default address</button>}
+            {userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Change your default address</button>}
             {defaultFormView && <DefaultAddressForm 
                 setUserDefaultAddress={setUserDefaultAddress}
                 userDefaultAddress={userDefaultAddress}
@@ -79,21 +84,19 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
                 userEmail={userEmail}
                 token={token}
             />}
-            <form>
-            <h2>Address One:</h2>
-            <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
-            <h2>Address Two:</h2>
+            <p className="second-address-label"><b>Other</b> party's starting point is...</p>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>
-            <input type='text' placeholder='Address 2' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
-            <select onChange={categoryChangeHandler}>
-                <option value="cafe">Cafe</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="bar">Bar</option>
-                <option value="park">Park</option>
-                <option value="library">Library</option>
-            </select>
-            <button onClick={submitUserForm}>Find a Midpoint</button>
+            <input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
+            <p className="icon-label">Meet at a...</p>
+            <div className="category-icons">
+                <CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <RestaurantIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <BarIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <LibraryIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                <ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+            </div>
+            <button className="search-button" onClick={submitUserForm}><strong>Search the Middle</strong></button>
         </form>
     </section>
     )

@@ -1,6 +1,8 @@
 import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
+import Nav from './Components/Nav/Nav'
+import DashboardPage from './Components/DashboardPage/DashboardPage';
 import Login from './Components/login';
 import Logout from './Components/logout';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
@@ -13,7 +15,7 @@ function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
   const [userId, setUserId] = useState(null)
-  const [searchCategory, setSearchCategory] = useState('cafe')
+  const [searchCategory, setSearchCategory] = useState("cafe")
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
   const [searchCenter, setSearchCenter] = useState([45.4, -75.7])
@@ -40,7 +42,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Login
+        <Nav
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -52,14 +54,6 @@ function App() {
           userId={userId}
           userMeetings={userMeetings}
           setUserMeetings={setUserMeetings}
-        />
-        <Logout
-          userEmail={userEmail}
-          setUserEmail={setUserEmail}
-          userName={userName}
-          setUserName={setUserName}
-          token={token}
-          setToken={setToken}
         />
         <Routes>
           <Route path='/' element={<Homepage
@@ -106,6 +100,12 @@ function App() {
             addressTwoEmail={addressTwoEmail}
             />}
           />
+          <Route path='/dashboard' element={<DashboardPage
+            userMeetings={userMeetings}
+            userId={userId}
+            token={token}
+            />}
+          />
         </Routes>
       </div>
     </Router>
@@ -113,3 +113,7 @@ function App() {
 }
 
 export default App;
+
+// Nav bar basic styling
+// Overlay on satellite image
+// Flex boxes on right side bar

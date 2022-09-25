@@ -1,15 +1,16 @@
 import React from 'react';
 import { getLocations } from '../../apiCalls.js';
+import BarIcon from '../../assets/Bar icon.js';
+import CafeIcon from '../../assets/Cafe icon.js';
+import LibraryIcon from '../../assets/Library icon.js';
+import ParkIcon from '../../assets/Park icon.js';
+import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { Link, useNavigate } from 'react-router-dom';
-
+import './DefaultMidForm.css';
 
 const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, searchCenter, setSearchCenter }) => {
 
     let navigate = useNavigate();
-
-    const categoryChangeHandler = (e) => {
-        setSearchCategory(e.target.value)
-    }
 
     const addressOneHandler = (e) => {
         setAddressOne(e.target.value)
@@ -32,30 +33,31 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
     }
 
     return (
-        <form>
-            <input type='text' placeholder='Address 1' onChange={addressOneHandler}></input>
-            <input type='text' placeholder='Address 2' onChange={addressTwoHandler}></input>
-            <select onChange={categoryChangeHandler}>
-                <option value="cafe">Cafe</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="bar">Bar</option>
-                <option value="park">Park</option>
-                <option value="library">Library</option>
-            </select>
-              <button onClick={submitDefaultForm}>Find Midpoint</button>
-        </form>
+        <section className="default-mid">
+            <h2>Find a place to meet.</h2>
+            <form>
+                <p><b>Your</b> starting point is...</p>
+                <p>Enter an address, or just a City or Zip Code</p>
+                <input type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
+                <p className="second-address-label"><b>Other</b> party's starting point is...</p>
+                <p>Enter an address, or just a City or Zip Code</p>
+                <input type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
+                <p className="icon-label">Meet at a...</p>
+                <div className="category-icons">
+                    <CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <RestaurantIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <BarIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <LibraryIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                    <ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
+                </div>
+                <button className="search-button" onClick={submitDefaultForm}><strong>Search the Middle</strong></button>
+            </form>
+        </section>
     )
 
-    // Store both address inputs in state (maybe location1 & location2?)
-    // Store the dropdown option in state as well!
+    //need to update styling so user knows which icon has been selected
+    //update styling for overlay description over image
 
-    // Attach a fetch to the 'find a midpoint' button that will use state as query params
-    // Store the 5 responses in state?
-
-    // When we render the responses, we can access them because they're in state
-
-    // Are US zip codes working yet?
-    // Is there an option to not choose a category/keyword? Does case matters
 };
 
 export default DefaultMidForm;

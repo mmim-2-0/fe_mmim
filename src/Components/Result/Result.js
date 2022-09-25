@@ -26,7 +26,7 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
         <p>{info.categories.join(', ')}</p>
         <p>{info.price}</p>
         <p>{info.address}</p>
-        {!info.is_open_now ? <p>Currently Closed</p> : <p>Currently Open</p>}
+        {!info.is_open_now ? <p>Currently Closed</p> : <p>Open Now</p>}
         {addressTwoEmail && 
           <div>
             <p>Meet here</p>

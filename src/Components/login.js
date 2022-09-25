@@ -1,5 +1,6 @@
 import { GoogleLogin } from 'react-google-login'
 import  { getUser, getUserMeetings } from '../apiCalls.js'
+import './login.css';
 
 const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com"
 
@@ -29,8 +30,9 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
     return (
         <div id='signInButton'>
             <GoogleLogin
+                className="login"
                 clientId={clientId}
-                buttonText='Login'
+                buttonText='Continue with Google'
                 onSuccess={onSuccess}
                 onFailure={onFailure}
                 cookiePolicy={'single_host_origin'}
