@@ -1,0 +1,4 @@
+.all-meetings {
+    display: flex;
+    justify-content: space-around;
+}
