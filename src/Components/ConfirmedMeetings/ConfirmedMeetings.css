@@ -1,0 +1,23 @@
+.all-confirmed {
+    border: 2px solid green;
+    margin: 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.confirmed-title {
+    text-align: center;
+}
+
+.all-confirmed-and-title {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid blue;
+    width: 46%;
+    margin-top: 1em;
+}

@@ -1,0 +1,16 @@
+.individual-meeting {
+    border: 2px solid pink;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 24%;
+    margin: 1em;
+    /* flex-wrap: wrap; */
+}
+
+.radio-div {
+    display: flex;
+    /* flex-direction: ; */
+    justify-content: flex-start;
+    align-items: center;
+}
