@@ -1,0 +1,18 @@
+.individual-result {
+    border: 1px solid pink;
+    margin: 0.6em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.result-image {
+    height: 30vh;
+    width: 80%;
+}
+
+.result-info {
+    margin: 0.2em;
+}

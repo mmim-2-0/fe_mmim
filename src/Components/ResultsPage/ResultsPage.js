@@ -8,6 +8,7 @@ import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { getLocations } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
+import './ResultsPage.css';
 
 const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail }) => {
 
@@ -23,32 +24,38 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
 
     return (
     <div>
-      <div>
-        <h1>Choose a place to meet</h1>
-        <CafeIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
-        <RestaurantIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
-        <BarIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
-        <LibraryIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
-        <ParkIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+      <div className="category-change-container">
+        <h1>Change your meeting category:</h1>
+        <div className="category-container">
+          <CafeIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+          <RestaurantIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+          <BarIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+          <LibraryIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+          <ParkIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
+        </div>
       </div>
-
-      <Map
-        searchResponses={searchResponses}
-        searchCenter={searchCenter}
-      />
-      <ResultsContainer
-        searchResponses={searchResponses}
-        addressOne={addressOne}
-        addressTwo={addressTwo}
-        addressTwoManual={addressTwoManual}
-        checkedMeetingLocations={checkedMeetingLocations}
-        setCheckedMeetingLocations={setCheckedMeetingLocations}
-        userEmail={userEmail}
-        token={token}
-        userId={userId}
-        addressTwoEmail={addressTwoEmail}
-      />
-
+      <div className="map-and-results">
+        <div className="map">
+          <Map
+            searchResponses={searchResponses}
+            searchCenter={searchCenter}
+          />
+        </div>
+        <div className="results">
+          <ResultsContainer
+            searchResponses={searchResponses}
+            addressOne={addressOne}
+            addressTwo={addressTwo}
+            addressTwoManual={addressTwoManual}
+            checkedMeetingLocations={checkedMeetingLocations}
+            setCheckedMeetingLocations={setCheckedMeetingLocations}
+            userEmail={userEmail}
+            token={token}
+            userId={userId}
+            addressTwoEmail={addressTwoEmail}
+          />
+        </div>
+      </div>
     </div>
     )
 };

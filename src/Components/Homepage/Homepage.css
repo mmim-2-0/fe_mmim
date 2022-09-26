@@ -1,7 +1,7 @@
 .homepageImage {
   background-image: url('../../assets/homepageImage.jpg');
   width: 60vw;
-  height: 90vh;
+  height: 100vh;
   object-fit: cover;
   margin-left: 4em;
   background-size: cover;

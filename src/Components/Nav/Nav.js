@@ -1,18 +1,39 @@
 import React from 'react';
 import Login from '../login';
 import Logout from '../logout';
+import { Link, useNavigate } from 'react-router-dom';
 import './Nav.css';
 
-const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId, userId, userMeetings, setUserMeetings }) => {
-    return (
+const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId, userId, userMeetings, setUserMeetings, pageTitle, setPageTitle }) => {
+   
+  let navigate = useNavigate();
+
+  const navigateHomePage = () => {
+    navigate(`/dashboard`)
+    setPageTitle('dashboard')
+  }
+
+  const navigateHome = () => {
+    navigate(`/`)
+    setPageTitle('home')
+  }
+
+  // Want to change the logic on the buttons to reference the url if possible, instead of relying on state. Not sure if it will work if someone is using the back button the way it's currently set up
+  return (
       <div className="Nav">
         <div className="title-div">
           <h1 className="page-title">MMiM</h1>
           <div className="title-block"></div>
         </div>
-        <button className="nav-button">home</button>
+        <div className="home-button">
+          <button className="nav-button" onClick={navigateHome}>home</button>
+          {pageTitle === 'home' && <div className="home-bar"></div>}
+        </div>
         <button className="nav-button">our team</button>
-        <button className="nav-button">meeting dashboard</button>
+        <div className="dashboard-button">
+          <button className="nav-button" onClick={navigateHomePage}>meeting dashboard</button>
+          {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
+        </div>
         {!userEmail ? <Login
           userEmail={userEmail}
           setUserEmail={setUserEmail}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { patchMeeting } from '../../apiCalls';
-
+import './PendingMeeting.css';
 
 const PendingMeeting = ({ meetingInfo, userId, token }) => {
 
@@ -19,23 +19,23 @@ const PendingMeeting = ({ meetingInfo, userId, token }) => {
 
     const displayLocationOptions = (array) => {
       return array.map((location, index) => (
-        <div key={index}>
-        <input type='radio' name="location" value={location.name} id={location.id} onChange={() => setSelectedLocation(location.id)}></input>
-        <label>{location.name}</label>
+        <div key={index} className="radio-div">
+          <input type='radio' name="location" value={location.name} id={location.id} onChange={() => setSelectedLocation(location.id)}></input>
+          <label>{location.name}</label>
         </div>
       ))
     }
 
     return (
-      <div>
-      <p>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
-      <p>Time: {meetingInfo.attributes.time}</p>
-      <form>Choose a Location:
-        {displayLocationOptions(meetingInfo.attributes.locations)}
-        <button onClick={(e) => acceptMeetingInvite(e)}>Accept Meeting</button>
-        <button onClick={(e) => declineMeetingInvite(e)}>Decline Meeting</button>
-      </form>
-    </div>
+      <div className="individual-meeting">
+        <p>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
+        <p>Time: {meetingInfo.attributes.time}</p>
+        <form className="pending-form"><span className="form-instructions">Choose a Location:</span>
+          {displayLocationOptions(meetingInfo.attributes.locations)}
+          <button className="pending-button" onClick={(e) => acceptMeetingInvite(e)}>Accept Meeting</button>
+          <button className="pending-button" onClick={(e) => declineMeetingInvite(e)}>Decline Meeting</button>
+        </form>
+      </div>
     )
 };
 

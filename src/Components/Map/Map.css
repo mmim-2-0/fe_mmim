@@ -1,0 +1,10 @@
+.map-div {
+    height: 100%;
+    width: 100%;
+}
+
+.map {
+    height: 60vh;
+    width: 60vw;
+    margin: 1em;
+}
