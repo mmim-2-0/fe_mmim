@@ -1,18 +1,30 @@
 import React from 'react';
 import Login from '../login';
 import Logout from '../logout';
+import { Link, useNavigate } from 'react-router-dom';
 import './Nav.css';
 
 const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, setUserDefaultAddress, setUserId, userId, userMeetings, setUserMeetings }) => {
-    return (
+   
+  let navigate = useNavigate();
+
+  const navigateHomePage = () => {
+    navigate(`/dashboard`)
+  }
+
+  const navigateHome = () => {
+    navigate(`/`)
+  }
+
+  return (
       <div className="Nav">
         <div className="title-div">
           <h1 className="page-title">MMiM</h1>
           <div className="title-block"></div>
         </div>
-        <button className="nav-button">home</button>
+        <button className="nav-button" onClick={navigateHome}>home</button>
         <button className="nav-button">our team</button>
-        <button className="nav-button">meeting dashboard</button>
+        <button className="nav-button" onClick={navigateHomePage}>meeting dashboard</button>
         {!userEmail ? <Login
           userEmail={userEmail}
           setUserEmail={setUserEmail}
