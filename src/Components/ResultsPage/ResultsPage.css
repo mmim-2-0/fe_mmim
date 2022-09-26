@@ -1,0 +1,29 @@
+.category-container {
+    display: flex;
+}
+
+.category-change-container {
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 2em;
+}
+
+.map-and-results {
+    display: flex;
+    justify-content: space-between;
+}
+
+.results {
+    height: 60vh;
+    overflow-y: scroll;
+    margin: 2em;
+    width: 50%;
+    border: 1px solid black;
+}
+
+.map {
+    height: 60vh;
+    margin: 2em;
+    width: 40%;
+    flex-grow: 1;
+}
