@@ -27,6 +27,7 @@ function App() {
   const [defaultFormView, setDefaultFormView] = useState(false)
   const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([])
   const [userMeetings, setUserMeetings] = useState([]);
+  const [pageTitle, setPageTitle] = useState('home')
 
   useEffect(() => {
     function start() {
@@ -54,6 +55,8 @@ function App() {
           userId={userId}
           userMeetings={userMeetings}
           setUserMeetings={setUserMeetings}
+          pageTitle={pageTitle}
+          setPageTitle={setPageTitle}
         />
         <Routes>
           <Route path='/' element={<Homepage
