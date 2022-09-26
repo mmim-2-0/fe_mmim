@@ -1,5 +1,6 @@
 import React from 'react';
 import ConfirmedMeeting from '../ConfirmedMeeting/ConfirmedMeeting';
+import './ConfirmedMeetings.css'
 
 const ConfirmedMeetings = ({ userMeetings, userId, token }) => {
 
@@ -14,9 +15,11 @@ const ConfirmedMeetings = ({ userMeetings, userId, token }) => {
       />
 })
     return (
-      <div>
-      <h2>Confirmed Meetings</h2>
-      {displayConfirmedMeetings}
+      <div className="all-confirmed-and-title">
+        <h2 className="confirmed-title">Confirmed Meetings</h2>
+        <div className="all-confirmed">
+          {displayConfirmedMeetings}
+        </div>
       </div>
     )
 };

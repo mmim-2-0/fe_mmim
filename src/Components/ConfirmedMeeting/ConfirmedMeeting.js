@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { patchMeeting } from '../../apiCalls';
-
+import './ConfirmedMeeting.css'
 
 const ConfirmedMeeting = ({ meetingInfo, userId, token }) => {
 
@@ -12,15 +12,15 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token }) => {
 
     const displayLocationOptions = (array) => {
       return array.map((location, index) => (
-        <div key={index}>
-        <p>{location.name}</p>
-        <p>{location.address}</p>
+        <div key={index} className="radio-div">
+          <p>{location.name}</p>
+          <p>{location.address}</p>
         </div>
       ))
     }
 
     return (
-      <div>
+      <div className="individual-confirmed-meeting">
       <p>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
       <p>Time: {meetingInfo.attributes.time}</p>
       {displayLocationOptions(meetingInfo.attributes.locations)}
