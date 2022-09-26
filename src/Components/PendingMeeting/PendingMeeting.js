@@ -30,10 +30,10 @@ const PendingMeeting = ({ meetingInfo, userId, token }) => {
       <div className="individual-meeting">
         <p>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
         <p>Time: {meetingInfo.attributes.time}</p>
-        <form>Choose a Location:
+        <form className="pending-form"><span className="form-instructions">Choose a Location:</span>
           {displayLocationOptions(meetingInfo.attributes.locations)}
-          <button onClick={(e) => acceptMeetingInvite(e)}>Accept Meeting</button>
-          <button onClick={(e) => declineMeetingInvite(e)}>Decline Meeting</button>
+          <button className="pending-button" onClick={(e) => acceptMeetingInvite(e)}>Accept Meeting</button>
+          <button className="pending-button" onClick={(e) => declineMeetingInvite(e)}>Decline Meeting</button>
         </form>
       </div>
     )
