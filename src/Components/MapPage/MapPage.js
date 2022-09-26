@@ -1,12 +1,15 @@
 import React from 'react';
 import Map from '../Map/Map'
-import ResultsContainer from '../ResultsContainer/ResultsContainer'
+import ResultsContainer from '../ResultsContainer/ResultsContainer';
+import './MapPage.css';
 
 const MapPage = () => {
     return (
         <section>
-            <p>Map Page!</p>
-            <Map />
+            <div className="map-page">
+                <p>Map Page!</p>
+                <Map />
+            </div>
             <ResultsContainer />
             <>
                 <p>Didn't find what you're looking for?</p>

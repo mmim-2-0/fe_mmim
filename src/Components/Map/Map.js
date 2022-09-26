@@ -2,6 +2,7 @@ import React from 'react';
 import { L, Icon, count, marker } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useEffect } from 'react';
+import './Map.css';
 
 
 const Map = ({ searchResponses, searchCenter }) => {
@@ -19,13 +20,15 @@ const Map = ({ searchResponses, searchCenter }) => {
     ))
 
     return (
-      <MapContainer center={searchCenter} zoom={12} scrollWheelZoom={false}>
-        {searchMarkers}
-        <TileLayer
-           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-         />
-      </MapContainer>
+      <div className="map-div">
+        <MapContainer className="map" className="map" center={searchCenter} zoom={12} scrollWheelZoom={false}>
+          {searchMarkers}
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+        </MapContainer>
+      </div>
     )
 };
 
