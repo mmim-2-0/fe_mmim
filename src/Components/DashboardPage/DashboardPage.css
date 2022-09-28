@@ -1,8 +1,6 @@
 .all-meetings {
     display: flex;
-    /* justify-content: space-between; */
     flex-direction: column;
-    /* width: 100vw; */
     width: 80vw;
 }
 
