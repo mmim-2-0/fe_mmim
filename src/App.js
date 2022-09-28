@@ -110,6 +110,8 @@ function App() {
             userId={userId}
             token={token}
             setPageTitle={setPageTitle}
+            userDefaultAddress={userDefaultAddress}
+            setUserDefaultAddress={setUserDefaultAddress}
             />}
           />
         </Routes>
