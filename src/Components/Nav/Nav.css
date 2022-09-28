@@ -57,7 +57,16 @@
     margin-top: -1em;
 }
 
-.home-button, .dashboard-button {
+.about-bar {
+    color: white;
+    background-color: white;
+    height: 1em;
+    width: 5em;
+    margin-bottom: 0.2em;
+    margin-top: -1em;
+}
+
+.home-button, .dashboard-button, .about-button {
     display: flex;
     flex-direction: column;
     align-items: center;
