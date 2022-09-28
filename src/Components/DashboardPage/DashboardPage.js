@@ -23,9 +23,9 @@ const DashboardPage = ({ userMeetings, userId, token, setPageTitle, userDefaultA
   return (
     <div className="dashboard-parent-div">
       <div className="left-sidebar">
-        <h3>change your default address:</h3>
-        <input type="text" placeholder="new default address" value={localDefault} onChange={handleLocalDefault}></input>
-        <button onClick={defaultAddressHandler}>update</button>
+        <h3 className="change-default-title">change your default address:</h3>
+        <input className="default-input" type="text" placeholder="new default address" value={localDefault} onChange={handleLocalDefault}></input>
+        <button className="update-button" onClick={defaultAddressHandler}>update</button>
       </div>
       <div className="all-meetings">
         {(userMeetings.length > 0) && <PendingMeetings 
