@@ -75,7 +75,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             <form>
             <p><b>Your</b> starting point is...</p>
             <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
-            {!userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Set your default address</button>}
+            {/* {!userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Set your default address</button>}
             {userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Change your default address</button>}
             {defaultFormView && <DefaultAddressForm 
                 setUserDefaultAddress={setUserDefaultAddress}
@@ -83,7 +83,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
                 userName={userName}
                 userEmail={userEmail}
                 token={token}
-            />}
+            />} */}
             <p className="second-address-label"><b>Other</b> party's starting point is...</p>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>
