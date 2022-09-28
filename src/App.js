@@ -83,6 +83,7 @@ function App() {
             searchCenter={searchCenter}
             setSearchCenter={setSearchCenter}
             userMeetings={userMeetings}
+            setPageTitle={setPageTitle}
             />}
           />
           <Route path='/results' element={<ResultsPage
@@ -101,12 +102,14 @@ function App() {
             token={token}
             userId={userId}
             addressTwoEmail={addressTwoEmail}
+            setPageTitle={setPageTitle}
             />}
           />
           <Route path='/dashboard' element={<DashboardPage
             userMeetings={userMeetings}
             userId={userId}
             token={token}
+            setPageTitle={setPageTitle}
             />}
           />
         </Routes>

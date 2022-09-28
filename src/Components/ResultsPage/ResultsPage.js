@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import BarIcon from '../../assets/Bar icon.js';
@@ -10,7 +11,11 @@ import { getLocations } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 import './ResultsPage.css';
 
-const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail }) => {
+const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail, setPageTitle }) => {
+
+  useEffect(() => {
+    setPageTitle('home')
+  })
 
     let updateCategory = (category) => {
       getLocations(addressOne, addressTwo || addressTwoManual, category)
@@ -61,16 +66,3 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
 };
 
 export default ResultsPage;
-
-
-// <>
-//     <p>Didn't find what you're looking for?</p>
-//     <select>
-//         <option>Cafe</option>
-//         <option>Restaurant</option>
-//         <option>Bar</option>
-//         <option>Park</option>
-//         <option>Library</option>
-//     </select>
-//     <button>Update category</button>
-// </>

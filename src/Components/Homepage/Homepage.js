@@ -1,12 +1,18 @@
 import React from 'react';
+import { useEffect } from 'react';
 import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
 import PendingMeetings from '../PendingMeetings/PendingMeetings';
 import homepageImage from '../../assets/homepageImage.jpg';
 import './Homepage.css'
 
-const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings }) => {
-    return (
+const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings, setPageTitle }) => {
+    
+  useEffect(() => {
+    setPageTitle('home')
+  })
+  
+  return (
     <div>
       <section className="homepage">
       <div>

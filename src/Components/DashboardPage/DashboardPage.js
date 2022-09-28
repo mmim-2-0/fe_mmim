@@ -1,8 +1,14 @@
 import PendingMeetings from "../PendingMeetings/PendingMeetings";
 import ConfirmedMeetings from "../ConfirmedMeetings/ConfirmedMeetings";
 import './DashboardPage.css';
+import { useEffect } from 'react';
 
-const DashboardPage = ({ userMeetings, userId, token }) => {
+const DashboardPage = ({ userMeetings, userId, token, setPageTitle }) => {
+  
+  useEffect(() => {
+    setPageTitle('dashboard')
+  });
+
   return (
     <div className="all-meetings">
       {(userMeetings.length > 0) && <PendingMeetings 

@@ -19,6 +19,7 @@ const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, 
   }
 
   // Want to change the logic on the buttons to reference the url if possible, instead of relying on state. Not sure if it will work if someone is using the back button the way it's currently set up
+  // Maybe this could be done with a useEffect instead?
   return (
       <div className="Nav">
         <div className="title-div">
