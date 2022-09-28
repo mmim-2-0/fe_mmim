@@ -1,13 +1,12 @@
 import React from 'react';
 import { getLocations, getGuestUser } from '../../apiCalls.js';
 import { useEffect } from 'react';
-import DefaultAddressForm from '../../Components/DefaultAddressForm/DefaultAddressForm';
 import BarIcon from '../../assets/Bar icon.js';
 import CafeIcon from '../../assets/Cafe icon.js';
 import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './UserMidForm.css';
 
 const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter }) => {
@@ -35,8 +34,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     }
 
 
-    // Refactor this function to work the same as with a guest user
-    // Need logic before this to figure out which addresses to use for each user?
     const submitUserForm = (e) => {
         e.preventDefault()
         if (addressTwoManual) {
@@ -64,10 +61,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
                 }) 
         }
     }
-
-    const defaultAddressFormHandler = () => {
-        setDefaultFormView(true);
-    }
     
     return (
         <section className="user-mid">
@@ -75,15 +68,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
             <form>
             <p><b>Your</b> starting point is...</p>
             <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
-            {!userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Set your default address</button>}
-            {userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Change your default address</button>}
-            {defaultFormView && <DefaultAddressForm 
-                setUserDefaultAddress={setUserDefaultAddress}
-                userDefaultAddress={userDefaultAddress}
-                userName={userName}
-                userEmail={userEmail}
-                token={token}
-            />}
             <p className="second-address-label"><b>Other</b> party's starting point is...</p>
             <input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
             <p>OR</p>

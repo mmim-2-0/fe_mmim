@@ -1,6 +1,6 @@
 import React from 'react';
 import PendingMeeting from '../PendingMeeting/PendingMeeting';
-import { acceptMeeting } from '../../apiCalls';
+// import { acceptMeeting } from '../../apiCalls';
 import './PendingMeetings.css'
 
 
@@ -19,7 +19,7 @@ const PendingMeetings = ({ userMeetings, userId, token }) => {
 
     return (
       <div className="all-pending-and-title">
-        <h2 className="pending-title">Pending Meetings</h2>
+        <h2 className="pending-title">your pending meetings:</h2>
         <div className="all-pending">
           {displayPendingMeetings}
         </div>

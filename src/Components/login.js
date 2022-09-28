@@ -38,7 +38,6 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
                 cookiePolicy={'single_host_origin'}
                 isSignedIn={true}
             />
-            {/* <button onClick={(fetchMeetings)}>fetch</button> */}
         </div>
     )
 }

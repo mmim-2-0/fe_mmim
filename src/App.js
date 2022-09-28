@@ -3,8 +3,6 @@ import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
 import Nav from './Components/Nav/Nav'
 import DashboardPage from './Components/DashboardPage/DashboardPage';
-import Login from './Components/login';
-import Logout from './Components/logout';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
@@ -83,6 +81,7 @@ function App() {
             searchCenter={searchCenter}
             setSearchCenter={setSearchCenter}
             userMeetings={userMeetings}
+            setPageTitle={setPageTitle}
             />}
           />
           <Route path='/results' element={<ResultsPage
@@ -101,12 +100,16 @@ function App() {
             token={token}
             userId={userId}
             addressTwoEmail={addressTwoEmail}
+            setPageTitle={setPageTitle}
             />}
           />
           <Route path='/dashboard' element={<DashboardPage
             userMeetings={userMeetings}
             userId={userId}
             token={token}
+            setPageTitle={setPageTitle}
+            userDefaultAddress={userDefaultAddress}
+            setUserDefaultAddress={setUserDefaultAddress}
             />}
           />
         </Routes>
@@ -116,7 +119,3 @@ function App() {
 }
 
 export default App;
-
-// Nav bar basic styling
-// Overlay on satellite image
-// Flex boxes on right side bar

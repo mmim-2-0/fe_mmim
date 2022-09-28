@@ -1,12 +1,11 @@
 .Nav {
- display: flex;   
- height: 10em;
- width: 100%;
- background-color: #000000;
- margin: 0%;
- /* padding: 0; */
- align-items: flex-end;
- justify-content: space-between;
+    display: flex;   
+    height: 10em;
+    width: 100%;
+    background-color: #000000;
+    margin: 0%;
+    align-items: flex-end;
+    justify-content: space-between;
 }
 
 .page-title {
@@ -23,7 +22,6 @@
     background-color: #000000;
     border: none;
     padding-bottom: 1.2em;
-    /* padding-bottom: 0.2em; */
 }
 
 .title-block {
@@ -57,7 +55,16 @@
     margin-top: -1em;
 }
 
-.home-button, .dashboard-button {
+.about-bar {
+    color: white;
+    background-color: white;
+    height: 1em;
+    width: 5em;
+    margin-bottom: 0.2em;
+    margin-top: -1em;
+}
+
+.home-button, .dashboard-button, .about-button {
     display: flex;
     flex-direction: column;
     align-items: center;

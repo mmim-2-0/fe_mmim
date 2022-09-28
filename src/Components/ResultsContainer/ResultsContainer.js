@@ -4,7 +4,7 @@ import { sendMeetingOptions } from '../../apiCalls.js';
 import { useState } from 'react';
 import './ResultsContainer.css';
 
-const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail }) => {
+const ResultsContainer = ({ searchResponses, checkedMeetingLocations, setCheckedMeetingLocations, token, userId, addressTwoEmail }) => {
 
   const [meetingTime, setMeetingTime] = useState('')
 
@@ -25,8 +25,6 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
 
     const handleTimeInput = (e) => {
       setMeetingTime(e.target.value)
-      // setMeetingTime('2022-09-30T17:46')
-      // console.log(typeOf meetingTime)
     }
 
     const postMeetingLocations = () => {
@@ -35,14 +33,11 @@ const ResultsContainer = ({ searchResponses, addressOne, addressTwo, addressTwoM
       console.log('email', addressTwoEmail)
       console.log('time', meetingTime)
       console.log('locations', checkedMeetingLocations)
-      // console.log(typeOf meetingTime)
       sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
     }
 
     return (
       <div>
-        {/* <h1>Meet Me in The Middle</h1> */}
-        {/* <h3>Results ({searchResponses.length}):</h3> */}
         <h2 className="results-title">Results:</h2>
         {displayedResults}
         {addressTwoEmail ? <div className='meeting-invite-container'>
