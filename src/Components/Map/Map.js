@@ -21,7 +21,7 @@ const Map = ({ searchResponses, searchCenter }) => {
 
     return (
       <div className="map-div">
-        <MapContainer className="map" className="map" center={searchCenter} zoom={12} scrollWheelZoom={false}>
+        <MapContainer className="map-image" center={searchCenter} zoom={12} scrollWheelZoom={false}>
           {searchMarkers}
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
