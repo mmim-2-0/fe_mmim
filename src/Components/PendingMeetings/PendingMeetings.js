@@ -1,6 +1,6 @@
 import React from 'react';
 import PendingMeeting from '../PendingMeeting/PendingMeeting';
-import { acceptMeeting } from '../../apiCalls';
+// import { acceptMeeting } from '../../apiCalls';
 import './PendingMeetings.css'
 
 

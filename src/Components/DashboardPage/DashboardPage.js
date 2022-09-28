@@ -11,17 +11,6 @@ const DashboardPage = ({ userMeetings, userId, token, setPageTitle, userDefaultA
     setPageTitle('dashboard')
   });
 
-
-              {/* {!userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Set your default address</button>}
-            {userDefaultAddress && <button className="default-address-button" onClick={defaultAddressFormHandler}>Change your default address</button>}
-            {defaultFormView && <DefaultAddressForm 
-                setUserDefaultAddress={setUserDefaultAddress}
-                userDefaultAddress={userDefaultAddress}
-                userName={userName}
-                userEmail={userEmail}
-                token={token}
-            />} */}
-
     const defaultAddressHandler = () => {
       setUserDefaultAddress(localDefault)
       setLocalDefault('')

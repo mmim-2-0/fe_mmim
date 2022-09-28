@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect } from 'react';
-import Nav from '../Nav/Nav';
 import Map from '../Map/Map';
 import BarIcon from '../../assets/Bar icon.js';
 import CafeIcon from '../../assets/Cafe icon.js';

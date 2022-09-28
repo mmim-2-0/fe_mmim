@@ -1,5 +1,4 @@
 import React from 'react';
-import { L, Icon, count, marker } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useEffect } from 'react';
 import './Map.css';

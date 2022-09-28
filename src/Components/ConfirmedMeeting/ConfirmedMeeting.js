@@ -1,12 +1,10 @@
 import React from 'react';
-import { useState } from 'react';
 import { patchMeeting } from '../../apiCalls';
 import './ConfirmedMeeting.css'
 
 const ConfirmedMeeting = ({ meetingInfo, userId, token }) => {
 
     const cancelMeetingInvite = (e) => {
-      
       patchMeeting("cancelled", userId, meetingInfo.id, token, meetingInfo.attributes.locations[0].id)
     }
 

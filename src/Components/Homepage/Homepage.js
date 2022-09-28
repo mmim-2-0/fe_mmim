@@ -2,8 +2,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
-import PendingMeetings from '../PendingMeetings/PendingMeetings';
-import homepageImage from '../../assets/homepageImage.jpg';
 import './Homepage.css'
 
 const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings, setPageTitle }) => {
@@ -16,7 +14,6 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
     <div>
       <section className="homepage">
       <div>
-        {/* <img className="homepageImage" src={homepageImage} alt="Nighttime aerial view of city"/> */}
         <div className="homepageImage" alt="Nighttime aerial view of city">
           <div className="overlay-text">
             <header className="overlay-h">Meet Me in the Middle</header>

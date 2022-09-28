@@ -5,7 +5,7 @@ import CafeIcon from '../../assets/Cafe icon.js';
 import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './DefaultMidForm.css';
 
 const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, searchCenter, setSearchCenter }) => {
@@ -54,10 +54,6 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
             </form>
         </section>
     )
-
-    //need to update styling so user knows which icon has been selected
-    //update styling for overlay description over image
-
 };
 
 export default DefaultMidForm;

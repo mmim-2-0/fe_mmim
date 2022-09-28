@@ -3,8 +3,6 @@ import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
 import Nav from './Components/Nav/Nav'
 import DashboardPage from './Components/DashboardPage/DashboardPage';
-import Login from './Components/login';
-import Logout from './Components/logout';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
