@@ -1,4 +1,19 @@
 .all-meetings {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    /* width: 100vw; */
+    width: 80vw;
+}
+
+.dashboard-parent-div {
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+.left-sidebar {
+    width: 20vw;
+    border: 2px solid red;
+    margin: 1em;
 }

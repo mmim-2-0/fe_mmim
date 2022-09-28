@@ -16,7 +16,7 @@ const ConfirmedMeetings = ({ userMeetings, userId, token }) => {
 })
     return (
       <div className="all-confirmed-and-title">
-        <h2 className="confirmed-title">Confirmed Meetings</h2>
+        <h2 className="confirmed-title">Your Confirmed Meetings</h2>
         <div className="all-confirmed">
           {displayConfirmedMeetings}
         </div>

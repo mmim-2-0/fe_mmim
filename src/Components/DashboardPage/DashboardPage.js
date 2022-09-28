@@ -10,17 +10,23 @@ const DashboardPage = ({ userMeetings, userId, token, setPageTitle }) => {
   });
 
   return (
-    <div className="all-meetings">
-      {(userMeetings.length > 0) && <PendingMeetings 
-        userMeetings={userMeetings}
-        userId={userId}
-        token={token}
-      />}
-      {(userMeetings.length > 0) && <ConfirmedMeetings 
-        userMeetings={userMeetings}
-        userId={userId}
-        token={token}
-      />}
+    <div className="dashboard-parent-div">
+      <div className="left-sidebar">
+        <p>add functionality to change default address here</p>
+      </div>
+      <div className="all-meetings">
+        {(userMeetings.length > 0) && <PendingMeetings 
+          userMeetings={userMeetings}
+          userId={userId}
+          token={token}
+        />}
+        {(userMeetings.length > 0) && <ConfirmedMeetings 
+          userMeetings={userMeetings}
+          userId={userId}
+          token={token}
+        />}
+      </div>
+
     </div>
   )
 }
