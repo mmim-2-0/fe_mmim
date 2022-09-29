@@ -19,11 +19,11 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token }) => {
 
     return (
       <div className="individual-confirmed-meeting">
-      <p>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
-      <p>Time: {meetingInfo.attributes.time}</p>
-      {displayLocationOptions(meetingInfo.attributes.locations)}
-      <button onClick={(e) => cancelMeetingInvite(e)}>Cancel Meeting</button>
-    </div>
+        <p><strong>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</strong></p>
+        <p className="meeting-time" ><strong>Time: </strong>{meetingInfo.attributes.time}</p>
+        {displayLocationOptions(meetingInfo.attributes.locations)}
+        <button className="cancel-button" onClick={(e) => cancelMeetingInvite(e)}>Cancel Meeting</button>
+      </div>
     )
 };
 
