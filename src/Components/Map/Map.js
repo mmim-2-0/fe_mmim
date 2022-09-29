@@ -1,14 +1,13 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Map.css';
 
-
 const Map = ({ searchResponses, searchCenter }) => {
-  // find a way to render all five markers within map 
+  // find a way to render all five markers within map
 
     useEffect(() => {
-      console.log('useeffect!')
+
     }, [searchCenter])
 
     const searchMarkers = searchResponses.map(result => (
@@ -18,9 +17,13 @@ const Map = ({ searchResponses, searchCenter }) => {
       />
     ))
 
+    const bounds = searchResponses.map(result => (
+      result.coordinates
+    ))
+
     return (
       <div className="map-div">
-        <MapContainer className="map-image" center={searchCenter} zoom={12} scrollWheelZoom={false}>
+        <MapContainer style={{height:562}} pxclassName="map-image" center={searchCenter} bounds={bounds} scrollWheelZoom={false}>
           {searchMarkers}
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
