@@ -6,7 +6,7 @@ import CafeIcon from '../../assets/Cafe icon.js';
 import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
-import { getLocations } from '../../apiCalls.js';
+import { getLocations, getGuestUser } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 import './ResultsPage.css';
 
@@ -17,14 +17,33 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
   })
 
     let updateCategory = (category) => {
-      getLocations(addressOne, addressTwo || addressTwoManual, category)
-      .then(data => {
-          console.log(data)
-          setSearchCategory(category)
-          setSearchResponses(data.data.attributes.locations)
-          setSearchCenter(data.data.attributes.map_argument.map_center)
-      })
+      setSearchCategory(category)
+      if (addressTwo || addressTwoManual) {
+        getLocations(addressOne, addressTwo || addressTwoManual, category)
+        .then(data => {
+            console.log(data)
+            setSearchResponses(data.data.attributes.locations)
+            setSearchCenter(data.data.attributes.map_argument.map_center)
+        })
+      }
+      if (addressTwoEmail) {
+        console.log('a', addressTwoEmail)
+        getGuestUser(token, addressTwoEmail)
+        .then((data) => {
+            return data.data.attributes.address
+        })
+        .then(address => {
+            getLocations(addressOne, address, category)
+                .then(data => {
+                    console.log(data)
+                    setSearchResponses(data.data.attributes.locations)
+                    setSearchCenter(data.data.attributes.map_argument.map_center)
+                 })
+        }) 
+      }
     }
+
+    // update the category changer when someone is searching by email specifically
 
     return (
     <div>

@@ -10,8 +10,7 @@ const ResultsContainer = ({ searchResponses, checkedMeetingLocations, setChecked
   let navigate = useNavigate();
 
   const [meetingTime, setMeetingTime] = useState('')
-
-    console.log(searchResponses)
+    // console.log(searchResponses)
     let displayedResults = searchResponses.map((response, index) => {
       return (
         <Result 
@@ -45,6 +44,7 @@ const ResultsContainer = ({ searchResponses, checkedMeetingLocations, setChecked
     return (
       <div>
         <h2 className="results-title">Results:</h2>
+        {addressTwoEmail && <p className="email-instructions">Select up to three locations to send <strong>{addressTwoEmail}</strong></p>}
         {displayedResults}
         {addressTwoEmail ? <div className='meeting-invite-container'>
           <p>Select a date / time and enter the other party's email for your meeting invitation:</p>
