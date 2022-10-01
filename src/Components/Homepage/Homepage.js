@@ -2,13 +2,15 @@ import React from 'react';
 import { useEffect } from 'react';
 import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
-import './Homepage.css'
+import './Homepage.css';
 
 const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings, setPageTitle }) => {
     
   useEffect(() => {
-    setPageTitle('home')
-  })
+    setPageTitle('home');
+    setAddressTwoEmail('');
+    setAddressTwoManual('');
+  }, [])
   
   return (
     <div>
