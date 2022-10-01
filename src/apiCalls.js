@@ -133,7 +133,6 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
       throw Error(response.text)
     } else {
       console.log("accept meeting worked")
-      // return response.json()
     }
   })
 }
@@ -141,6 +140,4 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
 
 
 export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
-
-// denver, austin, cafe
 
