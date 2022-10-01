@@ -57,6 +57,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
             token={token}
             userId={userId}
             addressTwoEmail={addressTwoEmail}
+            setPageTitle={setPageTitle}
           />
         </div>
       </div>
