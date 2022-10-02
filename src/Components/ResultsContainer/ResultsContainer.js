@@ -1,16 +1,8 @@
 import React from 'react';
 import Result from '../Result/Result';
-import { sendMeetingOptions } from '../../apiCalls.js';
-import { useState } from 'react';
 import './ResultsContainer.css';
-import { useNavigate } from 'react-router-dom';
 
 const ResultsContainer = ({ searchResponses, checkedMeetingLocations, setCheckedMeetingLocations, token, userId, addressTwoEmail, setPageTitle }) => {
-
-  let navigate = useNavigate();
-
-  const [meetingTime, setMeetingTime] = useState('')
-    // console.log(searchResponses)
     
     let displayedResults = searchResponses.map((response, index) => {
       return (
@@ -25,22 +17,6 @@ const ResultsContainer = ({ searchResponses, checkedMeetingLocations, setChecked
         />
       )
     })
-
-    const handleTimeInput = (e) => {
-      setMeetingTime(e.target.value)
-    }
-
-    const postMeetingLocations = () => {
-      // console.log('id', userId)
-      // console.log('token', token)
-      // console.log('email', addressTwoEmail)
-      // console.log('time', meetingTime)
-      // console.log('locations', checkedMeetingLocations)
-      sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
-      setCheckedMeetingLocations([])
-      navigate(`/dashboard`)
-      setPageTitle('dashboard')
-    }
 
     return (
       <div>
