@@ -49,3 +49,7 @@ h2 {
     margin-top: 0.8em;
 }
 
+.error-message {
+    color: red;
+}
+
