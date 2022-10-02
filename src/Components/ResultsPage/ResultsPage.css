@@ -59,3 +59,7 @@
     box-shadow: 0px 3px 6px #00000052;
     border: none;
 }
+
+.category-text {
+    font-size: calc(0em + 3vmin);
+}

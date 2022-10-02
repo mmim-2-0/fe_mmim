@@ -64,7 +64,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     return (
     <div>
       <div className="category-change-container">
-        <h1>Change your meeting category:</h1>
+        <h1 className="category-text">Change your meeting category:</h1>
         <div className="category-container">
           <CafeIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
           <RestaurantIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
