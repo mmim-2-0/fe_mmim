@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail, setPageTitle }) => {
   
   const [meetingTime, setMeetingTime] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false)
 
   let navigate = useNavigate();
 
@@ -55,10 +56,15 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
       // console.log('email', addressTwoEmail)
       // console.log('time', meetingTime)
       // console.log('locations', checkedMeetingLocations)
-      sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
-      setCheckedMeetingLocations([])
-      navigate(`/dashboard`)
-      setPageTitle('dashboard')
+      if (checkedMeetingLocations.length && meetingTime) {
+        sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
+        setCheckedMeetingLocations([])
+        navigate(`/dashboard`)
+        setPageTitle('dashboard')
+        setErrorMessage(false)
+      } else {
+        setErrorMessage(true)
+      }
     }
 
     return (
@@ -103,6 +109,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
               <input type="datetime-local" onChange={handleTimeInput} value={meetingTime}/>
               <button className="invitation-button" onClick={postMeetingLocations}>Send Meeting Invitation</button>
             </div> : <p className="login-text">Login to send a friend a meeting invite</p>}
+            {errorMessage && <p className="error-message">Please provide at least one possible meeting location to send an invitation.</p>}
         </div>
       </div>
     </div>
