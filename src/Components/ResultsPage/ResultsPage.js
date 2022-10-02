@@ -101,7 +101,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
             {addressTwoEmail ? <div className='meeting-invite-container'>
               <p>Select a date / time and enter the other party's email for your meeting invitation:</p>
               <input type="datetime-local" onChange={handleTimeInput} value={meetingTime}/>
-              <button onClick={postMeetingLocations}>Send Meeting Invitation</button>
+              <button className="invitation-button" onClick={postMeetingLocations}>Send Meeting Invitation</button>
             </div> : <p className="login-text">Login to send a friend a meeting invite</p>}
         </div>
       </div>

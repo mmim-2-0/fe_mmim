@@ -13,11 +13,18 @@
     justify-content: space-between;
 }
 
+.title-and-results {
+    width: 50%;
+    /* margin: 1em; */
+    margin-right: 4em;
+    margin-top: -10em;
+}
+
 .results {
-    height: 60vh;
+    height: 42vh;
     overflow-y: scroll;
     margin: 2em;
-    width: 50%;
+    width: 100%;
     border: 1px solid black;
 }
 
@@ -25,4 +32,28 @@
     height: 60vh;
     margin: 2em;
     width: 40%;
+}
+
+.login-text {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 2em;
+}
+
+.meeting-invite-container {
+    /* display: flex; */
+    margin-left: 2em;
+    width: 90%;
+}
+
+.invitation-button {
+    font-size: calc(0.2em + 1.4vmin);
+    margin-top: 0.6em;
+    background-color: #16c172;
+    color: white;
+    height: 1.8em;
+    width: 40%;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px #00000052;
+    border: none;
 }
