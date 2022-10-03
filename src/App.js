@@ -106,6 +106,8 @@ function App() {
           <Route path='/dashboard' element={<DashboardPage
             userMeetings={userMeetings}
             userId={userId}
+            userName={userName}
+            userEmail={userEmail}
             token={token}
             setPageTitle={setPageTitle}
             userDefaultAddress={userDefaultAddress}

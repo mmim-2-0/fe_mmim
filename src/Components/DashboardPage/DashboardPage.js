@@ -2,8 +2,9 @@ import PendingMeetings from "../PendingMeetings/PendingMeetings";
 import ConfirmedMeetings from "../ConfirmedMeetings/ConfirmedMeetings";
 import './DashboardPage.css';
 import { useEffect, useState } from 'react';
+import { updateDefaultAddress } from "../../apiCalls";
 
-const DashboardPage = ({ userMeetings, userId, token, setPageTitle, userDefaultAddress, setUserDefaultAddress }) => {
+const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPageTitle, userDefaultAddress, setUserDefaultAddress }) => {
   
   const [localDefault, setLocalDefault] = useState(userDefaultAddress)
 
@@ -12,7 +13,13 @@ const DashboardPage = ({ userMeetings, userId, token, setPageTitle, userDefaultA
   });
 
     const defaultAddressHandler = () => {
-      setUserDefaultAddress(localDefault)
+      console.log("token", token, typeof(token))
+      console.log("userName", userName, typeof(userName))
+      console.log("userEmail", userEmail, typeof(userEmail))
+      console.log("localDefault", localDefault, typeof(localDefault))
+
+      updateDefaultAddress(token, userName, userEmail, localDefault)
+      // setUserDefaultAddress(localDefault)
       setLocalDefault('')
     }
 
