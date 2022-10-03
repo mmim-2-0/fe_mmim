@@ -83,7 +83,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
     
     return (
         <section className="user-mid">
-            <h2>Find a place to meet.</h2>
+            <h2>Find a place in the middle.</h2>
             <form>
             <p><b>Your</b> starting point is...</p>
             <input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>

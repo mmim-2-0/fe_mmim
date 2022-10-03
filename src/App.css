@@ -8,9 +8,10 @@ body {
 }
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
+svg:hover,
 button:hover {
   cursor: pointer;
 }

@@ -1,7 +1,7 @@
 .homepageImage {
-  background-image: url('../../assets/homepageImage.jpg');
+  background-image: url("../../assets/homepageImage.jpg");
   width: 60vw;
-  height: 100vh;
+  height: 80vh;
   object-fit: cover;
   margin-left: 4em;
   background-size: cover;
@@ -29,10 +29,11 @@
 }
 
 .overlay-h {
-  font-size: 4em;
+  font-size: 6vh;
   margin-bottom: 0.4em;
 }
 
 .overlay-p {
-  font-size: 1.4em;;
+  font-size: 2.5vh;
+  padding-top: 1vh;
 }
