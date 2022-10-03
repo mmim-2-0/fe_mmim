@@ -6,9 +6,18 @@ import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './DefaultMidForm.css';
 
-const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, searchCenter, setSearchCenter }) => {
+const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, setSearchResponses, setSearchCenter }) => {
+
+    const [errorMessage, setErrorMessage] = useState(false);
+
+    useEffect(() => {
+        setAddressOne('')
+        setAddressTwo('')
+        setSearchCategory('cafe')
+    }, [])
 
     let navigate = useNavigate();
 
@@ -22,14 +31,21 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 
     const submitDefaultForm = (e) => {
         e.preventDefault()
-        console.log('submit!')
-        getLocations(addressOne, addressTwo, searchCategory)
-        .then(data => {
-            console.log(data)
-            setSearchResponses(data.data.attributes.locations)
-            setSearchCenter(data.data.attributes.map_argument.map_center)
-        })
-        .then(data => navigate(`/results`))
+        if (addressOne && addressTwo) {
+            setErrorMessage(false)
+        } else {
+            setErrorMessage(true)
+        }
+
+        if (addressOne && addressTwo) {
+            getLocations(addressOne, addressTwo, searchCategory)
+            .then(data => {
+                console.log(data)
+                setSearchResponses(data.data.attributes.locations)
+                setSearchCenter(data.data.attributes.map_argument.map_center)
+            })
+            .then(data => navigate(`/results`))
+        }
     }
 
     return (
@@ -51,6 +67,7 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
                     <ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
                 </div>
                 <button className="search-button" onClick={submitDefaultForm}><strong>Search the Middle</strong></button>
+                {errorMessage && <p className="error-message">Please provide the required input.</p>}
             </form>
         </section>
     )
