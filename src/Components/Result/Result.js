@@ -17,22 +17,27 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
         }))
       }
     }
+    console.log(searchResponses)
 
     return (
       <div className="individual-result">
-        <h2>{info.name}</h2>
-        <p className="result-info"> {info.review_count} ratings</p>
-        <p className="result-info">{info.categories.join(', ')}</p>
-        <p className="result-info">{info.price}</p>
-        <p className="result-info">{info.address}</p>
-        {!info.is_open_now ? <p className="result-info">Currently Closed</p> : <p>Open Now</p>}
         {info.photos[0] && <img className="result-image" src={info.photos[0]}/>}
-        {addressTwoEmail && 
-          <div className="invite-info">
-            <p>Meet here</p>
-            <input type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
-          </div>}
+        <div className="result-info-container">
+          <h3>{info.name}</h3>
+          <p className="result-info"> {info.rating}/5 stars from {info.review_count} ratings</p>
+          <p className="result-info">{info.categories.join(', ')}</p>
+          <p className="result-info">{info.price}</p>
+          <p className="result-info">{info.address}</p>
+          {!info.is_open_now ? <p className="result-info">Currently Closed</p> : <p>Open Now</p>}
+
+          {addressTwoEmail && 
+            <div className="invite-info">
+              <p>Meet here</p>
+              <input type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
+            </div>}
+          </div>
       </div>
+
     )
 };
 

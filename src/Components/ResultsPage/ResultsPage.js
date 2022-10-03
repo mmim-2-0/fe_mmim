@@ -70,7 +70,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     return (
     <div>
       <div className="category-change-container">
-        <h1 className="category-text">Change your meeting category:</h1>
+        <h1 className="category-text">Find a meeting location.</h1>
         <div className="category-container">
           <CafeIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
           <RestaurantIcon setSearchCategory={updateCategory} searchCategory={searchCategory}/>
@@ -105,7 +105,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
             />
           </div>
             {addressTwoEmail ? <div className='meeting-invite-container'>
-              <p>Select a date / time and enter the other party's email for your meeting invitation:</p>
+              <p className='meeting-invitation-instructions'>Select a date / time and enter the other party's email for your meeting invitation:</p>
               <input type="datetime-local" onChange={handleTimeInput} value={meetingTime}/>
               <button className="invitation-button" onClick={postMeetingLocations}>Send Meeting Invitation</button>
             </div> : <p className="login-text">Login to send a friend a meeting invite</p>}
