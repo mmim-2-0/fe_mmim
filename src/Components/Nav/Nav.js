@@ -33,10 +33,10 @@ const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, 
           <button className="nav-button" onClick={navigateHome}>home</button>
           {pageTitle === 'home' && <div className="home-bar"></div>}
         </div>
-        <div className="about-button">
+        {/* <div className="about-button">
           <button className="nav-button" onClick={navigateAbout}>our team</button>
           {pageTitle === 'about' && <div className="about-bar"></div>}
-        </div>
+        </div> */}
         {token && 
           <div className="dashboard-button">
             <button className="nav-button" onClick={navigateHomePage}>meeting dashboard</button>

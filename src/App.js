@@ -112,6 +112,8 @@ function App() {
             setPageTitle={setPageTitle}
             userDefaultAddress={userDefaultAddress}
             setUserDefaultAddress={setUserDefaultAddress}
+            setUserMeetings={setUserMeetings}
+            setAddressOne={setAddressOne}
             />}
           />
         </Routes>

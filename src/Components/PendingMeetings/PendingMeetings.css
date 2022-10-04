@@ -1,24 +1,28 @@
 .all-pending {
-    margin: 0;
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-    height: 80vh;
-    overflow-y: scroll;
+  /* margin: 0; */
+  /* display: flex; */
+  /* width: 100%; */
+  /* flex-wrap: wrap; */
+  /* justify-content: center; */
+  /* height: 80vh; */
+  /* overflow-y: scroll; */
 }
 
 .pending-title {
-    text-align: center;
+  /* text-align: center; */
+  /* margin-left: 10vw; */
+  /* margin: */
+  /* margin: */
+  height: 5vh;
 }
 
 .all-pending-and-title {
-    background-color: #ECECEC;
-    box-shadow: 0px 4px 8px #d4d4d4;
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    height: 30%;
-    margin-top: 1em;
-    margin-left: 4em;
+  /* background-color: #ececec; */
+  /* box-shadow: 0px 4px 8px #d4d4d4; */
+  /* display: flex; */
+  /* flex-direction: column;
+  width: 80vw;
+  height: 30%;
+  margin-top: 1em;
+  margin-left: 4em; */
 }

@@ -89,7 +89,7 @@ const updateDefaultAddress = (token, name, email, address) => {
     if (!response.ok) {
       throw Error(response.text)
     } else {
-      return response.json()
+      console.log("default address updated")
     }
   })
 }
