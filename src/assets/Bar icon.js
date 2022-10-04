@@ -6,7 +6,7 @@ const [iconColor, setIconColor] = useState("green");
 
   const handleClick = (e) => {
     setSearchCategory("bar")
-  }
+  };
 
   useEffect(() => {
     if (searchCategory === 'bar') {
@@ -14,9 +14,8 @@ const [iconColor, setIconColor] = useState("green");
     } else {
       setIconColor("black")
     }
-  }, [searchCategory])
+  }, [searchCategory]);
     
-
   return (
     <div onClick={(e) => handleClick(e)}>
       <svg xmlns="http://www.w3.org/2000/svg" width="60" height="50" viewBox="0 0 36 63" fill={iconColor}>
@@ -27,5 +26,6 @@ const [iconColor, setIconColor] = useState("green");
       </svg>
     </div>
   )
-}
+};
+
 export default BarIcon;

@@ -1,7 +1,7 @@
 import './App.css';
 import Homepage from './Components/Homepage/Homepage';
 import ResultsPage from './Components/ResultsPage/ResultsPage';
-import Nav from './Components/Nav/Nav'
+import Nav from './Components/Nav/Nav';
 import DashboardPage from './Components/DashboardPage/DashboardPage';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';

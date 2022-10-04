@@ -3,21 +3,18 @@ import ConfirmedMeetings from "../ConfirmedMeetings/ConfirmedMeetings";
 import DefaultAddress from "../DefaultAddress/DefaultAddress";
 import './DashboardPage.css';
 import { useEffect, useState } from 'react';
-import { updateDefaultAddress } from "../../apiCalls";
 
 const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPageTitle, userDefaultAddress, setUserDefaultAddress, setUserMeetings, setAddressOne }) => {
   
-  const [currentDisplay, setCurrentDisplay] = useState("confirmed")
+  const [currentDisplay, setCurrentDisplay] = useState("confirmed");
 
   const handleDashboardDisplay = (display) => {
     setCurrentDisplay(display)
-  }
+  };
 
   useEffect(() => {
     setPageTitle('dashboard')
   });
-
-
 
   return (
     <div className="dashboard-parent-div">
@@ -48,6 +45,6 @@ const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPa
         />} 
     </div>
   )
-}
+};
 
 export default DashboardPage;

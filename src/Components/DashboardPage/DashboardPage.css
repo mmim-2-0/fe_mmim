@@ -1,23 +1,12 @@
-/* .all-meetings {
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-} */
-
 .dashboard-parent-div {
   display: flex;
-  /* width: 100vw; */
-  /* justify-content: space-between; */
 }
 
 .left-sidebar {
   width: 20vw;
-  /* border: 2px solid red; */
-  /* margin: 1em; */
   display: flex;
   flex-direction: column;
   padding: 5vh;
-  /* align-items: center; */
   background-color: #ececec;
   box-shadow: 0px 4px 8px #d4d4d4;
 }

@@ -6,7 +6,7 @@ const CafeIcon = ({ setSearchCategory, searchCategory }) => {
 
   const handleClick = (e) => {
     setSearchCategory("cafe")
-  }
+  };
 
   useEffect(() => {
     if (searchCategory === 'cafe') {
@@ -14,7 +14,7 @@ const CafeIcon = ({ setSearchCategory, searchCategory }) => {
     } else {
       setIconColor("black")
     }
-  }, [searchCategory])
+  }, [searchCategory]);
 
   return (
     <div onClick={(e) => handleClick(e)}>
@@ -26,5 +26,6 @@ const CafeIcon = ({ setSearchCategory, searchCategory }) => {
       </svg>
     </div>
   )
-}
+};
+
 export default CafeIcon;

@@ -6,7 +6,7 @@ const ParkIcon = ({ setSearchCategory, searchCategory }) => {
 
   const handleClick = (e) => {
     setSearchCategory("park")
-  }
+  };
 
   useEffect(() => {
     if (searchCategory === 'park') {
@@ -14,7 +14,7 @@ const ParkIcon = ({ setSearchCategory, searchCategory }) => {
     } else {
       setIconColor("black")
     }
-  }, [searchCategory])
+  }, [searchCategory]);
 
   return (
     <div onClick={(e) => handleClick(e)}>
@@ -26,5 +26,6 @@ const ParkIcon = ({ setSearchCategory, searchCategory }) => {
       </svg>
     </div>
   )
-}
+};
+
 export default ParkIcon;

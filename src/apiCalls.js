@@ -137,7 +137,5 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
   })
 }
 
-
-
 export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
 

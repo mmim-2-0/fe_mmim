@@ -6,7 +6,7 @@ const LibraryIcon = ({ setSearchCategory, searchCategory }) => {
 
   const handleClick = (e) => {
     setSearchCategory("library")
-  }
+  };
 
   useEffect(() => {
     if (searchCategory === 'library') {
@@ -14,7 +14,7 @@ const LibraryIcon = ({ setSearchCategory, searchCategory }) => {
     } else {
       setIconColor("black")
     }
-  }, [searchCategory])
+  }, [searchCategory]);
 
   return (
     <div onClick={(e) => handleClick(e)}>
@@ -26,5 +26,6 @@ const LibraryIcon = ({ setSearchCategory, searchCategory }) => {
       </svg>
     </div>
   )
-}
+};
+
 export default LibraryIcon;
