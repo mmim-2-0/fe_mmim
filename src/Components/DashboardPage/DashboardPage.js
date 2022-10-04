@@ -7,7 +7,11 @@ import { updateDefaultAddress } from "../../apiCalls";
 
 const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPageTitle, userDefaultAddress, setUserDefaultAddress, setUserMeetings, setAddressOne }) => {
   
-  const [dashboardDisplay, setDashboardDisplay] = useState("confirmed")
+  const [currentDisplay, setCurrentDisplay] = useState("confirmed")
+
+  const handleDashboardDisplay = (display) => {
+    setCurrentDisplay(display)
+  }
 
   useEffect(() => {
     setPageTitle('dashboard')
@@ -18,23 +22,23 @@ const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPa
   return (
     <div className="dashboard-parent-div">
       <div className="left-sidebar">
-        <button className="dashboard-option-button" onClick={() => setDashboardDisplay("confirmed")}>Confirmed Meetings</button>
-        <button className="dashboard-option-button" onClick={() => setDashboardDisplay("pending")}>Pending Invites</button>
-        <button className="dashboard-option-button" onClick={() => setDashboardDisplay("myInfo")}>My Info</button>
+        <button className="dashboard-option-button" style={{ backgroundColor : currentDisplay === "confirmed" ? "black" : "white", color : currentDisplay === "confirmed" ? "white" : "black"}} onClick={() => handleDashboardDisplay("confirmed")}>Confirmed Meetings</button>
+        <button className="dashboard-option-button" style={{ backgroundColor : currentDisplay === "pending" ? "black" : "white", color : currentDisplay === "pending" ? "white" : "black"}} onClick={() => handleDashboardDisplay("pending")}>Pending Invites</button>
+        <button className="dashboard-option-button" style={{ backgroundColor : currentDisplay === "myInfo" ? "black" : "white", color : currentDisplay === "myInfo" ? "white" : "black"}} onClick={() => handleDashboardDisplay("myInfo")}>My Info</button>
       </div>
-        {(dashboardDisplay === "confirmed") && <ConfirmedMeetings 
+        {(currentDisplay === "confirmed") && <ConfirmedMeetings 
           userMeetings={userMeetings}
           userId={userId}
           token={token}
           setUserMeetings={setUserMeetings}
         />}
-        {(dashboardDisplay === "pending") && <PendingMeetings 
+        {(currentDisplay === "pending") && <PendingMeetings 
           userMeetings={userMeetings}
           userId={userId}
           token={token}
           setUserMeetings={setUserMeetings}
         />}
-        {(dashboardDisplay === "myInfo") && <DefaultAddress 
+        {(currentDisplay === "myInfo") && <DefaultAddress 
           token={token}
           userName={userName}
           userEmail={userEmail}

@@ -17,7 +17,6 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
         }))
       }
     }
-    console.log(searchResponses)
 
     return (
       <div className="individual-result">
