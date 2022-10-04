@@ -10,50 +10,66 @@
   box-shadow: 0px 4px 8px #d4d4d4;
 }
 
-.radio-div {
+/* .radio-div {
   font-size: calc(0em + 1.4vmin);
   text-align: center;
   width: 80%;
-}
+} */
 
 .meeting-time {
-  font-size: calc(0.4em + 1.4vmin);
+  /* font-size: calc(0.4em + 1.4vmin); */
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .pending-form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 50%;
   font-size: calc(0.4em + 1vmin);
-  margin-top: 1em;
+  margin: 0.5vh;
 }
 
-.pending-button {
-  font-size: calc(0.2em + 1.4vmin);
+.pending-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.decline-button,
+.accept-button {
+  font-size: 1vh;
   margin: 0.6em;
   background-color: #16c172;
   color: white;
-  height: 1.8em;
-  width: 15vw;
+  height: 2vh;
+  width: 10vw;
   border-radius: 5px;
   box-shadow: 0px 3px 6px #00000052;
   border: none;
 }
 
+.decline-button {
+  background-color: #ec930f;
+}
+
 .form-instructions {
-  font-size: 1.4em;
+  font-size: 1.5vh;
   text-align: center;
   margin-bottom: 0.4em;
 }
 
-.radio {
-  margin: -2em;
+.radio-div {
+  display: flex;
 }
 
 .location-label {
-  text-align: center;
+  /* text-align: center; */
+  font-size: 1.5vh;
+  width: 30vw;
+}
+
+.location-input {
+  width: 10%;
 }

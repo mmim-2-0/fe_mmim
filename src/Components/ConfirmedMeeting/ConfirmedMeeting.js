@@ -12,7 +12,7 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
 
     const displayLocationOptions = (array) => {
       return array.map((location, index) => (
-        <div key={index} className="radio-div">
+        <div key={index}>
           <p>{location.name}</p>
           <p>{location.address}</p>
         </div>
@@ -21,9 +21,11 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
 
     return (
       <div className="individual-confirmed-meeting">
-        <p><strong>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</strong></p>
-        <p className="meeting-time" ><strong>Time: </strong>{dayjs(meetingInfo.attributes.time).format('MM/DD/YYYY hh:mm A')}</p>
+        <div>
+        <p className="individual-meeting-title"><strong>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</strong></p>
+        <p><strong>Time: </strong>{dayjs(meetingInfo.attributes.time).format('MM/DD/YYYY hh:mm A')}</p>
         {displayLocationOptions(meetingInfo.attributes.locations)}
+        </div>
         <button className="cancel-button" onClick={(e) => cancelMeetingInvite(e)}>Cancel Meeting</button>
       </div>
     )
