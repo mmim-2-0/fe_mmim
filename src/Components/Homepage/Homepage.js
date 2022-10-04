@@ -16,12 +16,12 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
     <div>
       <section className="homepage">
       <div>
-        <div className="homepageImage" alt="Nighttime aerial view of city">
+        <div className="homepageImage" alt="An aerial view of a city in gold and black, so distant it looks like a collection of fine copper wire and fairy lights against an ebony backdrop.">
           <div className="overlay-text">
             <header className="overlay-h">Meet Me in the Middle</header>
-            <div className="overlay-p">
-              <p>Whether you’re meeting a friend or buying a dresser, Meet Me in the Middle makes it easy.</p>
-              <p>Use MMiM to find the right place between your two locations.</p>
+            <div>
+              <p className="overlay-p">Whether you’re meeting a friend or buying a bike, Meet Me in the Middle makes it easy.</p>
+              <p className="overlay-p">Use MMiM to find the right place between your two locations.</p>
             </div>
           </div>
         </div>

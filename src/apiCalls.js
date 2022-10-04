@@ -89,7 +89,7 @@ const updateDefaultAddress = (token, name, email, address) => {
     if (!response.ok) {
       throw Error(response.text)
     } else {
-      return response.json()
+      console.log("default address updated")
     }
   })
 }
@@ -136,8 +136,6 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
     }
   })
 }
-
-
 
 export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
 

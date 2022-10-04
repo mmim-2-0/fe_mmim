@@ -1,47 +1,50 @@
 import PendingMeetings from "../PendingMeetings/PendingMeetings";
 import ConfirmedMeetings from "../ConfirmedMeetings/ConfirmedMeetings";
+import DefaultAddress from "../DefaultAddress/DefaultAddress";
 import './DashboardPage.css';
 import { useEffect, useState } from 'react';
 
-const DashboardPage = ({ userMeetings, userId, token, setPageTitle, userDefaultAddress, setUserDefaultAddress }) => {
+const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPageTitle, userDefaultAddress, setUserDefaultAddress, setUserMeetings, setAddressOne }) => {
   
-  const [localDefault, setLocalDefault] = useState(userDefaultAddress)
+  const [currentDisplay, setCurrentDisplay] = useState("confirmed");
+
+  const handleDashboardDisplay = (display) => {
+    setCurrentDisplay(display)
+  };
 
   useEffect(() => {
     setPageTitle('dashboard')
   });
 
-    const defaultAddressHandler = () => {
-      setUserDefaultAddress(localDefault)
-      setLocalDefault('')
-    }
-
-    const handleLocalDefault = (e) => {
-      setLocalDefault(e.target.value)
-    }
-
   return (
     <div className="dashboard-parent-div">
       <div className="left-sidebar">
-        <h3 className="change-default-title">change your default address:</h3>
-        <input className="default-input" type="text" placeholder="new default address" value={localDefault} onChange={handleLocalDefault}></input>
-        <button className="update-button" onClick={defaultAddressHandler}>update</button>
+        <button className="dashboard-option-button" style={{ backgroundColor : currentDisplay === "confirmed" ? "black" : "white", color : currentDisplay === "confirmed" ? "white" : "black"}} onClick={() => handleDashboardDisplay("confirmed")}>Confirmed Meetings</button>
+        <button className="dashboard-option-button" style={{ backgroundColor : currentDisplay === "pending" ? "black" : "white", color : currentDisplay === "pending" ? "white" : "black"}} onClick={() => handleDashboardDisplay("pending")}>Pending Invites</button>
+        <button className="dashboard-option-button" style={{ backgroundColor : currentDisplay === "myInfo" ? "black" : "white", color : currentDisplay === "myInfo" ? "white" : "black"}} onClick={() => handleDashboardDisplay("myInfo")}>My Info</button>
       </div>
-      <div className="all-meetings">
-        {(userMeetings.length > 0) && <PendingMeetings 
+        {(currentDisplay === "confirmed") && <ConfirmedMeetings 
           userMeetings={userMeetings}
           userId={userId}
           token={token}
+          setUserMeetings={setUserMeetings}
         />}
-        {(userMeetings.length > 0) && <ConfirmedMeetings 
+        {(currentDisplay === "pending") && <PendingMeetings 
           userMeetings={userMeetings}
           userId={userId}
           token={token}
+          setUserMeetings={setUserMeetings}
         />}
-      </div>
-
+        {(currentDisplay === "myInfo") && <DefaultAddress 
+          token={token}
+          userName={userName}
+          userEmail={userEmail}
+          userDefaultAddress={userDefaultAddress}
+          setUserDefaultAddress={setUserDefaultAddress}
+          setAddressOne={setAddressOne}
+        />} 
     </div>
   )
-}
+};
 
 export default DashboardPage;

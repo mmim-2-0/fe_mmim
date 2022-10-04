@@ -1,13 +1,16 @@
 .results-title {
-    margin: 0.4em;
+  font-size: 3vh;
+  height: 3vh;
+  margin: 2vh;
 }
 
 .login-text {
-    text-align: center;
-    font-size: 2em;
-    margin-top: 2em;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 2em;
 }
 
 .email-instructions {
-    margin-left: 1em;
+  font-size: 1.5vh;
+  margin: 2vh;
 }

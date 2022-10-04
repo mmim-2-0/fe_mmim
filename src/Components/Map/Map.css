@@ -1,13 +1,4 @@
 .map-div {
-    /* height: 150vh; */
-    height: 100%;
-    width: 110vw;
-    /* flex-grow: 1; */
+  height: 100%;
+  width: 110vw;
 }
-
-/* .map-image {
-    height: 60vh;
-    width: 60vw;
-    margin: 1em;
-    flex-grow: 1;
-} */

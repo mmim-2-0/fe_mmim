@@ -1,44 +1,17 @@
-.all-meetings {
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-}
-
 .dashboard-parent-div {
-    display: flex;
-    width: 100vw;
-    justify-content: space-between;
+  display: flex;
 }
 
 .left-sidebar {
-    width: 20vw;
-    /* border: 2px solid red; */
-    margin: 1em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ECECEC;
-    box-shadow: 0px 4px 8px #d4d4d4;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  padding: 5vh;
+  background-color: #ececec;
+  box-shadow: 0px 4px 8px #d4d4d4;
 }
 
-.change-default-title {
-    font-size: 1.6em;
-    text-align: center;
-    margin-top: 3em;
-}
-
-.default-input {
-    font-size: 1.2em;
-}
-
-.update-button {
-    background-color: #16c172;
-    color: white;
-    height: 1.6em;
-    width: 55%;
-    border-radius: 4px;
-    box-shadow: 0px 3px 6px #00000052;
-    border: none;
-    margin: 1em;
-    font-size: calc(1em + 1.2vmin);
+.dashboard-option-button {
+  margin: 1vh;
+  border-radius: 4px;
 }
