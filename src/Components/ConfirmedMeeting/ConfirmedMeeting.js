@@ -1,6 +1,7 @@
 import React from 'react';
 import { patchMeeting, getUserMeetings } from '../../apiCalls';
 import './ConfirmedMeeting.css'
+import dayjs from 'dayjs';
 
 const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
 
@@ -21,7 +22,7 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
     return (
       <div className="individual-confirmed-meeting">
         <p><strong>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</strong></p>
-        <p className="meeting-time" ><strong>Time: </strong>{meetingInfo.attributes.time}</p>
+        <p className="meeting-time" ><strong>Time: </strong>{dayjs(meetingInfo.attributes.time).format('MM/DD/YYYY hh:mm A')}</p>
         {displayLocationOptions(meetingInfo.attributes.locations)}
         <button className="cancel-button" onClick={(e) => cancelMeetingInvite(e)}>Cancel Meeting</button>
       </div>

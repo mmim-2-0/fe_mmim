@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { patchMeeting, getUserMeetings } from '../../apiCalls';
 import './PendingMeeting.css';
+import dayjs from 'dayjs';
 
 const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
 
@@ -34,7 +35,7 @@ const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
     return (
       <div className="individual-meeting">
         <p>{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
-        <p>Time: {meetingInfo.attributes.time}</p>
+        <p>Time: {dayjs(meetingInfo.attributes.time).format('MM/DD/YYYY hh:mm a')}</p>
         <form className="pending-form"><span className="form-instructions">Choose a Location:</span>
           {displayLocationOptions(meetingInfo.attributes.locations)}
           <button className="pending-button" onClick={(e) => acceptMeetingInvite(e)}>Accept Meeting</button>
