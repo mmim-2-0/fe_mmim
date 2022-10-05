@@ -65,6 +65,7 @@ const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, 
           setUserDefaultAddress={setUserDefaultAddress}
           setUserId={setUserId}
           setUserMeetings={setUserMeetings}
+          setPageTitle={setPageTitle}
         />}
       </div>
     )

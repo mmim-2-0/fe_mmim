@@ -9,7 +9,7 @@ import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { getLocations, getGuestUser, sendMeetingOptions } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
 import './ResultsPage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 
 const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail, setPageTitle }) => {
   
