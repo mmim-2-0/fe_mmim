@@ -51,6 +51,11 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
   };
 
   const postMeetingLocations = () => {
+    console.log('id', userId)
+    console.log('token', token)
+    console.log('addressTwoEmail', addressTwoEmail)
+    console.log('meetingTime', meetingTime)
+    console.log('checkedMeetingLocations', checkedMeetingLocations)
     if (checkedMeetingLocations.length && meetingTime) {
       sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
       setCheckedMeetingLocations([])
