@@ -4,18 +4,23 @@ import { patchMeeting, getUserMeetings } from '../../apiCalls';
 import './PendingMeeting.css';
 import dayjs from 'dayjs';
 
-const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings, setCurrentDisplay }) => {
+const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings, setCurrentDisplay, setError }) => {
 
   const [selectedLocation, setSelectedLocation] = useState('');
 
   const acceptMeetingInvite = (e) => {
     e.preventDefault()
-    patchMeeting("accepted", userId, meetingInfo.id, token, selectedLocation)
-    .then(getUserMeetings(userId, token).then((response) => {
-      setUserMeetings(response.data)
-      setCurrentDisplay('confirmed')
-      }
-    ))
+    if (selectedLocation) {
+      patchMeeting("accepted", userId, meetingInfo.id, token, selectedLocation)
+      .then(getUserMeetings(userId, token).then((response) => {
+        setUserMeetings(response.data)
+        setCurrentDisplay('confirmed')
+        setError(false)
+        }
+      ))
+    } else {
+      setError(true)
+    }
   };
 
   const declineMeetingInvite = (e) => {
@@ -24,6 +29,7 @@ const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings, setCurren
     .then(getUserMeetings(userId, token).then((response) => {
       setUserMeetings(response.data)
       setCurrentDisplay('confirmed')
+      setError(false)
       }
     ))
   };

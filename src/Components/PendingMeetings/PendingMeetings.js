@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 const PendingMeetings = ({ userMeetings, userId, token, setUserMeetings, setCurrentDisplay, currentDisplay }) => {
 
   const [pendingMeetings, setPendingMeetings] = useState([]);
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     getUserMeetings(userId, token).then((response) => {
@@ -39,12 +40,14 @@ const PendingMeetings = ({ userMeetings, userId, token, setUserMeetings, setCurr
       setUserMeetings={setUserMeetings}
       key={index}
       setCurrentDisplay={setCurrentDisplay}
+      setError={setError}
     />
   });
 
   return (
     <div className="all-pending-and-title">
       <h2 className="pending-title">Pending meetings:</h2>
+      {error && <p className="error-message">Please select a location to accept a meeting invitation.</p>}
       <div className="all-pending">
         {(pendingMeetings.length > 0) ? displayPendingMeetings : <p>No pending meetings</p>}
       </div>
