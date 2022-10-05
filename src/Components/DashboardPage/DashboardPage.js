@@ -34,6 +34,8 @@ const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPa
           userId={userId}
           token={token}
           setUserMeetings={setUserMeetings}
+          currentDisplay={currentDisplay}
+          setCurrentDisplay={setCurrentDisplay}
         />}
         {(currentDisplay === "myInfo") && <DefaultAddress 
           token={token}

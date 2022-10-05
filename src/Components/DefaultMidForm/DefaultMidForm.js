@@ -50,7 +50,7 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 
 	return (
 		<section className="default-mid">
-			<h2>Find a place in the middle.</h2>
+			<h2 className="default-title">Find a place in the middle.</h2>
 		<form>
 				<p><b>Your</b> starting point is...</p>
 				<p className="address-instructions">Enter an address, or just a City or Zip Code</p>

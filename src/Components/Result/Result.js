@@ -30,8 +30,11 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
         {!info.is_open_now ? <p className="result-info">Currently Closed</p> : <p>Open Now</p>}
         {addressTwoEmail && 
           <div className="invite-info">
-            <p>Meet here</p>
-            <input type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
+            <div className="checkbox-info">
+              <p>Meet here</p>
+              <input className="checkbox" type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
+            </div>
+            <p><strong><a className="result-url" href={info.url}>More info</a></strong></p>
           </div>}
       </div>
     </div>
