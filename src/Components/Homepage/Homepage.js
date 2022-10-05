@@ -14,8 +14,8 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
   
   return (
     <div>
-      <section className="homepage">
-      <div>
+      <section>
+      <div className="homepage">
         <div className="homepageImage" alt="An aerial view of a city in gold and black, so distant it looks like a collection of fine copper wire and fairy lights against an ebony backdrop.">
           <div className="overlay-text">
             <header className="overlay-h">Meet Me in the Middle</header>
@@ -25,7 +25,6 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
             </div>
           </div>
         </div>
-      </div>
       {!userEmail ? <DefaultMidForm
         searchCategory={searchCategory}
         setSearchCategory={setSearchCategory}
@@ -61,6 +60,19 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setSearchCenter={setSearchCenter}
       />      
       }
+      </div>
+        <div className="why-login">
+          <div className="why-login-text">
+            <h2 className="login-header">Simplify your</h2>
+            <h2 className="login-header">planning.</h2>
+            <h2 className="login-header">Protect your</h2>
+            <h2 className="login-header">privacy.</h2>
+            <p className="login-p first-p">When you login to MMIM, you can save a default address.</p>
+            <p className="login-p">This allows you to suggest meeting places to others without needing to know their address, or share yours.</p>
+            <p className="login-p">It's simple and keeps your info private-perfect for local sales and first dates.</p>
+          </div>
+          <div className="why-login-image" alt="hand holding a phone"></div>
+        </div>
       </section>
     </div>
     )
