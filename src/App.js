@@ -82,6 +82,7 @@ function App() {
             setSearchCenter={setSearchCenter}
             userMeetings={userMeetings}
             setPageTitle={setPageTitle}
+            setCheckedMeetingLocations={setCheckedMeetingLocations}
             />}
           />
           <Route path='/results' element={<ResultsPage
@@ -114,6 +115,7 @@ function App() {
             setUserDefaultAddress={setUserDefaultAddress}
             setUserMeetings={setUserMeetings}
             setAddressOne={setAddressOne}
+            setCheckedMeetingLocations={setCheckedMeetingLocations}
             />}
           />
         </Routes>

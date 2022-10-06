@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
 
   const cancelMeetingInvite = (e) => {
+    console.log('m', meetingInfo)
     patchMeeting("cancelled", userId, meetingInfo.id, token, meetingInfo.attributes.locations[0].id)
     .then(getUserMeetings(userId, token).then((response) => setUserMeetings(response.data)))
   };
