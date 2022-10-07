@@ -4,7 +4,7 @@ import DefaultAddress from "../DefaultAddress/DefaultAddress";
 import './DashboardPage.css';
 import { useEffect, useState } from 'react';
 
-const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPageTitle, userDefaultAddress, setUserDefaultAddress, setUserMeetings, setAddressOne }) => {
+const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPageTitle, userDefaultAddress, setUserDefaultAddress, setUserMeetings, setAddressOne, setCheckedMeetingLocations }) => {
   
   const [currentDisplay, setCurrentDisplay] = useState("confirmed");
 
@@ -13,8 +13,9 @@ const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPa
   };
 
   useEffect(() => {
-    setPageTitle('dashboard')
-  });
+    setPageTitle('dashboard');
+    setCheckedMeetingLocations([]);
+  }, []);
 
   return (
     <div className="dashboard-parent-div">
@@ -28,6 +29,7 @@ const DashboardPage = ({ userMeetings, userId, userName, userEmail, token, setPa
           userId={userId}
           token={token}
           setUserMeetings={setUserMeetings}
+          currentDisplay={currentDisplay}
         />}
         {(currentDisplay === "pending") && <PendingMeetings 
           userMeetings={userMeetings}

@@ -20,7 +20,7 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
 
   return (
     <div className="individual-result">
-      {info.photos[0] && <img className="result-image" src={info.photos[0]}/>}
+      <div className="result-image-div">{info.photos[0] && <img className="result-image" src={info.photos[0]}/>}</div>
       <div className="result-info-container">
         <h3>{info.name}</h3>
         <p className="result-info"> {info.rating}/5 stars from {info.review_count} ratings</p>
