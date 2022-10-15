@@ -34,8 +34,9 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
               <p>Meet here</p>
               <input className="checkbox" type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
             </div>
-            <p><strong><a className="result-url" href={info.url}>More info</a></strong></p>
+            <p><strong><a className="result-url" href={info.url} target="_blank">More info</a></strong></p>
           </div>}
+        {!addressTwoEmail && <p><strong><a className="result-url" href={info.url} target="_blank">More info</a></strong></p>}
       </div>
     </div>
   )
