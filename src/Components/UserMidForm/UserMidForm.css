@@ -77,3 +77,8 @@ form {
   color: red;
   font-size: 1em;
 }
+
+.failed-fetch-error {
+  color: red;
+  margin-left: 1em;
+}
