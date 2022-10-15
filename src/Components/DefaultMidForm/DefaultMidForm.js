@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './DefaultMidForm.css';
 
-const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, setSearchResponses, setSearchCenter }) => {
+const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, setSearchResponses, setSearchCenter, failedFetch, setFailedFetch }) => {
 
 	const [errorMessage, setErrorMessage] = useState(false);
 
@@ -43,8 +43,10 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 						console.log(data)
 						setSearchResponses(data.data.attributes.locations)
 						setSearchCenter(data.data.attributes.map_argument.map_center)
+						setFailedFetch(false)
 				})
 				.then(data => navigate(`/results`))
+				.catch(data => setFailedFetch(true))
 		}
 	};
 
@@ -68,6 +70,7 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 				</div>
 				<button className="search-button" onClick={submitDefaultForm}><strong>Search the Middle</strong></button>
 				{errorMessage && <p className="error-message">Please provide the required input.</p>}
+				{failedFetch && <p className="failed-fetch-error">Oh no! There are no results for this search, please try other locations.</p>}
 			</form>
 		</section>
 	)

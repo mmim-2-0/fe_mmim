@@ -8,6 +8,7 @@ import { getUserMeetings } from '../../apiCalls';
 const ConfirmedMeetings = ({ userMeetings, userId, token, setUserMeetings, currentDisplay }) => {
 
   // const [userConfirmedMeetings, setUserConfirmedMeetings] = useState([]);
+  const [confirmedMeetings, setConfirmedMeetings] = useState([]);
 
   // useEffect(() => {
   //   getUserMeetings(userId, token).then((response) => {
@@ -34,12 +35,20 @@ const ConfirmedMeetings = ({ userMeetings, userId, token, setUserMeetings, curre
   // }, [])
 
   useEffect(() => {
-    getUserMeetings(userId, token).then((response) => {
-      console.log(response)
-    })
-  }, [])
+    // getUserMeetings(userId, token).then((response) => {
+    //   console.log('r', response)
+    // })
+    console.log('userMeetingsChanged')
+    setConfirmedMeetings(userMeetings.filter(meeting => meeting.attributes.status === "accepted"))
+  }, [userMeetings])
 
-  const confirmedMeetings = userMeetings.filter(meeting => meeting.attributes.status === "accepted");
+  // const refetchMeetings = () => {
+  //   getUserMeetings(userId, token).then((response) => {
+  //     console.log('r', response)
+  //   })
+  // }
+
+  // const confirmedMeetings = userMeetings.filter(meeting => meeting.attributes.status === "accepted");
   
   const displayConfirmedMeetings = confirmedMeetings.map((meeting, index) => {
     return <ConfirmedMeeting 

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import './UserMidForm.css';
 import { useState } from 'react';
 
-const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter }) => {
+const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
     
 	const [requiredInput, setRequiredInput] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(false);
@@ -57,8 +57,11 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 				console.log(data)
 				setSearchResponses(data.data.attributes.locations)
 				setSearchCenter(data.data.attributes.map_argument.map_center)
+				setErrorMessage(false)
+				setFailedFetch(false)
 			})
 			.then(data => navigate(`/results`))
+			.catch(data => setFailedFetch(true))
 		}
 		if (addressTwoEmail && requiredInput && addressOne) {
 			getGuestUser(token, addressTwoEmail)
@@ -73,8 +76,11 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 							console.log(data)
 							setSearchResponses(data.data.attributes.locations)
 							setSearchCenter(data.data.attributes.map_argument.map_center)
+							setErrorMessage(false)
+							setFailedFetch(false)
 						})
 					.then(data => navigate(`/results`))
+					.catch(data => setFailedFetch(true))
 				}) 
 		}
 		else {
@@ -104,6 +110,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 					<button className="search-button" onClick={submitUserForm}><strong>Search the Middle</strong></button>
 					{errorMessage && <p className="error-message">Please provide the required input.</p>}
 					{failedEmail && <p className="error-message">We can't find a user associated with this email, please try again.</p>}
+					{failedFetch && <p className="failed-fetch-error">Oh no! There are no results for this search, please try other locations.</p>}
 			</form>
 	</section>
 	)

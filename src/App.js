@@ -25,7 +25,7 @@ function App() {
   const [defaultFormView, setDefaultFormView] = useState(false)
   const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([])
   const [userMeetings, setUserMeetings] = useState([]);
-  const [pageTitle, setPageTitle] = useState('home')
+  const [pageTitle, setPageTitle] = useState('home');
 
   useEffect(() => {
     function start() {
