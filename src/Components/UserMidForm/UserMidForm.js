@@ -28,6 +28,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 		setAddressOne(e.target.value)
 		if (addressOne) {
 				setRequiredInput(true)
+				setErrorMessage(false)
 		} else {
 				setRequiredInput(false)
 		}
@@ -36,16 +37,19 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 	const addressTwoHandlerEmail = (e) => {
 		setAddressTwoEmail(e.target.value)
 		setRequiredInput(true)
+		setErrorMessage(false)
 		setAddressTwoManual('')
 	};
 
 	const addressTwoHandlerManual = (e) => {
 		setAddressTwoManual(e.target.value)
 		setRequiredInput(true)
+		setErrorMessage(false)
 		setAddressTwoEmail('')
 	};
 
 	const submitUserForm = (e) => {
+		setErrorMessage(false)
 		e.preventDefault()
 		if (addressTwoManual && requiredInput && addressOne) {
 			getLocations(addressOne, addressTwoManual, searchCategory)
@@ -53,7 +57,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 				console.log(data)
 				setSearchResponses(data.data.attributes.locations)
 				setSearchCenter(data.data.attributes.map_argument.map_center)
-				setErrorMessage(false)
 			})
 			.then(data => navigate(`/results`))
 		}
@@ -70,7 +73,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 							console.log(data)
 							setSearchResponses(data.data.attributes.locations)
 							setSearchCenter(data.data.attributes.map_argument.map_center)
-							setErrorMessage(false)
 						})
 					.then(data => navigate(`/results`))
 				}) 
@@ -89,7 +91,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 					<p className="second-address-label"><b>Other</b> party's starting point is...</p>
 					<input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
 					<p>OR</p>
-					<input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
+					<input type='text' placeholder='Enter a complete address, a city + state, or a zip' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>
 					<div className="category-icons">
 							<CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>

@@ -53,10 +53,10 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 			<h2 className="default-title">Find a place in the middle.</h2>
 		<form>
 				<p><b>Your</b> starting point is...</p>
-				<p className="address-instructions">Enter an address, or just a City or Zip Code</p>
+				<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
 				<input type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
 				<p className="second-address-label"><b>Other</b> party's starting point is...</p>
-				<p className="address-instructions">Enter an address, or just a City or Zip Code</p>
+				<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
 				<input type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
 				<p className="icon-label">Meet at a...</p>
 				<div className="category-icons">
