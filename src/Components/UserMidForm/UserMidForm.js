@@ -90,6 +90,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 					<input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
 					<p className="second-address-label"><b>Other</b> party's starting point is...</p>
 					<input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
+					{(addressTwoEmail === userEmail) && <p className="email-error-message">Hey! Don't use your own email here please.</p>}
 					<p>OR</p>
 					<input type='text' placeholder='Enter a complete address, a city + state, or a zip' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>

@@ -72,3 +72,8 @@ form {
   padding: 2vh;
   height: 76vh;
 }
+
+.email-error-message {
+  color: red;
+  font-size: 1em;
+}
