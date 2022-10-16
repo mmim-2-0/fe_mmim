@@ -33,3 +33,8 @@ input {
   border: none;
   font-size: 3vh;
 }
+
+.failed-fetch-error {
+  color: red;
+  margin-left: 1em;
+}

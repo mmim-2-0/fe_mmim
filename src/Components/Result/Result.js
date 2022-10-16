@@ -5,16 +5,22 @@ import './Result.css';
 const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id, searchResponses, addressTwoEmail }) => {
 
   const [checked, setChecked] = useState(false);
+  const [tooManyChecked, setTooManyChecked] = useState(false)
 
   const handleCheckBox = () => {
     if (!checked && checkedMeetingLocations.length < 3) {
       setChecked(true)
+      setTooManyChecked(false)
       setCheckedMeetingLocations(checkedMeetingLocations => [...checkedMeetingLocations, searchResponses[id]])
     } else if (checked) {
       setChecked(false)
+      setTooManyChecked(false)
       setCheckedMeetingLocations(checkedMeetingLocations.filter(meetingLocation => {
         return meetingLocation !== searchResponses[id]
       }))
+    } else if (!checked && checkedMeetingLocations.length >= 3) {
+      console.log('too many')
+      setTooManyChecked(true)
     }
   };
 
@@ -34,8 +40,10 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
               <p>Meet here</p>
               <input className="checkbox" type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
             </div>
-            <p><strong><a className="result-url" href={info.url}>More info</a></strong></p>
+            <p><strong><a className="result-url" href={info.url} target="_blank">More info</a></strong></p>
           </div>}
+        {!addressTwoEmail && <p><strong><a className="result-url" href={info.url} target="_blank">More info</a></strong></p>}
+        {tooManyChecked && <p className="too-many-error">Please select no more than three location options.</p>}
       </div>
     </div>
   )

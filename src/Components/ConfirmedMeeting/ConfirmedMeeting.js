@@ -3,12 +3,14 @@ import { patchMeeting, getUserMeetings } from '../../apiCalls';
 import './ConfirmedMeeting.css';
 import dayjs from 'dayjs';
 
-const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
+const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings, toggleRerender, setToggleRerender }) => {
 
   const cancelMeetingInvite = (e) => {
-    console.log('m', meetingInfo)
     patchMeeting("cancelled", userId, meetingInfo.id, token, meetingInfo.attributes.locations[0].id)
     .then(getUserMeetings(userId, token).then((response) => setUserMeetings(response.data)))
+    .then(() => {
+      setToggleRerender(!toggleRerender)
+    })
   };
 
   const displayLocationOptions = (array) => {
