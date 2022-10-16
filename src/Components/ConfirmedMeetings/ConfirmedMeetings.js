@@ -7,56 +7,41 @@ import { getUserMeetings } from '../../apiCalls';
 
 const ConfirmedMeetings = ({ userMeetings, userId, token, setUserMeetings, currentDisplay }) => {
 
-  // const [userConfirmedMeetings, setUserConfirmedMeetings] = useState([]);
-  const [confirmedMeetings, setConfirmedMeetings] = useState([]);
-
-  // useEffect(() => {
-  //   getUserMeetings(userId, token).then((response) => {
-  //     console.log(response)
-  //     // setUserMeetings(response.data)
-  //     let allMeetings = []
-  //     response.data.forEach((m) => {
-  //       if (m.attributes.status === 'confirmed' && !allMeetings.includes(m)) {
-  //         allMeetings.push(m)
-  //       }
-  //     })
-  //     let filteredMeetings = [];
-  //     allMeetings.forEach(m => {
-  //       let allIds = filteredMeetings.reduce((acc, i) => {
-  //         acc.push(i.id)
-  //         return acc;
-  //       }, [])
-  //       if (!allIds.includes(m.id)) {
-  //         filteredMeetings.push(m);
-  //       }
-  //     })
-  //     setUserConfirmedMeetings(filteredMeetings)
-  //   })
-  // }, [])
+  const [userConfirmedMeetings, setUserConfirmedMeetings] = useState([]);
+  const [toggleRerender, setToggleRerender] = useState(false);
 
   useEffect(() => {
-    // getUserMeetings(userId, token).then((response) => {
-    //   console.log('r', response)
-    // })
-    console.log('userMeetingsChanged')
-    setConfirmedMeetings(userMeetings.filter(meeting => meeting.attributes.status === "accepted"))
-  }, [userMeetings])
-
-  // const refetchMeetings = () => {
-  //   getUserMeetings(userId, token).then((response) => {
-  //     console.log('r', response)
-  //   })
-  // }
-
-  // const confirmedMeetings = userMeetings.filter(meeting => meeting.attributes.status === "accepted");
+    getUserMeetings(userId, token).then((response) => {
+      let allMeetings = []
+      response.data.forEach((m) => {
+        if (m.attributes.status === 'accepted') {
+          allMeetings.push(m)
+        }
+      })
+      let filteredMeetings = [];
+      allMeetings.forEach(m => {
+        let allIds = filteredMeetings.reduce((acc, i) => {
+          acc.push(i.id)
+          return acc;
+        }, [])
+        if (!allIds.includes(m.id)) {
+          filteredMeetings.push(m);
+        }
+      })
+      setUserConfirmedMeetings(filteredMeetings)
+      setUserMeetings(response.data)
+    })
+  }, [toggleRerender]);
   
-  const displayConfirmedMeetings = confirmedMeetings.map((meeting, index) => {
+  const displayConfirmedMeetings = userConfirmedMeetings.map((meeting, index) => {
     return <ConfirmedMeeting 
       userId={userId}
       meetingInfo={meeting}
       token={token}
       setUserMeetings={setUserMeetings}
       key={index}
+      toggleRerender={toggleRerender}
+      setToggleRerender={setToggleRerender}
     />
   });
 
