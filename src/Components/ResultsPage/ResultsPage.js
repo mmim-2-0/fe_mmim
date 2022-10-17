@@ -15,12 +15,16 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
   
   const [meetingTime, setMeetingTime] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
+  // const [bounds, setBounds] = useState([])
 
   let navigate = useNavigate();
 
   useEffect(() => {
     setPageTitle('home')
   });
+
+  useEffect(() => {
+  }, [searchCenter, searchCategory, searchResponses])
 
   let updateCategory = (category) => {
     setSearchCategory(category)
@@ -42,6 +46,9 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
                   setSearchResponses(data.data.attributes.locations)
                   setSearchCenter(data.data.attributes.map_argument.map_center)
                 })
+      })
+      .then(() => {
+        navigate(`/results`)
       }) 
     }
   };
@@ -75,12 +82,21 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
       </div>
     </div>
     <div className="map-and-results">
+      {/* {(bounds.length ) && <div className="map">
+          <Map
+            searchResponses={searchResponses}
+            searchCenter={searchCenter}
+            bounds={bounds}
+            setBounds={setBounds}
+          />
+        </div>  
+      } */}
       <div className="map">
-        <Map
-          searchResponses={searchResponses}
-          searchCenter={searchCenter}
-        />
-      </div>
+          <Map
+            searchResponses={searchResponses}
+            searchCenter={searchCenter}
+          />
+      </div>  
       <div className="title-and-results">
         <h2 className="results-title">Results:</h2>
         {addressTwoEmail && <p className="email-instructions">Select up to three locations to send <strong>{addressTwoEmail}</strong></p>}
