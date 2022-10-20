@@ -1,11 +1,13 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
 import UserMidForm from '../UserMidForm/UserMidForm';
 import './Homepage.css';
 
 const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings, setPageTitle, setCheckedMeetingLocations }) => {
     
+  const [failedFetch, setFailedFetch] = useState(false);
+
   useEffect(() => {
     setPageTitle('home');
     setAddressTwoEmail('');
@@ -37,6 +39,8 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setSearchResponses={setSearchResponses}
         searchCenter={searchCenter}
         setSearchCenter={setSearchCenter}
+        failedFetch={failedFetch}
+        setFailedFetch={setFailedFetch}
       /> : <UserMidForm
         userName={userName}
         userEmail={userEmail}
@@ -59,6 +63,8 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setDefaultFormView={setDefaultFormView}
         searchCenter={searchCenter}
         setSearchCenter={setSearchCenter}
+        failedFetch={failedFetch}
+        setFailedFetch={setFailedFetch}
       />      
       }
       </div>

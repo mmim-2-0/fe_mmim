@@ -7,7 +7,7 @@ import tz from 'dayjs/plugin/timezone';
 
 
 
-const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
+const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings, toggleRerender, setToggleRerender }) => {
 
   const localizedFormat = require('dayjs/plugin/localizedFormat')
   dayjs.extend(localizedFormat)
@@ -23,9 +23,11 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
   // console.log(day.js)
 
   const cancelMeetingInvite = (e) => {
-    console.log('m', meetingInfo)
     patchMeeting("cancelled", userId, meetingInfo.id, token, meetingInfo.attributes.locations[0].id)
     .then(getUserMeetings(userId, token).then((response) => setUserMeetings(response.data)))
+    .then(() => {
+      setToggleRerender(!toggleRerender)
+    })
   };
 
   const displayLocationOptions = (array) => {
