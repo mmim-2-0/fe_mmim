@@ -2,23 +2,25 @@ import React from 'react';
 import { patchMeeting, getUserMeetings } from '../../apiCalls';
 import './ConfirmedMeeting.css';
 import dayjs from 'dayjs';
-// import utc from 'dayjs/plugin/utc';
-// import tz from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
+import tz from 'dayjs/plugin/timezone';
 
 
 
 const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings }) => {
 
-  // const localizedFormat = require('dayjs/plugin/localizedFormat')
-  // dayjs.extend(localizedFormat)
-  // dayjs.extend(utc)
-  // dayjs.extend(tz)
-  // const timeZone = dayjs.tz.guess()
-  // const {format} = require('date-fns');
+  const localizedFormat = require('dayjs/plugin/localizedFormat')
+  dayjs.extend(localizedFormat)
+  dayjs.extend(utc)
+  dayjs.extend(tz)
+  const timeZone = dayjs.tz.guess()
+  const {format} = require('date-fns');
 
-  // console.log(dayjs.utc("2022-11-11T11:11:00").tz(timeZone))
+  // console.log(dayjs.utc("2022-11-11T11:11:00").tz("America/Denver"))
   // console.log(dayjs.tz.guess())
   // const today = format(new Date(),'dd.MM.yyyy HH:mm:ss');  
+
+  // console.log(day.js)
 
   const cancelMeetingInvite = (e) => {
     console.log('m', meetingInfo)
