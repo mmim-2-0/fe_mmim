@@ -62,5 +62,3 @@ const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings, setCurren
 };
 
 export default PendingMeeting;
-
-{/* <p><strong>Time: </strong>{dayjs(meetingInfo.attributes.time).format('LLL')}</p> */}
