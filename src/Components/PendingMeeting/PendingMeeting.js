@@ -46,7 +46,7 @@ const PendingMeeting = ({ meetingInfo, userId, token, setUserMeetings, setCurren
   return (
     <div className="individual-meeting">
       <p className="individual-meeting-title">{meetingInfo.attributes.host_name}'s meeting with {meetingInfo.attributes.guest_name}</p>
-      <p>Time: {dayjs(meetingInfo.attributes.time).format('MM/DD/YYYY hh:mm a')}</p>
+      <p>Time: {dayjs(meetingInfo.attributes.time).format('LLL')}</p>
       <form className="pending-form">
         <div className="choose-location-container">
           <span className="form-instructions">Choose a Location:</span>

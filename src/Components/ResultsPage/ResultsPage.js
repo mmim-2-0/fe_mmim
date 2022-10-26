@@ -8,8 +8,10 @@ import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { getLocations, getGuestUser, sendMeetingOptions } from '../../apiCalls.js';
 import ResultsContainer from '../ResultsContainer/ResultsContainer';
+import Time from '../Time/Time';
 import './ResultsPage.css';
 import { useNavigate } from 'react-router-dom'; 
+import dayjs from 'dayjs';
 
 const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, searchResponses, setSearchCenter, searchCenter, addressOne, addressTwo, addressTwoManual, checkedMeetingLocations, setCheckedMeetingLocations, userEmail, token, userId, addressTwoEmail, setPageTitle }) => {
   
@@ -46,9 +48,10 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     }
   };
 
-  const handleTimeInput = (e) => {
-    setMeetingTime(e.target.value)
-  };
+  // const handleTimeInput = (e) => {
+  //   // console.log(e.target.value)
+  //   setMeetingTime(e.target.value)
+  // };
 
   const postMeetingLocations = () => {
     if (checkedMeetingLocations.length && meetingTime) {
@@ -61,6 +64,9 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
       setErrorMessage(true)
     }
   };
+
+  // sendMeetingOptions(userId, token, addressTwoEmail, "November 11, 2022 11:11:00 GMT-0700", checkedMeetingLocations).then(res => console.log(res))
+  // console.log(dayjs(new Date()).format('YYYY-MM-DD'))
 
   return (
   <div>
@@ -101,12 +107,16 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
         </div>
           {addressTwoEmail ? <div className='meeting-invite-container'>
             <p className='meeting-invitation-instructions'>Select a date / time and enter the other party's email for your meeting invitation:</p>
-            <input type="datetime-local" onChange={handleTimeInput} value={meetingTime}/>
+            <Time 
+              meetingTime={meetingTime}
+              setMeetingTime={setMeetingTime}
+            />
             <button className="invitation-button" onClick={postMeetingLocations}>Send Meeting Invitation</button>
           </div> : <p className="login-text">Login to send a friend a meeting invite</p>}
           {errorMessage && <p className="error-message">Please provide at least one possible meeting location to send an invitation.</p>}
       </div>
     </div>
+
   </div>
   )
 };

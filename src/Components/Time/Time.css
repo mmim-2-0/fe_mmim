@@ -1,0 +1,14 @@
+.meetingTimeContainer {
+  display: flex;
+}
+
+.timeInput,
+.dateInput {
+  border-right: none;
+  border-width: 1px;
+}
+
+.timeInput,
+.timezoneInput {
+  border-left: none;
+}
