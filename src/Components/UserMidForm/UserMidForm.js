@@ -50,6 +50,8 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 
 	const submitUserForm = (e) => {
 		setErrorMessage(false)
+		setFailedEmail(false)
+		setFailedFetch(false)
 		e.preventDefault()
 		if (addressTwoManual && requiredInput && addressOne) {
 			getLocations(addressOne, addressTwoManual, searchCategory)
@@ -61,27 +63,29 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 				setFailedFetch(false)
 			})
 			.then(data => navigate(`/results`))
-			.catch(data => setFailedFetch(true))
+			.catch(data => {
+				setFailedFetch(true)
+				return null
+			})
 		}
 		if (addressTwoEmail && requiredInput && addressOne) {
 			getGuestUser(token, addressTwoEmail)
 				.then((data) => {
 					setFailedEmail(false)
-					return data.data.attributes.address
-				})
-				.catch(data => setFailedEmail(true))
-				.then(address => {
-					getLocations(addressOne, address, searchCategory)
-						.then(data => {
-							console.log(data)
-							setSearchResponses(data.data.attributes.locations)
-							setSearchCenter(data.data.attributes.map_argument.map_center)
-							setErrorMessage(false)
-							setFailedFetch(false)
-						})
+					getLocations(addressOne, data.data.attributes.address,searchCategory)
+					.then(data => {
+						console.log("DATA", data)
+						setSearchResponses(data.data.attributes.locations)
+						setSearchCenter(data.data.attributes.map_argument.map_center)
+						setErrorMessage(false)
+						setFailedFetch(false)
+					})
 					.then(data => navigate(`/results`))
 					.catch(data => setFailedFetch(true))
-				}) 
+				})
+				.catch(data => {
+					setFailedEmail(true)
+				})
 		}
 		else {
 			setErrorMessage(true)
