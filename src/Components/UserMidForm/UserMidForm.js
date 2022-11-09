@@ -36,14 +36,22 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 
 	const addressTwoHandlerEmail = (e) => {
 		setAddressTwoEmail(e.target.value)
-		setRequiredInput(true)
+		if (e.target.value) {
+			setRequiredInput(true)
+		} else {
+			setRequiredInput(false)
+		}
 		setErrorMessage(false)
 		setAddressTwoManual('')
 	};
 
 	const addressTwoHandlerManual = (e) => {
 		setAddressTwoManual(e.target.value)
-		setRequiredInput(true)
+		if (e.target.value) {
+			setRequiredInput(true)
+		} else {
+			setRequiredInput(false)
+		}
 		setErrorMessage(false)
 		setAddressTwoEmail('')
 	};
@@ -87,7 +95,7 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 					setFailedEmail(true)
 				})
 		}
-		else {
+		if (!requiredInput) {
 			setErrorMessage(true)
 		}
 	};
