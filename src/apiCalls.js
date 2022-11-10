@@ -1,5 +1,4 @@
 const getLocations = (locationOne, locationTwo, category) => {
-  // return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`)
 
   return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`, {
     headers: {
