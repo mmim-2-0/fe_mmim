@@ -1,6 +1,7 @@
 const getLocations = (locationOne, locationTwo, category) => {
   // return fetch(`https://serene-thicket-09827.herokuapp.com/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`)
-  return fetch(`http://127.0.0.1:3001/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`, {
+
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`, {
     headers: {
       'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
     }
@@ -18,7 +19,7 @@ const getLocations = (locationOne, locationTwo, category) => {
 }
 
 const getGuestUser = (token, guestEmail) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/guest_user?token=${token}&guest_email=${guestEmail}`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/guest_user?token=${token}&guest_email=${guestEmail}`, {
     headers: {
       'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
     }
@@ -36,7 +37,7 @@ const getGuestUser = (token, guestEmail) => {
 }
 
 const getUser = (name, email) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/sessions`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/sessions`, {
     method: 'POST',
     body: JSON.stringify({
       "name": name,
@@ -57,7 +58,7 @@ const getUser = (name, email) => {
 }
 
 const getUserMeetings = (id, token) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/users/${id}/meetings?token=${token}`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${id}/meetings?token=${token}`, {
     headers: {
       'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
     }
@@ -75,7 +76,7 @@ const getUserMeetings = (id, token) => {
 }
 
 const logoutUser = (token) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/sessions?token=${token}`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/sessions?token=${token}`, {
     method: 'DELETE',
     headers: {
       'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
@@ -90,7 +91,7 @@ const logoutUser = (token) => {
 }
 
 const updateDefaultAddress = (token, name, email, address) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/users`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users`, {
     method: 'PUT',
     body: JSON.stringify({
       "token": token,
@@ -113,7 +114,7 @@ const updateDefaultAddress = (token, name, email, address) => {
 }
 
 const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/users/${id}/meetings`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${id}/meetings`, {
     method: 'POST',
     body: JSON.stringify({
       "token": token,
@@ -136,7 +137,7 @@ const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
 }
 
 const patchMeeting = (status, userId, meetingId, token, locationId) => {
-  return fetch(`http://127.0.0.1:3001/api/v1/users/${userId}/meetings/${meetingId}`, {
+  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${userId}/meetings/${meetingId}`, {
     method: 'PATCH',
     body: JSON.stringify({
       "token": token,
