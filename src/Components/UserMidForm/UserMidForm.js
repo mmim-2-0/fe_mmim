@@ -105,12 +105,15 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 					<h2>Find a place in the middle.</h2>
 					<form>
 					<p><b>Your</b> starting point is...</p>
-					<input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
+					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
+					<input type='text' placeholder="123 Your Street" defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
 					<p className="second-address-label"><b>Other</b> party's starting point is...</p>
-					<input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
+					<p className="address-instructions">Enter other party's email address</p>
+					<input type='text' placeholder='YourFriend@example.com' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
 					{(addressTwoEmail === userEmail) && <p className="email-error-message">Hey! Don't use your own email here please.</p>}
 					<p>OR</p>
-					<input type='text' placeholder='Enter a complete address, a city + state, or a zip' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
+					<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
+					<input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>
 					<div className="category-icons">
 							<CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
