@@ -31,6 +31,7 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 
 	const submitDefaultForm = (e) => {
 		e.preventDefault()
+		localStorage.clear()
 		if (addressOne && addressTwo) {
 				setErrorMessage(false)
 				localStorage.setItem('addressOne', JSON.stringify(addressOne))
@@ -42,7 +43,6 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 		if (addressOne && addressTwo) {
 				getLocations(addressOne, addressTwo, searchCategory)
 				.then(data => {
-						console.log(data)
 						setSearchResponses(data.data.attributes.locations)
 						setSearchCenter(data.data.attributes.map_argument.map_center)
 						localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))

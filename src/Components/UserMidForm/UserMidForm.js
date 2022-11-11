@@ -57,16 +57,21 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 	};
 
 	const submitUserForm = (e) => {
+		localStorage.clear()
 		setErrorMessage(false)
 		setFailedEmail(false)
 		setFailedFetch(false)
 		e.preventDefault()
 		if (addressTwoManual && requiredInput && addressOne) {
+			localStorage.setItem('addressOne', JSON.stringify(addressOne))
+			localStorage.setItem('addressTwoManual', JSON.stringify(addressTwoManual))
 			getLocations(addressOne, addressTwoManual, searchCategory)
 			.then(data => {
-				console.log(data)
 				setSearchResponses(data.data.attributes.locations)
 				setSearchCenter(data.data.attributes.map_argument.map_center)
+				localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+				localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+				localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
 				setErrorMessage(false)
 				setFailedFetch(false)
 			})
@@ -77,14 +82,18 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 			})
 		}
 		if (addressTwoEmail && requiredInput && addressOne) {
+			localStorage.setItem('addressOne', JSON.stringify(addressOne))
+			localStorage.setItem('addressTwoEmail', JSON.stringify(addressTwoEmail))
 			getGuestUser(token, addressTwoEmail)
 				.then((data) => {
 					setFailedEmail(false)
 					getLocations(addressOne, data.data.attributes.address,searchCategory)
 					.then(data => {
-						console.log("DATA", data)
 						setSearchResponses(data.data.attributes.locations)
 						setSearchCenter(data.data.attributes.map_argument.map_center)
+						localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+						localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+						localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
 						setErrorMessage(false)
 						setFailedFetch(false)
 					})
