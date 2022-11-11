@@ -1,5 +1,4 @@
 const getLocations = (locationOne, locationTwo, category) => {
-
   return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`, {
     headers: {
       'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
