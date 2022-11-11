@@ -33,6 +33,8 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 		e.preventDefault()
 		if (addressOne && addressTwo) {
 				setErrorMessage(false)
+				localStorage.setItem('addressOne', JSON.stringify(addressOne))
+				localStorage.setItem('addressTwo', JSON.stringify(addressTwo))
 		} else {
 				setErrorMessage(true)
 		}
@@ -43,6 +45,9 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 						console.log(data)
 						setSearchResponses(data.data.attributes.locations)
 						setSearchCenter(data.data.attributes.map_argument.map_center)
+						localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+						localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+						localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
 						setFailedFetch(false)
 				})
 				.then(data => navigate(`/results`))

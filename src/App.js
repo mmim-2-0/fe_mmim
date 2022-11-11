@@ -13,7 +13,7 @@ function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
   const [userId, setUserId] = useState(null)
-  const [searchCategory, setSearchCategory] = useState("cafe")
+  const [searchCategory, setSearchCategory] = useState(JSON.parse(localStorage.getItem('searchCategory')) || "cafe")
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
   const [searchCenter, setSearchCenter] = useState([45.4, -75.7])
