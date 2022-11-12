@@ -151,14 +151,17 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
     if (!response.ok) {
       throw Error(response.text)
     } else {
-      console.log("accept meeting worked")
+      response.json()
     }
-  })
+  }).then((data) => console.log(data));
 }
 
 const getCurrentLocation = (location) => {
   return fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`)
-    .then((response) => console.log(response.json()))
+    .then(response => {
+      return response.json()
+    })
+    // return d.results[0].locations[0].street + " " + d.results[0].locations[0].adminArea5 + " " + d.results[0].locations[0].adminArea3 + " " +d.results[0].locations[0].adminArea1
 }
 
 export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting, getCurrentLocation };

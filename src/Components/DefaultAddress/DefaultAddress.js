@@ -2,7 +2,7 @@ import './DefaultAddress.css';
 import { useState } from 'react';
 import { updateDefaultAddress, getCurrentLocation } from "../../apiCalls";
 
-const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUserDefaultAddress, setAddressOne }) => {
+const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUserDefaultAddress, setAddressOne, setCurrentLocation }) => {
 
   const [localDefault, setLocalDefault] = useState(userDefaultAddress);
 
@@ -18,16 +18,10 @@ const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUse
   };
 
   const handleCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  };
-
-  function showPosition(position) {
-    var location = position.coords.latitude + "," + position.coords.longitude;
-    const address = async () => {
-      const a = await getCurrentLocation(location);
-      // setLocalDefault(a);
-    }
-    setLocalDefault(address)
+    navigator.geolocation.getCurrentPosition((position) =>  {
+      var location = position.coords.latitude + "," + position.coords.longitude;
+      getCurrentLocation(location).then(d => {setLocalDefault(d.results[0].locations[0].street + " " + d.results[0].locations[0].adminArea5 + " " + d.results[0].locations[0].adminArea3 + " " +d.results[0].locations[0].adminArea1)})
+    })
   };
 
   return (
@@ -39,7 +33,7 @@ const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUse
         <h3 className="change-default-title">change your default address:</h3>
         <input className="default-input" type="text" placeholder="new default address" value={localDefault} onChange={handleLocalDefault}></input>
         <button className="update-button" onClick={defaultAddressHandler}>update</button>
-        <button className="update-button" onClick={handleCurrentLocation}>Find Current Location</button>
+        <button className="update-button" onClick={handleCurrentLocation}>find current location</button>
       </div>
     </div>
   )
