@@ -1,6 +1,6 @@
 import './DefaultAddress.css';
 import { useState } from 'react';
-import { updateDefaultAddress } from "../../apiCalls";
+import { updateDefaultAddress, getCurrentLocation } from "../../apiCalls";
 
 const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUserDefaultAddress, setAddressOne }) => {
 
@@ -17,6 +17,19 @@ const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUse
     setLocalDefault(e.target.value)
   };
 
+  const handleCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  };
+
+  function showPosition(position) {
+    var location = position.coords.latitude + "," + position.coords.longitude;
+    const address = async () => {
+      const a = await getCurrentLocation(location);
+      // setLocalDefault(a);
+    }
+    setLocalDefault(address)
+  };
+
   return (
     <div>
       <h2 className="myinfo-title">My Info</h2>
@@ -26,6 +39,7 @@ const DefaultAddress = ({ token, userName, userEmail, userDefaultAddress, setUse
         <h3 className="change-default-title">change your default address:</h3>
         <input className="default-input" type="text" placeholder="new default address" value={localDefault} onChange={handleLocalDefault}></input>
         <button className="update-button" onClick={defaultAddressHandler}>update</button>
+        <button className="update-button" onClick={handleCurrentLocation}>Find Current Location</button>
       </div>
     </div>
   )
