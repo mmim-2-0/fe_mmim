@@ -7,11 +7,11 @@ import LibraryIcon from '../../assets/Library icon.js';
 import ParkIcon from '../../assets/Park icon.js';
 import RestaurantIcon from '../../assets/Restaurant icon.js';
 import { useNavigate } from 'react-router-dom';
-import './UserMidForm.css';
+import './UserMidFormMeeting.css';
 import { useState } from 'react';
 
-const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
-    
+const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
+
 	const [requiredInput, setRequiredInput] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(false);
 	const [failedEmail, setFailedEmail] = useState(false);
@@ -19,11 +19,11 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 	let navigate = useNavigate();
 
 	useEffect(() => {
-		setAddressOne(userDefaultAddress || '')
+		setAddressOne(null)
 		setAddressTwo(null)
 		setSearchCategory('cafe')
 	}, []);
-	
+
 	const addressOneHandler = (e) => {
 		setAddressOne(e.target.value)
 		if (addressOne) {
@@ -34,6 +34,20 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 		}
 	};
 
+	const useDefaultAddress = (e) => {
+    if (e.target.checked === true) {
+      setAddressOne(userDefaultAddress)
+    } else {
+      setAddressOne("")
+    }
+    if (addressOne) {
+        setRequiredInput(true)
+        setErrorMessage(false)
+    } else {
+        setRequiredInput(false)
+    }
+  };
+
 	const addressTwoHandlerEmail = (e) => {
 		setAddressTwoEmail(e.target.value)
 		if (e.target.value) {
@@ -42,18 +56,6 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 			setRequiredInput(false)
 		}
 		setErrorMessage(false)
-		setAddressTwoManual('')
-	};
-
-	const addressTwoHandlerManual = (e) => {
-		setAddressTwoManual(e.target.value)
-		if (e.target.value) {
-			setRequiredInput(true)
-		} else {
-			setRequiredInput(false)
-		}
-		setErrorMessage(false)
-		setAddressTwoEmail('')
 	};
 
 	const submitUserForm = (e) => {
@@ -62,10 +64,9 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 		setFailedEmail(false)
 		setFailedFetch(false)
 		e.preventDefault()
-		if (addressTwoManual && requiredInput && addressOne) {
+		if (requiredInput && addressOne) {
 			localStorage.setItem('addressOne', JSON.stringify(addressOne))
-			localStorage.setItem('addressTwoManual', JSON.stringify(addressTwoManual))
-			getLocations(addressOne, addressTwoManual, searchCategory)
+			getLocations(addressOne, searchCategory)
 			.then(data => {
 				setSearchResponses(data.data.attributes.locations)
 				setSearchCenter(data.data.attributes.map_argument.map_center)
@@ -108,21 +109,20 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 			setErrorMessage(true)
 		}
 	};
-	
+
 	return (
 			<section className="user-mid">
 					<h2>Find a place in the middle.</h2>
 					<form>
 					<p><b>Your</b> starting point is...</p>
 					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
-					<input type='text' placeholder="123 Your Street" defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
-					<p className="second-address-label"><b>Other</b> party's starting point is...</p>
+					<label>Use default address</label>
+					<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
+					<input type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
+					<p className="second-address-label"><b>Meet</b> with...</p>
 					<p className="address-instructions">Enter other party's email address</p>
 					<input type='text' placeholder='YourFriend@example.com' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
 					{(addressTwoEmail === userEmail) && <p className="email-error-message">Hey! Don't use your own email here please.</p>}
-					<p>OR</p>
-					<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
-					<input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>
 					<div className="category-icons">
 							<CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
@@ -140,4 +140,4 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 	)
 };
 
-export default UserMidForm;
+export default UserMidFormMeeting;

@@ -1,0 +1,90 @@
+.user-mid {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+}
+
+input {
+  width: 80%;
+  font-size: 0.8em;
+  padding: 5px;
+}
+
+p {
+  font-size: 2vh;
+  margin: 0.5vh;
+}
+
+h2 {
+  font-size: 4vh;
+  height: 15vh;
+}
+
+form {
+  height: 66vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  padding-top: 1vh;
+}
+
+.icon-label,
+.second-address-label {
+  margin-top: 2vh;
+}
+
+.search-button {
+  background-color: #16c172;
+  color: white;
+  height: 5vh;
+  width: 50%;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px #00000052;
+  border: none;
+  font-size: 2vh;
+  margin: 5vh;
+}
+
+.default-address-button {
+  background-color: #16c172;
+  color: white;
+  height: 1.6em;
+  width: 65%;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px #00000052;
+  border: none;
+  font-size: 1.2em;
+  margin-top: 0.8em;
+}
+
+.error-message {
+  color: red;
+}
+
+.user-mid {
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+  height: 76vh;
+}
+
+.email-error-message {
+  color: red;
+  font-size: 1em;
+}
+
+.failed-fetch-error {
+  color: red;
+  margin-left: 1em;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}

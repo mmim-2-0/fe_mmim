@@ -1,12 +1,19 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import DefaultMidForm from '../DefaultMidForm/DefaultMidForm';
-import UserMidForm from '../UserMidForm/UserMidForm';
+import UserMidFormBasic from '../UserMidFormBasic/UserMidFormBasic';
+import UserMidFormMeeting from '../UserMidFormMeeting/UserMidFormMeeting';
 import './Homepage.css';
 
 const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, searchCenter, setSearchCenter, userMeetings, setPageTitle, setCheckedMeetingLocations }) => {
-    
+
   const [failedFetch, setFailedFetch] = useState(false);
+
+  const [currentDisplay, setCurrentDisplay] = useState("Basic Search");
+
+  const handleHomepageDisplay = (display) => {
+    setCurrentDisplay(display)
+  };
 
   useEffect(() => {
     setPageTitle('home');
@@ -14,7 +21,7 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
     setAddressTwoManual('');
     setCheckedMeetingLocations([]);
   }, [])
-  
+
   return (
     <div>
       <section>
@@ -41,7 +48,33 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setSearchCenter={setSearchCenter}
         failedFetch={failedFetch}
         setFailedFetch={setFailedFetch}
-      /> : <UserMidForm
+      /> :
+      <div>
+          <button class='tab' onClick={() => handleHomepageDisplay("Basic Search")}>Basic Search</button>
+          <button class='tab' onClick={() => handleHomepageDisplay("Meeting Search")}>Meeting Search</button>
+        {currentDisplay === "Basic Search" ? <UserMidFormBasic
+        userName={userName}
+        userEmail={userEmail}
+        token={token}
+        searchCategory={searchCategory}
+        setSearchCategory={setSearchCategory}
+        addressOne={addressOne}
+        setAddressOne={setAddressOne}
+        addressTwo={addressTwo}
+        setAddressTwo={setAddressTwo}
+        searchResponses={searchResponses}
+        setSearchResponses={setSearchResponses}
+        addressTwoManual={addressTwoManual}
+        setAddressTwoManual={setAddressTwoManual}
+        userDefaultAddress={userDefaultAddress}
+        setUserDefaultAddress={setUserDefaultAddress}
+        defaultFormView={defaultFormView}
+        setDefaultFormView={setDefaultFormView}
+        searchCenter={searchCenter}
+        setSearchCenter={setSearchCenter}
+        failedFetch={failedFetch}
+        setFailedFetch={setFailedFetch}
+        /> : <UserMidFormMeeting
         userName={userName}
         userEmail={userEmail}
         token={token}
@@ -65,21 +98,21 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setSearchCenter={setSearchCenter}
         failedFetch={failedFetch}
         setFailedFetch={setFailedFetch}
-      />      
-      }
-      </div>
-        <div className="why-login">
-          <div className="why-login-text">
-            <h2 className="login-header">Simplify your</h2>
-            <h2 className="login-header">planning.</h2>
-            <h2 className="login-header">Protect your</h2>
-            <h2 className="login-header">privacy.</h2>
-            <p className="login-p first-p">When you login to MMIM, you can save a default address.</p>
-            <p className="login-p">This allows you to suggest meeting places to others without needing to know their address, or share yours.</p>
-            <p className="login-p">It's simple and keeps your info private-perfect for local sales and first dates.</p>
+        />}
+      </div>}
+          <div className="why-login">
+            <div className="why-login-text">
+              <h2 className="login-header">Simplify your</h2>
+              <h2 className="login-header">planning.</h2>
+              <h2 className="login-header">Protect your</h2>
+              <h2 className="login-header">privacy.</h2>
+              <p className="login-p first-p">When you login to MMIM, you can save a default address.</p>
+              <p className="login-p">This allows you to suggest meeting places to others without needing to know their address, or share yours.</p>
+              <p className="login-p">It's simple and keeps your info private-perfect for local sales and first dates.</p>
+          </div>
           </div>
           <div className="why-login-image" alt="hand holding a phone"></div>
-        </div>
+          </div>
       </section>
     </div>
     )
