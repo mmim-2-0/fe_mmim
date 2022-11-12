@@ -20,7 +20,7 @@ const Map = ({ searchResponses, searchCenter }) => {
 
   return (
     <div className="map-div">
-      <MapContainer style={{height:"100%"}} pxclassName="map-image" center={searchCenter} bounds={bounds} scrollWheelZoom={false}>
+      <MapContainer style={{height:"100%"}} pxclassName="map-image" center={searchCenter} bounds={bounds} scrollWheelZoom={true}>
         {searchMarkers}
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
