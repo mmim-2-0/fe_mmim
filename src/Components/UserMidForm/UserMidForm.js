@@ -36,54 +36,75 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 
 	const addressTwoHandlerEmail = (e) => {
 		setAddressTwoEmail(e.target.value)
-		setRequiredInput(true)
+		if (e.target.value) {
+			setRequiredInput(true)
+		} else {
+			setRequiredInput(false)
+		}
 		setErrorMessage(false)
 		setAddressTwoManual('')
 	};
 
 	const addressTwoHandlerManual = (e) => {
 		setAddressTwoManual(e.target.value)
-		setRequiredInput(true)
+		if (e.target.value) {
+			setRequiredInput(true)
+		} else {
+			setRequiredInput(false)
+		}
 		setErrorMessage(false)
 		setAddressTwoEmail('')
 	};
 
 	const submitUserForm = (e) => {
+		localStorage.clear()
 		setErrorMessage(false)
+		setFailedEmail(false)
+		setFailedFetch(false)
 		e.preventDefault()
 		if (addressTwoManual && requiredInput && addressOne) {
+			localStorage.setItem('addressOne', JSON.stringify(addressOne))
+			localStorage.setItem('addressTwoManual', JSON.stringify(addressTwoManual))
 			getLocations(addressOne, addressTwoManual, searchCategory)
 			.then(data => {
-				console.log(data)
 				setSearchResponses(data.data.attributes.locations)
 				setSearchCenter(data.data.attributes.map_argument.map_center)
+				localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+				localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+				localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
 				setErrorMessage(false)
 				setFailedFetch(false)
 			})
 			.then(data => navigate(`/results`))
-			.catch(data => setFailedFetch(true))
+			.catch(data => {
+				setFailedFetch(true)
+				return null
+			})
 		}
 		if (addressTwoEmail && requiredInput && addressOne) {
+			localStorage.setItem('addressOne', JSON.stringify(addressOne))
+			localStorage.setItem('addressTwoEmail', JSON.stringify(addressTwoEmail))
 			getGuestUser(token, addressTwoEmail)
 				.then((data) => {
 					setFailedEmail(false)
-					return data.data.attributes.address
-				})
-				.catch(data => setFailedEmail(true))
-				.then(address => {
-					getLocations(addressOne, address, searchCategory)
-						.then(data => {
-							console.log(data)
-							setSearchResponses(data.data.attributes.locations)
-							setSearchCenter(data.data.attributes.map_argument.map_center)
-							setErrorMessage(false)
-							setFailedFetch(false)
-						})
+					getLocations(addressOne, data.data.attributes.address,searchCategory)
+					.then(data => {
+						setSearchResponses(data.data.attributes.locations)
+						setSearchCenter(data.data.attributes.map_argument.map_center)
+						localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+						localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+						localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
+						setErrorMessage(false)
+						setFailedFetch(false)
+					})
 					.then(data => navigate(`/results`))
 					.catch(data => setFailedFetch(true))
-				}) 
+				})
+				.catch(data => {
+					setFailedEmail(true)
+				})
 		}
-		else {
+		if (!requiredInput) {
 			setErrorMessage(true)
 		}
 	};
@@ -93,12 +114,15 @@ const UserMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddress
 					<h2>Find a place in the middle.</h2>
 					<form>
 					<p><b>Your</b> starting point is...</p>
-					<input type='text' placeholder={userDefaultAddress} defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
+					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
+					<input type='text' placeholder="123 Your Street" defaultValue={userDefaultAddress} onChange={addressOneHandler}></input>
 					<p className="second-address-label"><b>Other</b> party's starting point is...</p>
-					<input type='text' placeholder='Other User email' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
+					<p className="address-instructions">Enter other party's email address</p>
+					<input type='text' placeholder='YourFriend@example.com' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
 					{(addressTwoEmail === userEmail) && <p className="email-error-message">Hey! Don't use your own email here please.</p>}
 					<p>OR</p>
-					<input type='text' placeholder='Enter a complete address, a city + state, or a zip' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
+					<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
+					<input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>
 					<div className="category-icons">
 							<CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>

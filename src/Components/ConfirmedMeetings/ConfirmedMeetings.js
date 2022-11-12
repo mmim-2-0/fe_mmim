@@ -12,6 +12,8 @@ const ConfirmedMeetings = ({ userMeetings, userId, token, setUserMeetings, curre
 
   useEffect(() => {
     getUserMeetings(userId, token).then((response) => {
+      console.log("userId", userId)
+      console.log("token", token)
       let allMeetings = []
       response.data.forEach((m) => {
         if (m.attributes.status === 'accepted') {
