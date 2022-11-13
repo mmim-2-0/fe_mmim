@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLocations, getGuestUser } from '../../apiCalls.js';
+import { getLocations, getGuestUser, getCurrentLocation} from '../../apiCalls.js';
 import { useEffect } from 'react';
 import BarIcon from '../../assets/Bar icon.js';
 import CafeIcon from '../../assets/Cafe icon.js';
@@ -15,6 +15,7 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 	const [requiredInput, setRequiredInput] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(false);
 	const [failedEmail, setFailedEmail] = useState(false);
+	const [currentLocation, setCurrentLocation] = useState(null)
 
 	let navigate = useNavigate();
 
@@ -45,6 +46,17 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
         setErrorMessage(false)
     } else {
         setRequiredInput(false)
+    }
+  };
+
+  const handleCurrentLocation = (e) => {
+   	if (e.target.checked === true) {
+   		navigator.geolocation.getCurrentPosition((position) =>  {
+      var location = position.coords.latitude + "," + position.coords.longitude;
+      getCurrentLocation(location).then(d => {setAddressOne(d.results[0].locations[0].street + " " + d.results[0].locations[0].adminArea5 + " " + d.results[0].locations[0].adminArea3 + " " +d.results[0].locations[0].adminArea1)})
+    })
+    } else {
+      setAddressOne("")
     }
   };
 
@@ -116,8 +128,16 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 					<form>
 					<p><b>Your</b> starting point is...</p>
 					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
-					<label>Use default address</label>
+					<label>
+					<p id='checkbox'>Use default address
 					<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
+					</p>
+					</label>
+					<label>
+          <p id='checkbox_current_address'>Use current location
+          <input id='checkbox' type='checkbox' onChange={handleCurrentLocation} />
+          </p>
+          </label>
 					<input type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
 					<p className="second-address-label"><b>Meet</b> with...</p>
 					<p className="address-instructions">Enter other party's email address</p>

@@ -156,4 +156,11 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
   })
 }
 
-export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
+const getCurrentLocation = (location) => {
+  return fetch(`http://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`)
+    .then(response => {
+      return response.json()
+    })
+}
+
+export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting, getCurrentLocation };
