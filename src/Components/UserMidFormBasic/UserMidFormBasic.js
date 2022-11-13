@@ -13,7 +13,6 @@ import { useState } from 'react';
 // const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
 const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
 
-	const [requiredInput, setRequiredInput] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(false);
 	const [currentLocation, setCurrentLocation] = useState('')
 
@@ -28,10 +27,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 	const addressOneHandler = (e) => {
 		setAddressOne(e.target.value)
 		if (addressOne) {
-				setRequiredInput(true)
 				setErrorMessage(false)
-		} else {
-				setRequiredInput(false)
 		}
 	};
 
@@ -40,12 +36,10 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
       setAddressOne(userDefaultAddress)
     } else {
       setAddressOne("")
+			e.target.checked = false;
     }
     if (addressOne) {
-        setRequiredInput(true)
         setErrorMessage(false)
-    } else {
-        setRequiredInput(false)
     }
   };
 
@@ -62,11 +56,6 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 
 	const addressTwoHandlerManual = (e) => {
 		setAddressTwoManual(e.target.value)
-		if (e.target.value) {
-			setRequiredInput(true)
-		} else {
-			setRequiredInput(false)
-		}
 		setErrorMessage(false)
 	};
 
@@ -75,7 +64,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 		setErrorMessage(false)
 		setFailedFetch(false)
 		e.preventDefault()
-		if (addressTwoManual && requiredInput && addressOne) {
+		if (addressTwoManual && addressOne) {
 			localStorage.setItem('addressOne', JSON.stringify(addressOne))
 			localStorage.setItem('addressTwoManual', JSON.stringify(addressTwoManual))
 			getLocations(addressOne, addressTwoManual, searchCategory)
@@ -94,7 +83,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 				return null
 			})
 		}
-		if (!requiredInput) {
+		else {
 			setErrorMessage(true)
 		}
 	};
@@ -107,12 +96,12 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 
 						<div className='checkbox-option-container'>
 							<div className='checkbox-div'>
-			          <label className='checkbox-address'>Use default address </label>
-								<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
+								<input id='checkbox' type='radio' name='checkbox' onChange={useDefaultAddress} />
+								<label className='checkbox-address'> 🏠 Use default address </label>
 							</div>
 							<div className='checkbox-div'>
-								<label className='checkbox-address'>Use current location </label>
-			          <input id='checkbox' type='checkbox' onChange={handleCurrentLocation} />
+			          <input id='checkbox' type='radio' name='checkbox' onChange={handleCurrentLocation} />
+								<label className='checkbox-address'>📍 Use current location </label>
 							</div>
 						</div>
 						<p className="address-instructions">Or enter a complete address, a city + state, or a zip</p>

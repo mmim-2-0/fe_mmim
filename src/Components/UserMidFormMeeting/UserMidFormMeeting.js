@@ -76,24 +76,6 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 		setFailedEmail(false)
 		setFailedFetch(false)
 		e.preventDefault()
-		if (requiredInput && addressOne) {
-			localStorage.setItem('addressOne', JSON.stringify(addressOne))
-			getLocations(addressOne, searchCategory)
-			.then(data => {
-				setSearchResponses(data.data.attributes.locations)
-				setSearchCenter(data.data.attributes.map_argument.map_center)
-				localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
-				localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
-				localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
-				setErrorMessage(false)
-				setFailedFetch(false)
-			})
-			.then(data => navigate(`/results`))
-			.catch(data => {
-				setFailedFetch(true)
-				return null
-			})
-		}
 		if (addressTwoEmail && requiredInput && addressOne) {
 			localStorage.setItem('addressOne', JSON.stringify(addressOne))
 			localStorage.setItem('addressTwoEmail', JSON.stringify(addressTwoEmail))
@@ -117,7 +99,7 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 					setFailedEmail(true)
 				})
 		}
-		if (!requiredInput) {
+		else {
 			setErrorMessage(true)
 		}
 	};
@@ -130,12 +112,12 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
 					<label>
 					<p id='checkbox'>Use default address
-					<input id='checkbox' type='checkbox' value='false' onChange={useDefaultAddress} />
+					<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
 					</p>
 					</label>
 					<label>
           <p id='checkbox_current_address'>Use current location
-          <input id='checkbox' type='checkbox' value='false' onChange={handleCurrentLocation} />
+          <input id='checkbox' type='checkbox' onChange={handleCurrentLocation} />
           </p>
           </label>
 					<input type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>

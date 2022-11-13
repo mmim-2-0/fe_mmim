@@ -15,8 +15,9 @@ input {
 }
 
 #checkbox {
-  margin-left: 8px;
+  /* margin-left: 8px; */
   width: 13px;
+  padding: 0;
 }
 .address-input,
 .checkbox-option-container{
