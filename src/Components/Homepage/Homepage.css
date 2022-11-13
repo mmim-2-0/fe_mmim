@@ -12,6 +12,7 @@
 
 .homepage {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .overlay-text {
@@ -76,4 +77,23 @@
 
 .first-p {
   margin-top: 1em;
+}
+
+.tab {
+  color: white;
+  height: 5vh;
+  width: 40%;
+  border-radius: 10px;
+  box-shadow: 0px 3px 6px #00000052;
+  border: none;
+  font-size: 2vh;
+  margin: 1%;
+}
+
+#tab-1 {
+  background-color: dimgray;
+}
+
+#tab-2 {
+  background-color: silver;
 }

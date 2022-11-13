@@ -11,9 +11,15 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
 
   const [currentDisplay, setCurrentDisplay] = useState("Basic Search");
 
-  const handleHomepageDisplay = (display) => {
+  const tab1 = document.getElementById('tab-1')
+  const tab2 = document.getElementById('tab-2')
+
+  const handleHomepageDisplay = (display, focusTab, unfocusTab) => {
+    focusTab.style.backgroundColor = 'dimgray';
+    unfocusTab.style.backgroundColor = 'silver';
     setCurrentDisplay(display)
   };
+
 
   useEffect(() => {
     setPageTitle('home');
@@ -50,8 +56,8 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setFailedFetch={setFailedFetch}
       /> :
       <div>
-          <button class='tab' onClick={() => handleHomepageDisplay("Basic Search")}>Basic Search</button>
-          <button class='tab' onClick={() => handleHomepageDisplay("Meeting Search")}>Meeting Search</button>
+          <button className='tab' id='tab-1' onClick={() => handleHomepageDisplay("Basic Search", tab1, tab2)}>Basic Search</button>
+          <button className='tab' id='tab-2' onClick={() => handleHomepageDisplay("Meeting Search", tab2, tab1)}>Meeting Search</button>
         {currentDisplay === "Basic Search" ? <UserMidFormBasic
         userName={userName}
         userEmail={userEmail}
