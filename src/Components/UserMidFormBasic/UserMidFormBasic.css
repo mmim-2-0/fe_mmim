@@ -10,18 +10,28 @@ input {
   padding: 5px;
 }
 
-p.checkbox {
-  float:left;
-  margin: 0px;
-  font: 0.1vh;
-  padding-right:0px;
+.checkbox-current-address{
+  font-size:
 }
 
-input[type=checkbox] {
-  float: right;
-  margin: 0px;
-  padding-left:0px;
+#checkbox {
+  margin-left: 8px;
+  width: 13px;
 }
+.address-input,
+.checkbox-option-container{
+  display: flex;
+  margin-left: 0.5vh;
+}
+
+.checkbox-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 3vh;
+}
+
+
 
 p {
   font-size: 2vh;

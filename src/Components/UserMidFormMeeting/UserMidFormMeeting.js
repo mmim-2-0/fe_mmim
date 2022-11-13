@@ -130,12 +130,12 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
 					<label>
 					<p id='checkbox'>Use default address
-					<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
+					<input id='checkbox' type='checkbox' value='false' onChange={useDefaultAddress} />
 					</p>
 					</label>
 					<label>
           <p id='checkbox_current_address'>Use current location
-          <input id='checkbox' type='checkbox' onChange={handleCurrentLocation} />
+          <input id='checkbox' type='checkbox' value='false' onChange={handleCurrentLocation} />
           </p>
           </label>
 					<input type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>

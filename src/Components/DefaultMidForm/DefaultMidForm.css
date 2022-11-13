@@ -10,8 +10,10 @@ input {
   font-size: 2vh;
 }
 
+.checkbox-address,
 .address-instructions {
   font-size: 1.2vh;
+  /* margin-bottom: 0; */
 }
 
 .category-icons {

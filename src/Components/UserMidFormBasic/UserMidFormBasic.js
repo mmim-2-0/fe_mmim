@@ -15,13 +15,13 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 
 	const [requiredInput, setRequiredInput] = useState(false);
 	const [errorMessage, setErrorMessage] = useState(false);
-	const [currentLocation, setCurrentLocation] = useState(null)
+	const [currentLocation, setCurrentLocation] = useState('')
 
 	let navigate = useNavigate();
 
 	useEffect(() => {
-    setAddressOne(null)
-		setAddressTwo(null)
+    setAddressOne('')
+		setAddressTwo('')
 		setSearchCategory('cafe')
 	}, []);
 
@@ -103,22 +103,23 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 			<section className="user-mid">
 					<h2>Find a place in the middle.</h2>
 					<form>
-					<p><b>Your</b> starting point is...</p>
-					<p className="address-instructions">Enter your address or update default address in Meeting Dashboard</p>
-          <label>
-					<p id='checkbox'>Use default address
-					<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
-					</p>
-					</label>
-					<label>
-          <p id='checkbox_current_address'>Use current location
-          <input id='checkbox' type='checkbox' onChange={handleCurrentLocation} />
-          </p>
-          </label>
-          <input type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
+						<p><b>Your</b> starting point is...</p>
+
+						<div className='checkbox-option-container'>
+							<div className='checkbox-div'>
+			          <label className='checkbox-address'>Use default address </label>
+								<input id='checkbox' type='checkbox' onChange={useDefaultAddress} />
+							</div>
+							<div className='checkbox-div'>
+								<label className='checkbox-address'>Use current location </label>
+			          <input id='checkbox' type='checkbox' onChange={handleCurrentLocation} />
+							</div>
+						</div>
+						<p className="address-instructions">Or enter a complete address, a city + state, or a zip</p>
+          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
           <p className="second-address-label"><b>Other</b> party's starting point is...</p>
           <p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
-					<input type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
+					<input className="address-input" type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>
 					<div className="category-icons">
 							<CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
