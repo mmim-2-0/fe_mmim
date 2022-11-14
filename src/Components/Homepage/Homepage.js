@@ -115,10 +115,10 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
               <p className="login-p first-p">When you login to MMIM, you can save a default address.</p>
               <p className="login-p">This allows you to suggest meeting places to others without needing to know their address, or share yours.</p>
               <p className="login-p">It's simple and keeps your info private-perfect for local sales and first dates.</p>
+            </div>
+              <div className="why-login-image" alt="hand holding a phone"></div>
           </div>
-          </div>
-          <div className="why-login-image" alt="hand holding a phone"></div>
-          </div>
+        </div>
       </section>
     </div>
     )
