@@ -159,7 +159,6 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
 const getCurrentLocation = (location) => {
   return fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`, {
     headers : {
-      'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
   })
