@@ -156,6 +156,7 @@ const patchMeeting = (status, userId, meetingId, token, locationId) => {
   })
 }
 
+<<<<<<< HEAD
 
 export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting };
 
@@ -163,6 +164,11 @@ const getCurrentLocation = (location) => {
   return fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`, {
     headers : {
       'Content-Type': 'application/json',
+=======
+const getCurrentLocation = (location) => {
+  return fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`, {
+    headers : {
+>>>>>>> 200030274102787a6ba3d38a936f1273e045f1d7
       'Accept': 'application/json'
      }
   })
@@ -172,4 +178,7 @@ const getCurrentLocation = (location) => {
 }
 
 export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting, getCurrentLocation };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 200030274102787a6ba3d38a936f1273e045f1d7
