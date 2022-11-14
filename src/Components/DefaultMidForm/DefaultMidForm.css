@@ -11,8 +11,10 @@ input {
 }
 
 .checkbox-address,
+.default-input,
 .address-instructions {
   font-size: 1.2vh;
+  margin-left: 0.5vh;
   /* margin-bottom: 0; */
 }
 
