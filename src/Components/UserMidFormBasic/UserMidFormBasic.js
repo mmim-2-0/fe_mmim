@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import './UserMidFormBasic.css';
 import { useState } from 'react';
 
-// const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
 const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
 
 	const [errorMessage, setErrorMessage] = useState(false);
@@ -93,7 +92,6 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 					<h2>Find a place in the middle.</h2>
 					<form>
 						<p><b>Your</b> starting point is...</p>
-
 						<div className='checkbox-option-container'>
 							<div className='checkbox-div'>
 								<input id='checkbox' type='radio' name='checkbox' onChange={useDefaultAddress} />
