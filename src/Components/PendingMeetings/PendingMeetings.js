@@ -49,7 +49,7 @@ const PendingMeetings = ({ userMeetings, userId, token, setUserMeetings, setCurr
       <h2 className="pending-title">Pending meetings:</h2>
       {error && <p className="error-message">Please select a location to accept a meeting invitation.</p>}
       <div className="all-pending">
-        {(pendingMeetings.length > 0) ? displayPendingMeetings : <p>No pending meetings</p>}
+        {(pendingMeetings.length > 0) ? displayPendingMeetings : <p className='no-meeting-notification'>You have no pending meetings at the moment.</p>}
       </div>
     </div>
   );

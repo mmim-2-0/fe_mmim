@@ -51,7 +51,7 @@ const ConfirmedMeetings = ({ userMeetings, userId, token, setUserMeetings, curre
     <div className="all-confirmed-and-title">
       <h2 className="confirmed-title">Confirmed meetings:</h2>
       <div className="all-confirmed">
-        {displayConfirmedMeetings}
+        {(userConfirmedMeetings.length > 0) ? displayConfirmedMeetings : <p className='no-meeting-notification'>You have no confirmed meetings at the moment.</p>}
       </div>
     </div>
   )

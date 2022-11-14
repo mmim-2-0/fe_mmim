@@ -6,6 +6,7 @@ import DashboardPage from './Components/DashboardPage/DashboardPage';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 
@@ -26,6 +27,7 @@ function App() {
   const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([])
   const [userMeetings, setUserMeetings] = useState([]);
   const [pageTitle, setPageTitle] = useState('home');
+  const [loadingInProgress, setLoading] = useState(false);
 
   useEffect(() => {
     function start() {
@@ -39,6 +41,12 @@ function App() {
   })
 
   return (
+    <div className="container">
+      {loadingInProgress ? (
+        <div className="loader-container">
+          <ClipLoader color={'#fff'} size={150} />
+        </div>
+      ) : (
     <Router>
       <div className="App">
         <Nav
@@ -121,6 +129,8 @@ function App() {
         </Routes>
       </div>
     </Router>
+    )}
+    </div>
   );
 }
 
