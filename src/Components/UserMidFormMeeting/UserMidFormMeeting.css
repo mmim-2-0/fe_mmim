@@ -94,6 +94,7 @@ form {
   display: flex;
   flex-direction: column;
   padding: 2vh;
+  padding-bottom: 0;
   height: 76vh;
 }
 
