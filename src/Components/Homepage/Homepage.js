@@ -56,8 +56,8 @@ const Homepage = ({ token, userEmail, userName, userId, searchCategory, setSearc
         setFailedFetch={setFailedFetch}
       /> :
       <div>
-          <button className='tab' id='tab-1' onClick={() => handleHomepageDisplay("Basic Search", tab1, tab2)}>Basic Search</button>
-          <button className='tab' id='tab-2' onClick={() => handleHomepageDisplay("Meeting Search", tab2, tab1)}>Meeting Search</button>
+          <button className='tab' id='tab-1' onClick={() => handleHomepageDisplay("Basic Search", tab1, tab2)}>Search the middle</button>
+          <button className='tab' id='tab-2' onClick={() => handleHomepageDisplay("Meeting Search", tab2, tab1)}>Suggest a meeting</button>
         {currentDisplay === "Basic Search" ? <UserMidFormBasic
         userName={userName}
         userEmail={userEmail}
