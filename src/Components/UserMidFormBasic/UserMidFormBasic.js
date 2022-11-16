@@ -91,7 +91,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 			<section className="user-mid">
 					<h2>Find a place in the middle.</h2>
 					<form>
-						<p className='starting-point'><b>Your</b> starting point is...</p>
+						<p><b>Your</b> starting point is...</p>
 						<div className='checkbox-option-container'>
 							<div className='checkbox-div'>
 								<input id='checkbox' type='radio' name='checkbox' onChange={useDefaultAddress} />
