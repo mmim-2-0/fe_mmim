@@ -32,7 +32,9 @@ input {
   margin-right: 3vh;
 }
 
-
+.starting-point{
+  margin-top: 5vh;
+}
 
 p {
   font-size: 2vh;
@@ -41,7 +43,11 @@ p {
 
 h2 {
   font-size: 4vh;
-  height: 15vh;
+}
+
+h3 {
+  font-size: 3vh;
+  margin-top: 1vh;
 }
 
 form {
