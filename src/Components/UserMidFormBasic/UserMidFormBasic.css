@@ -32,10 +32,6 @@ input {
   margin-right: 3vh;
 }
 
-.starting-point{
-  margin-top: 3vh;
-}
-
 
 p {
   font-size: 2vh;
@@ -44,7 +40,6 @@ p {
 
 h2 {
   font-size: 4vh;
-  height: 10vh;
 }
 
 form {
