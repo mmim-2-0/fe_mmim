@@ -94,9 +94,11 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 
 	return (
 			<section className="user-mid">
-					<h2>Find a place in the middle.</h2>
+					<h2>Meet another MiMMer.</h2>
+					<h3>Suggest a time and place.</h3>
 					<form>
-						<p><b>Your</b> starting point is...</p>
+
+						<p className='starting-point'><b>Your</b> starting point is...</p>
 						<div className='checkbox-option-container'>
 							<div className='checkbox-div'>
 								<input id='checkbox' type='radio' name='checkbox' onChange={useDefaultAddress} />
