@@ -10,8 +10,10 @@ const Login = ({ userEmail, setUserEmail, userName, setUserName, token, setToken
 			setUserEmail(res.profileObj.email)
 			setUserName(res.profileObj.givenName)
 			setToken(data.data.attributes.token)
+			localStorage.setItem("token", JSON.stringify(data.data.attributes.token))
 			setUserDefaultAddress(data.data.attributes.address)
 			setUserId(data.data.id)
+			localStorage.setItem("userId", JSON.stringify(data.data.id))
 			getUserMeetings(data.data.id, data.data.attributes.token).then((response) => setUserMeetings(response.data))
 		})
 	};

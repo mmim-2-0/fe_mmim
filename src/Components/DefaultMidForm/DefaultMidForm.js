@@ -31,8 +31,11 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 
 	const submitDefaultForm = (e) => {
 		e.preventDefault()
+		localStorage.clear()
 		if (addressOne && addressTwo) {
 				setErrorMessage(false)
+				localStorage.setItem('addressOne', JSON.stringify(addressOne))
+				localStorage.setItem('addressTwo', JSON.stringify(addressTwo))
 		} else {
 				setErrorMessage(true)
 		}
@@ -40,9 +43,11 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 		if (addressOne && addressTwo) {
 				getLocations(addressOne, addressTwo, searchCategory)
 				.then(data => {
-						console.log(data)
 						setSearchResponses(data.data.attributes.locations)
 						setSearchCenter(data.data.attributes.map_argument.map_center)
+						localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+						localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+						localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
 						setFailedFetch(false)
 				})
 				.then(data => navigate(`/results`))
@@ -56,10 +61,10 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 		<form>
 				<p><b>Your</b> starting point is...</p>
 				<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
-				<input type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
+				<input className= 'default-input' type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
 				<p className="second-address-label"><b>Other</b> party's starting point is...</p>
 				<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
-				<input type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
+				<input className= 'default-input' type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
 				<p className="icon-label">Meet at a...</p>
 				<div className="category-icons">
 						<CafeIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>

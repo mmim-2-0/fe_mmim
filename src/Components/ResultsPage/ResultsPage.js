@@ -17,6 +17,14 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
   
   const [meetingTime, setMeetingTime] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
+  const [retrievedAddressOne, setRetrievedAddressOne] = useState(localStorage.getItem('addressOne'))
+  const [retrievedAddressTwo, setRetrievedAddressTwo] = useState(localStorage.getItem('addressTwo'))
+  const [retrievedAddressTwoManual, setRetrievedAddressTwoManual] = useState(localStorage.getItem('addressTwoManual'))
+  const [retrievedAddressTwoEmail, setRetrievedAddressTwoEmail] = useState(localStorage.getItem('addressTwoEmail'))
+  const [retrievedSearchResponses, setRetrievedSearchResponses] = useState(localStorage.getItem('searchResponses'))
+  const [retrievedSearchCenter, setRetrievedSearchCenter] = useState(localStorage.getItem('searchCenter'))
+  const [retrievedSearchCategory, setRetrievedSearchCategory] = useState(localStorage.getItem('searchCategory'))
+
 
   let navigate = useNavigate();
 
@@ -24,26 +32,45 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     setPageTitle('home')
   });
 
+
   let updateCategory = (category) => {
     setSearchCategory(category)
-    if (addressTwo || addressTwoManual) {
-      getLocations(addressOne, addressTwo || addressTwoManual, category)
+    if (retrievedAddressTwo || retrievedAddressTwoManual) {
+      console.log("retrievedAddressTwo", retrievedAddressTwo)
+      console.log("retrievedAddressOne", retrievedAddressOne)
+      console.log("retrievedAddressTwoManual", retrievedAddressTwoManual)
+
+      getLocations(retrievedAddressOne, retrievedAddressTwo || retrievedAddressTwoManual, category)
       .then(data => {
           setSearchResponses(data.data.attributes.locations)
           setSearchCenter(data.data.attributes.map_argument.map_center)
+          localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+          localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+          localStorage.setItem('searchCategory', JSON.stringify(category))
+      })
+      .then(() => {
+        setRetrievedSearchResponses(localStorage.getItem('searchResponses'))
+        setRetrievedSearchCenter(localStorage.getItem('searchCenter'))
       })
     }
-    if (addressTwoEmail) {
-      getGuestUser(token, addressTwoEmail)
+    if (retrievedAddressTwoEmail) {
+      getGuestUser(token, JSON.parse(retrievedAddressTwoEmail))
       .then((data) => {
           return data.data.attributes.address
       })
       .then(address => {
-          getLocations(addressOne, address, category)
+          getLocations(retrievedAddressOne, address, category)
               .then(data => {
                   setSearchResponses(data.data.attributes.locations)
                   setSearchCenter(data.data.attributes.map_argument.map_center)
+                  localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+                  localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+                  localStorage.setItem('searchCategory', JSON.stringify(category))
                 })
+              .then(() => {
+                setRetrievedSearchResponses(localStorage.getItem('searchResponses'))
+                setRetrievedSearchCenter(localStorage.getItem('searchCenter'))
+              })
       }) 
     }
   };
@@ -55,7 +82,12 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
 
   const postMeetingLocations = () => {
     if (checkedMeetingLocations.length && meetingTime) {
-      sendMeetingOptions(userId, token, addressTwoEmail, meetingTime, checkedMeetingLocations).then(res => console.log(res))
+      console.log(userId, "userId")
+      console.log(token, "token")
+      console.log(retrievedAddressTwoEmail, "retrievedAddressTwoEmail")
+      console.log(meetingTime, "meetingTime")
+
+      sendMeetingOptions(userId, token, JSON.parse(retrievedAddressTwoEmail), meetingTime, checkedMeetingLocations).then(res => console.log(res))
       setCheckedMeetingLocations([])
       navigate(`/dashboard`)
       setPageTitle('dashboard')
@@ -67,6 +99,7 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
 
   // sendMeetingOptions(userId, token, addressTwoEmail, "November 11, 2022 11:11:00 GMT-0700", checkedMeetingLocations).then(res => console.log(res))
   // console.log(dayjs(new Date()).format('YYYY-MM-DD'))
+  // console.log("retrievedSearchResponses", retrievedSearchResponses)
 
   return (
   <div>
@@ -83,16 +116,16 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
     <div className="map-and-results">
       <div className="map">
         <Map
-          searchResponses={searchResponses}
-          searchCenter={searchCenter}
+          searchResponses={JSON.parse(retrievedSearchResponses)}
+          searchCenter={JSON.parse(retrievedSearchCenter)}
         />
       </div>
       <div className="title-and-results">
         <h2 className="results-title">Results:</h2>
-        {addressTwoEmail && <p className="email-instructions">Select up to three locations to send <strong>{addressTwoEmail}</strong></p>}
+        {retrievedAddressTwoEmail && <p className="email-instructions">Select up to three locations to send <strong>{JSON.parse(retrievedAddressTwoEmail)}</strong></p>}
         <div className="results">
           <ResultsContainer
-            searchResponses={searchResponses}
+            searchResponses={JSON.parse(retrievedSearchResponses)}
             addressOne={addressOne}
             addressTwo={addressTwo}
             addressTwoManual={addressTwoManual}
@@ -101,11 +134,11 @@ const ResultsPage = ({ searchCategory, setSearchCategory, setSearchResponses, se
             userEmail={userEmail}
             token={token}
             userId={userId}
-            addressTwoEmail={addressTwoEmail}
+            addressTwoEmail={retrievedAddressTwoEmail}
             setPageTitle={setPageTitle}
           />
         </div>
-          {addressTwoEmail ? <div className='meeting-invite-container'>
+          {retrievedAddressTwoEmail ? <div className='meeting-invite-container'>
             <p className='meeting-invitation-instructions'>Select a date / time and enter the other party's email for your meeting invitation:</p>
             <Time 
               meetingTime={meetingTime}

@@ -6,26 +6,28 @@ import DashboardPage from './Components/DashboardPage/DashboardPage';
 import { BrowserRouter as Router,  Routes,  Route } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
+import ClipLoader from 'react-spinners/ClipLoader';
 
-const clientId = "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com"
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 
 function App() {
   const [userEmail, setUserEmail] = useState(null)
   const [userName, setUserName] = useState(null)
-  const [userId, setUserId] = useState(null)
-  const [searchCategory, setSearchCategory] = useState("cafe")
+  const [userId, setUserId] = useState(JSON.parse(localStorage.getItem('userId')))
+  const [searchCategory, setSearchCategory] = useState(JSON.parse(localStorage.getItem('searchCategory')) || "cafe")
   const [addressOne, setAddressOne] = useState(null)
   const [addressTwo, setAddressTwo] = useState(null)
   const [searchCenter, setSearchCenter] = useState([45.4, -75.7])
   const [searchResponses, setSearchResponses] = useState([])
   const [addressTwoEmail, setAddressTwoEmail] = useState('')
   const [addressTwoManual, setAddressTwoManual] = useState('')
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(JSON.parse(localStorage.getItem('token')))
   const [userDefaultAddress, setUserDefaultAddress] = useState(null)
   const [defaultFormView, setDefaultFormView] = useState(false)
   const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([])
   const [userMeetings, setUserMeetings] = useState([]);
   const [pageTitle, setPageTitle] = useState('home');
+  const [loadingInProgress, setLoading] = useState(false);
 
   useEffect(() => {
     function start() {
@@ -39,6 +41,12 @@ function App() {
   })
 
   return (
+    <div className="container">
+      {loadingInProgress ? (
+        <div className="loader-container">
+          <ClipLoader color={'#fff'} size={150} />
+        </div>
+      ) : (
     <Router>
       <div className="App">
         <Nav
@@ -121,6 +129,8 @@ function App() {
         </Routes>
       </div>
     </Router>
+    )}
+    </div>
   );
 }
 

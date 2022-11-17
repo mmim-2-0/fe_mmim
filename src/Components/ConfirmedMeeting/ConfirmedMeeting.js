@@ -18,7 +18,7 @@ const ConfirmedMeeting = ({ meetingInfo, userId, token, setUserMeetings, toggleR
 
   // console.log(dayjs.utc("2022-11-11T11:11:00").tz("America/Denver"))
   // console.log(dayjs.tz.guess())
-  // const today = format(new Date(),'dd.MM.yyyy HH:mm:ss');  
+  // const today = format(new Date(),'dd.MM.yyyy HH:mm:ss');
 
   // console.log(day.js)
 

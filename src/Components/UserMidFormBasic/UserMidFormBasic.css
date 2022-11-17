@@ -1,14 +1,37 @@
-.user-mid {
+/* .user-mid {
   display: flex;
   flex-direction: column;
   padding: 2vh;
-}
+} */
 
 input {
   width: 80%;
   font-size: 0.8em;
   padding: 5px;
 }
+
+.checkbox-current-address{
+  font-size:
+}
+
+#checkbox {
+  /* margin-left: 8px; */
+  width: 13px;
+  padding: 0;
+}
+.address-input,
+.checkbox-option-container{
+  display: flex;
+  margin-left: 0.5vh;
+}
+
+.checkbox-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 3vh;
+}
+
 
 p {
   font-size: 2vh;
@@ -17,7 +40,6 @@ p {
 
 h2 {
   font-size: 4vh;
-  height: 15vh;
 }
 
 form {
@@ -81,4 +103,10 @@ form {
 .failed-fetch-error {
   color: red;
   margin-left: 1em;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
 }
