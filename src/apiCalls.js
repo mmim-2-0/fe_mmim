@@ -105,8 +105,6 @@ const updateDefaultAddress = (token, name, email, address) => {
   }).then(response => {
     if (!response.ok) {
       throw Error(response.text)
-    } else {
-      console.log("default address updated")
     }
   })
 }
