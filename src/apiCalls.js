@@ -1,172 +1,248 @@
 const getLocations = (locationOne, locationTwo, category) => {
-  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`, {
-    headers: {
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
+  return fetch(
+    process.env.REACT_APP_API_ENDPOINT +
+      `/api/v1/search?add1=${locationOne}&add2=${locationTwo}&keyword=${category}`,
+    {
+      headers: {
+        Authorization:
+          "Basic " +
+          btoa(
+            process.env.REACT_APP_USERNAME +
+              ":" +
+              process.env.REACT_APP_PASSWORD
+          ),
+      },
     }
-  })
-    .then(response => {
+  )
+    .then((response) => {
       if (!response.ok) {
-        throw Error(response.text)
+        throw Error(response.text);
       } else {
-        return response.json()
+        return response.json();
       }
     })
-    .catch(err => {
-        console.log(err)
-    })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const getGuestUser = (token, guestEmail) => {
-  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/guest_user?token=${token}&guest_email=${guestEmail}`, {
-    headers: {
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
+  return fetch(
+    process.env.REACT_APP_API_ENDPOINT +
+      `/api/v1/guest_user?token=${token}&guest_email=${guestEmail}`,
+    {
+      headers: {
+        Authorization:
+          "Basic " +
+          btoa(
+            process.env.REACT_APP_USERNAME +
+              ":" +
+              process.env.REACT_APP_PASSWORD
+          ),
+      },
     }
-  })
-    .then(response => {
+  )
+    .then((response) => {
       if (!response.ok) {
-        throw Error(response.text)
+        throw Error(response.text);
       } else {
-        return response.json()
+        return response.json();
       }
     })
-    .catch(err => {
-        console.log(err)
-    })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const getUser = (name, email) => {
   return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/sessions`, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({
-      "name": name,
-      "email": email
+      name: name,
+      email: email,
     }),
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
-    }
-  }).then(response => {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization:
+        "Basic " +
+        btoa(
+          process.env.REACT_APP_USERNAME + ":" + process.env.REACT_APP_PASSWORD
+        ),
+    },
+  }).then((response) => {
     if (!response.ok) {
-      throw Error(response.text)
+      throw Error(response.text);
     } else {
-      return response.json()
+      return response.json();
     }
-  })
-}
+  });
+};
 
 const getUserMeetings = (id, token) => {
-  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${id}/meetings?token=${token}`, {
-    headers: {
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
+  return fetch(
+    process.env.REACT_APP_API_ENDPOINT +
+      `/api/v1/users/${id}/meetings?token=${token}`,
+    {
+      headers: {
+        Authorization:
+          "Basic " +
+          btoa(
+            process.env.REACT_APP_USERNAME +
+              ":" +
+              process.env.REACT_APP_PASSWORD
+          ),
+      },
     }
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw Error(response.text)
-    } else {
-      return response.json()
-    }
-  })
-  .catch(err => {
-      console.log(err)
-  })
-}
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.text);
+      } else {
+        return response.json();
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 const logoutUser = (token) => {
-  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/sessions?token=${token}`, {
-    method: 'DELETE',
-    headers: {
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
+  return fetch(
+    process.env.REACT_APP_API_ENDPOINT + `/api/v1/sessions?token=${token}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization:
+          "Basic " +
+          btoa(
+            process.env.REACT_APP_USERNAME +
+              ":" +
+              process.env.REACT_APP_PASSWORD
+          ),
+      },
     }
-  }).then(response => {
+  ).then((response) => {
     if (!response.ok) {
-      throw Error(response.text)
+      throw Error(response.text);
     } else {
-      return response.json()
+      return response.json();
     }
-  })
-}
+  });
+};
 
-const updateDefaultAddress = (token, name, email, address) => {
+const updateDefaultAddress = (token, name, email, address, deleteAddress) => {
   return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users`, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify({
-      "token": token,
-      "name": name,
-      "email": email,
-      "address": address
+      token,
+      name,
+      email,
+      address,
+      ...(deleteAddress && { delete_address: deleteAddress }),
     }),
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD),
-      'Accept': 'application/json'
-    }
-  }).then(response => {
+      "Content-Type": "application/json",
+      Authorization:
+        "Basic " +
+        btoa(
+          process.env.REACT_APP_USERNAME + ":" + process.env.REACT_APP_PASSWORD
+        ),
+      Accept: "application/json",
+    },
+  }).then((response) => {
     if (!response.ok) {
-      throw Error(response.text)
-    } else {
-      console.log("default address updated")
+      throw Error(response.text);
     }
-  })
-}
+  });
+};
 
 const sendMeetingOptions = (id, token, guestEmail, time, locations) => {
-  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${id}/meetings`, {
-    method: 'POST',
-    body: JSON.stringify({
-      "token": token,
-      "guest_email": guestEmail,
-      "time": time,
-      "locations": locations
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
+  return fetch(
+    process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${id}/meetings`,
+    {
+      method: "POST",
+      body: JSON.stringify({
+        token: token,
+        guest_email: guestEmail,
+        time: time,
+        locations: locations,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization:
+          "Basic " +
+          btoa(
+            process.env.REACT_APP_USERNAME +
+              ":" +
+              process.env.REACT_APP_PASSWORD
+          ),
+      },
     }
-  }).then(response => {
+  ).then((response) => {
     if (!response.ok) {
-      throw Error(response.text)
+      throw Error(response.text);
     } else {
-      return response.json()
+      return response.json();
     }
-  })
-}
+  });
+};
 
 const patchMeeting = (status, userId, meetingId, token, locationId) => {
-  return fetch(process.env.REACT_APP_API_ENDPOINT + `/api/v1/users/${userId}/meetings/${meetingId}`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      "token": token,
-      "status": status,
-      "location_id": locationId,
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Basic ' + btoa(process.env.REACT_APP_USERNAME + ':' + process.env.REACT_APP_PASSWORD)
+  return fetch(
+    process.env.REACT_APP_API_ENDPOINT +
+      `/api/v1/users/${userId}/meetings/${meetingId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({
+        token: token,
+        status: status,
+        location_id: locationId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization:
+          "Basic " +
+          btoa(
+            process.env.REACT_APP_USERNAME +
+              ":" +
+              process.env.REACT_APP_PASSWORD
+          ),
+      },
     }
-  }).then(response => {
+  ).then((response) => {
     if (!response.ok) {
-      throw Error(response.text)
+      throw Error(response.text);
     } else {
-      console.log("accept meeting worked")
+      console.log("accept meeting worked");
     }
-  })
-}
-
+  });
+};
 
 const getCurrentLocation = (location) => {
-  return fetch(`https://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`, {
-    headers : {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-     }
-  })
-    .then(response => {
-      return response.json()
-    })
-}
+  return fetch(
+    `https://www.mapquestapi.com/geocoding/v1/reverse?location=${location}&key=${process.env.REACT_APP_MAPQUEST_API_KEY}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    }
+  ).then((response) => {
+    return response.json();
+  });
+};
 
-export { getLocations, getUser, getUserMeetings, logoutUser, updateDefaultAddress, sendMeetingOptions, getGuestUser, patchMeeting, getCurrentLocation };
+export {
+  getLocations,
+  getUser,
+  getUserMeetings,
+  logoutUser,
+  updateDefaultAddress,
+  sendMeetingOptions,
+  getGuestUser,
+  patchMeeting,
+  getCurrentLocation,
+};

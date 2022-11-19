@@ -109,7 +109,7 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 							</div>
 						</div>
 						<p className="address-instructions">Or enter a complete address, a city + state, or a zip</p>
-          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
+          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={addressOneHandler}></input>
 					<p className="second-address-label"><b>Meet</b> with...</p>
 					<p className="address-instructions">Enter other party's email address</p>
 					<input className="address-input" type='text' placeholder='YourFriend@example.com' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>

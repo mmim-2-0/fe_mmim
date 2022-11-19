@@ -37,7 +37,7 @@ const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, 
           <button className="nav-button" onClick={navigateAbout}>our team</button>
           {pageTitle === 'about' && <div className="about-bar"></div>}
         </div> */}
-        {token && 
+        {userEmail && 
           <div className="dashboard-button">
             <button className="nav-button" onClick={navigateHomePage}>meeting dashboard</button>
             {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
