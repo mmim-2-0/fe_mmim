@@ -15,19 +15,40 @@ import "./UserMidFormMeeting.css";
 import { useState } from "react";
 
 const InputError = Object.freeze({
-  InputNeeded: "Please provide the required input.",
-  EmailNotFound:
-    "We can't find a user associated with this email, please try again.",
-  SameEmail: "Hey! Don't use your own email here please.",
+  InputNeeded: "inputNeeded",
+  EmailNotFound: "emailNotFound",
+  SameEmail: "sameEmail",
 });
+
+const getInputErrorText = (inputError) => {
+  const inputErrorText = Object.freeze({
+    [InputError.InputNeeded]: "Please provide the required input.",
+    [InputError.EmailNotFound]:
+      "We can't find a user associated with this email, please try again.",
+    [InputError.SameEmail]: "Hey! Don't use your own email here please.",
+  });
+
+  return inputErrorText[inputError];
+};
 
 const FormError = Object.freeze({
-  NoResults:
-    "Oh no! There are no results for this search, please try other locations.",
+  NoResults: "noResults",
 });
 
-const FormErrorTextComponent = ({ formError }) => (
-  <p className="form-error-message">{formError}</p>
+const getFormErrorText = (formError, category) => {
+  const formErrorText = Object.freeze({
+    [FormError.NoResults]: category
+      ? `No results found for category ${category}`
+      : "No results found for category",
+  });
+
+  return formErrorText[formError];
+};
+
+const FormErrorTextComponent = ({ formError, searchCategory }) => (
+  <p className="form-error-message">
+    {getFormErrorText(formError, searchCategory)}
+  </p>
 );
 
 const InputBox = React.forwardRef(
@@ -155,6 +176,11 @@ const UserMidFormMeeting = ({
     }
   };
 
+  const _setSearchCategory = (category) => {
+    setFormError();
+    setSearchCategory(category);
+  };
+
   const addressTwoHandlerEmail = (value) => {
     setAddressTwoEmail(value);
 
@@ -252,7 +278,7 @@ const UserMidFormMeeting = ({
           inputClass="address-input"
           onChange={addressOneHandler}
           errorClass="input-error-message"
-          errorText={inputOneError}
+          errorText={getInputErrorText(inputOneError)}
           ref={ref}
         />
         <p className="second-address-label">
@@ -265,35 +291,38 @@ const UserMidFormMeeting = ({
           inputClass="address-input"
           onChange={addressTwoHandlerEmail}
           errorClass="input-error-message"
-          errorText={inputTwoError}
+          errorText={getInputErrorText(inputTwoError)}
         />
         <p className="icon-label">Meet at a...</p>
         <div className="category-icons">
           <CafeIcon
-            setSearchCategory={setSearchCategory}
+            setSearchCategory={_setSearchCategory}
             searchCategory={searchCategory}
           />
           <RestaurantIcon
-            setSearchCategory={setSearchCategory}
+            setSearchCategory={_setSearchCategory}
             searchCategory={searchCategory}
           />
           <BarIcon
-            setSearchCategory={setSearchCategory}
+            setSearchCategory={_setSearchCategory}
             searchCategory={searchCategory}
           />
           <LibraryIcon
-            setSearchCategory={setSearchCategory}
+            setSearchCategory={_setSearchCategory}
             searchCategory={searchCategory}
           />
           <ParkIcon
-            setSearchCategory={setSearchCategory}
+            setSearchCategory={_setSearchCategory}
             searchCategory={searchCategory}
           />
         </div>
         <button className="search-button" onClick={submitUserForm}>
           <strong>Search the Middle</strong>
         </button>
-        <FormErrorTextComponent formError={formError} />
+        <FormErrorTextComponent
+          formError={formError}
+          searchCategory={searchCategory}
+        />
       </form>
     </section>
   );
