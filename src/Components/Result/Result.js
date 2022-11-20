@@ -31,7 +31,7 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
       <div className="result-info-container">
         <p className = 'place-name'>{info.name}</p> 
         <div className="row">
-          <p className="result-info"> <repeat n = {Math.round(info.rating)}></repeat> </p> 
+          <p className="result-info"> <repeatstar n = {Math.round(info.rating)}></repeatstar> </p> 
           <p className='result-review-count'> {info.review_count} reviews</p>
         </div>
         {info.categories.map(category => <p className="result-category">{category}</p>)}

@@ -13,7 +13,6 @@
   justify-content: center;
   margin: 1em;
   background-color: #fafafa;
-  box-shadow: 0px 4px 8px #d4d4d4;
   width: 45vh;
   height: 20vh;
 }
@@ -24,12 +23,7 @@
   object-fit: fill;
   margin: 1em;
 }
-/*
-.result-info {
-  margin: 0.2em;
-  font-size: 1.6vh;
-}
-*/
+
 .invite-info {
   display: flex;
   align-items: center;
@@ -165,7 +159,7 @@ color: #000000;
 }
 
 
-repeat {
+repeatstar {
   display:block;
   width: 85px;
   height: 22px;
@@ -177,22 +171,22 @@ repeat {
   line-height: 22px;
 }
 
-repeat[n="1"]:before {
+repeatstar[n="1"]:before {
    content: "★☆☆☆☆";
 }
 
-repeat[n="2"]:before {
+repeatstar[n="2"]:before {
    content: "★★☆☆☆";
 }
 
-repeat[n="3"]:before {
+repeatstar[n="3"]:before {
    content: "★★★☆☆";
 }
 
-repeat[n="4"]:before {
+repeatstar[n="4"]:before {
    content: "★★★★☆";
 }
 
-repeat[n="5"]:before {
+repeatstar[n="5"]:before {
    content: "★★★★★";
 }
