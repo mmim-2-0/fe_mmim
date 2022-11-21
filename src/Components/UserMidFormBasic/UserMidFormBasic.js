@@ -103,7 +103,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 							</div>
 						</div>
 						<p className="address-instructions">Or enter a complete address, a city + state, or a zip</p>
-          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
+          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={addressOneHandler}></input>
           <p className="second-address-label"><b>Other</b> party's starting point is...</p>
           <p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
 					<input className="address-input" type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
