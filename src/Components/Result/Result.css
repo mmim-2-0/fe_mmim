@@ -25,7 +25,6 @@
 }
 
 .invite-info {
-  display: flex;
   align-items: center;
   font-size: calc(0em + 1vmin);
   justify-content: space-around;
@@ -118,7 +117,7 @@
   color: #3C9C9C;
 }
 .more-info {
-  width: 66px;
+  display: inline-block;
   height: 19px;
 
   font-family: 'Open Sans';

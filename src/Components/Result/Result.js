@@ -31,7 +31,7 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
       <div className="result-info-container">
         <p className = 'place-name'>{info.name}</p> 
         <div className="row">
-          <p className="result-info"> <repeatstar n = {Math.round(info.rating)}></repeatstar> </p> 
+        <p className="result-info"> <repeatstar n = {Math.round(info.rating)}></repeatstar> </p> 
           <p className='result-review-count'> {info.review_count} reviews</p>
         </div>
         {info.categories.map(category => <p className="result-category">{category}</p>)}
@@ -42,11 +42,13 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
         <p className="result-address">{info.address}</p>
         {addressTwoEmail && 
           <div className="invite-info">
-            <div className="checkbox-info">
-              <p>Meet here</p>
-              <input className="checkbox" type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
-            </div>
+            <div className="row">
             <p className = 'more-info'><a className="result-url" href={info.url} target="_blank">More info</a></p>
+              <div className="checkbox-info">
+                <p className = 'more-info'>Meet here</p>
+                <input className="checkbox" type="checkbox" id={id} checked={checked} onChange={handleCheckBox}/>
+              </div>
+            </div>
           </div>}
         {!addressTwoEmail && <p><strong><a className="result-url" href={info.url} target="_blank">More info</a></strong></p>}
         {tooManyChecked && <p className="too-many-error">Please select no more than three location options.</p>}
