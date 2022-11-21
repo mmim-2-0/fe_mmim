@@ -27,7 +27,7 @@ const Result = ({ info, checkedMeetingLocations, setCheckedMeetingLocations, id,
 
   return (
     <div className="individual-result">
-      <div className="result-image-div">{info.photos[0] && <img className="result-image" src={info.photos[0]}/>}</div>
+      <div className="result-image-div">{info.photos[0] ? <img className="result-image" src={info.photos[0]}/> : <img className="result-image" src="https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-no-image-available-icon-flat-vector-illustration.jpg"/>}</div>
       <div className="result-info-container">
         <p className = 'place-name'>{info.name}</p> 
         <div className="row">
