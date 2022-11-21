@@ -67,7 +67,7 @@
 
 .error-message {
   color: red;
-  margin-left: 1em;
+  margin-left: 0.5vh;
 }
 
 .meeting-invitation-instructions, .email-instructions {
