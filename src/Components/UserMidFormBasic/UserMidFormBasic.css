@@ -85,6 +85,8 @@ form {
 }
 
 .error-message {
+  display: flex;
+  margin-left: 0.5vh;
   color: red;
 }
 

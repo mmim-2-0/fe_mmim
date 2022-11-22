@@ -12,7 +12,9 @@ import { useState } from 'react';
 
 const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoEmail, setAddressTwoEmail, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
 
-	const [errorMessage, setErrorMessage] = useState(false);
+	const [errorMessageOneEmpty, setErrorMessageOneEmpty] = useState(false);
+	const [errorMessageTwoEmpty, setErrorMessageTwoEmpty] = useState(false);
+
 	const [failedEmail, setFailedEmail] = useState(false);
 	const [currentLocation, setCurrentLocation] = useState('')
 
@@ -27,7 +29,7 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 	const addressOneHandler = (e) => {
 		setAddressOne(e.target.value)
 		if (addressOne) {
-				setErrorMessage(false)
+				setErrorMessageOneEmpty(false)
 		}
 	};
 
@@ -38,7 +40,7 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
       setAddressOne("")
     }
     if (addressOne) {
-        setErrorMessage(false)
+        setErrorMessageOneEmpty(false)
     } 
   };
 
@@ -55,12 +57,13 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 
 	const addressTwoHandlerEmail = (e) => {
 		setAddressTwoEmail(e.target.value)
-		setErrorMessage(false)
+		setErrorMessageTwoEmpty(false)
 	};
 
 	const submitUserForm = (e) => {
 		localStorage.clear()
-		setErrorMessage(false)
+		setErrorMessageOneEmpty(false)
+		setErrorMessageTwoEmpty(false)
 		setFailedEmail(false)
 		setFailedFetch(false)
 		e.preventDefault()
@@ -77,7 +80,8 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 						localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
 						localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
 						localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
-						setErrorMessage(false)
+						setErrorMessageOneEmpty(false)
+						setErrorMessageTwoEmpty(false)
 						setFailedFetch(false)
 					})
 					.then(data => navigate(`/results`))
@@ -87,8 +91,11 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 					setFailedEmail(true)
 				})
 		}
-		else {
-			setErrorMessage(true)
+		if(!addressOne) {
+			setErrorMessageOneEmpty(true)
+		}
+		if(!addressTwoEmail) {
+			setErrorMessageTwoEmpty(true)
 		}
 	};
 
@@ -109,9 +116,11 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 							</div>
 						</div>
 						<p className="address-instructions">Or enter a complete address, a city + state, or a zip</p>
+					{errorMessageOneEmpty && <p className="error-message">Please provide the required input.</p>}
           <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={addressOneHandler}></input>
 					<p className="second-address-label"><b>Meet</b> with...</p>
 					<p className="address-instructions">Enter other party's email address</p>
+					{errorMessageTwoEmpty && <p className="error-message">Please provide the required input.</p>}
 					<input className="address-input" type='text' placeholder='YourFriend@example.com' value={addressTwoEmail} onChange={addressTwoHandlerEmail}></input>
 					{(addressTwoEmail === userEmail) && <p className="email-error-message">Hey! Don't use your own email here please.</p>}
 					<p className="icon-label">Meet at a...</p>
@@ -123,7 +132,6 @@ const UserMidFormMeeting = ({ searchCategory, setSearchCategory, addressOne, set
 							<ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
 					</div>
 					<button className="search-button" onClick={submitUserForm}><strong>Search the Middle</strong></button>
-					{errorMessage && <p className="error-message">Please provide the required input.</p>}
 					{failedEmail && <p className="error-message">We can't find a user associated with this email, please try again.</p>}
 					{failedFetch && <p className="failed-fetch-error">Oh no! There are no results for this search, please try other locations.</p>}
 			</form>
