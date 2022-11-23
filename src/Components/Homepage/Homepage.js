@@ -1,8 +1,6 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DefaultMidForm from "../DefaultMidForm/DefaultMidForm";
-import UserMidFormBasic from "../UserMidFormBasic/UserMidFormBasic";
-import UserMidFormMeeting from "../UserMidFormMeeting/UserMidFormMeeting";
+import { UserMidForm, FormType } from "../UserMidForm";
 import "./Homepage.css";
 
 const Homepage = ({
@@ -108,57 +106,36 @@ const Homepage = ({
               >
                 Suggest a meeting
               </button>
-              {currentDisplay === "Basic Search" ? (
-                <UserMidFormBasic
-                  userName={userName}
-                  userEmail={userEmail}
-                  token={token}
-                  searchCategory={searchCategory}
-                  setSearchCategory={setSearchCategory}
-                  addressOne={addressOne}
-                  setAddressOne={setAddressOne}
-                  addressTwo={addressTwo}
-                  setAddressTwo={setAddressTwo}
-                  searchResponses={searchResponses}
-                  setSearchResponses={setSearchResponses}
-                  addressTwoManual={addressTwoManual}
-                  setAddressTwoManual={setAddressTwoManual}
-                  userDefaultAddress={userDefaultAddress}
-                  setUserDefaultAddress={setUserDefaultAddress}
-                  defaultFormView={defaultFormView}
-                  setDefaultFormView={setDefaultFormView}
-                  searchCenter={searchCenter}
-                  setSearchCenter={setSearchCenter}
-                  failedFetch={failedFetch}
-                  setFailedFetch={setFailedFetch}
-                />
-              ) : (
-                <UserMidFormMeeting
-                  userName={userName}
-                  userEmail={userEmail}
-                  token={token}
-                  searchCategory={searchCategory}
-                  setSearchCategory={setSearchCategory}
-                  addressOne={addressOne}
-                  setAddressOne={setAddressOne}
-                  addressTwo={addressTwo}
-                  setAddressTwo={setAddressTwo}
-                  searchResponses={searchResponses}
-                  setSearchResponses={setSearchResponses}
-                  addressTwoEmail={addressTwoEmail}
-                  setAddressTwoEmail={setAddressTwoEmail}
-                  addressTwoManual={addressTwoManual}
-                  setAddressTwoManual={setAddressTwoManual}
-                  userDefaultAddress={userDefaultAddress}
-                  setUserDefaultAddress={setUserDefaultAddress}
-                  defaultFormView={defaultFormView}
-                  setDefaultFormView={setDefaultFormView}
-                  searchCenter={searchCenter}
-                  setSearchCenter={setSearchCenter}
-                  failedFetch={failedFetch}
-                  setFailedFetch={setFailedFetch}
-                />
-              )}
+              <UserMidForm
+                formType={
+                  currentDisplay === "Basic Search"
+                    ? FormType.Basic
+                    : FormType.Meeting
+                }
+                userName={userName}
+                userEmail={userEmail}
+                token={token}
+                searchCategory={searchCategory}
+                setSearchCategory={setSearchCategory}
+                addressOne={addressOne}
+                setAddressOne={setAddressOne}
+                addressTwo={addressTwo}
+                setAddressTwo={setAddressTwo}
+                searchResponses={searchResponses}
+                setSearchResponses={setSearchResponses}
+                addressTwoEmail={addressTwoEmail}
+                setAddressTwoEmail={setAddressTwoEmail}
+                addressTwoManual={addressTwoManual}
+                setAddressTwoManual={setAddressTwoManual}
+                userDefaultAddress={userDefaultAddress}
+                setUserDefaultAddress={setUserDefaultAddress}
+                defaultFormView={defaultFormView}
+                setDefaultFormView={setDefaultFormView}
+                searchCenter={searchCenter}
+                setSearchCenter={setSearchCenter}
+                failedFetch={failedFetch}
+                setFailedFetch={setFailedFetch}
+              />
             </div>
           )}
           <div className="why-login">

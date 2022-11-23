@@ -1,18 +1,14 @@
-import React, { useImperativeHandle, useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   getLocations,
   getGuestUser,
   getCurrentLocation,
 } from "../../apiCalls.js";
-import { useEffect } from "react";
-import BarIcon from "../../assets/Bar icon.js";
-import CafeIcon from "../../assets/Cafe icon.js";
-import LibraryIcon from "../../assets/Library icon.js";
-import ParkIcon from "../../assets/Park icon.js";
-import RestaurantIcon from "../../assets/Restaurant icon.js";
 import { useNavigate } from "react-router-dom";
-import "./UserMidFormMeeting.css";
-import { useState } from "react";
+import { InputBox } from "./InputBox.js";
+import { IconRow } from "./IconRow.js";
+import { CheckboxRow } from "./CheckboxRow.js";
+import "./UserMidForm.css";
 
 const InputError = Object.freeze({
   InputNeeded: "inputNeeded",
@@ -51,56 +47,13 @@ const FormErrorTextComponent = ({ formError, searchCategory }) => (
   </p>
 );
 
-const InputBox = React.forwardRef(
-  (
-    {
-      className,
-      labelText,
-      labelClass,
-      labelStyle,
-      inputClass,
-      inputStyle,
-      placeholder,
-      errorText,
-      errorClass,
-      errorStyle,
-      onSubmit,
-      onChange,
-    },
-    ref
-  ) => {
-    const [value, setValue] = useState("");
-    const _onChange = ({ target: { value } }) => {
-      setValue(value);
-      onChange?.(value);
-    };
+export const FormType = Object.freeze({
+  Basic: "basic",
+  Meeting: "meeting",
+});
 
-    useImperativeHandle(ref, () => ({
-      setValue,
-    }));
-    return (
-      <div className={className}>
-        <p className={labelClass} style={labelStyle}>
-          {labelText}
-        </p>
-        <input
-          className={inputClass}
-          style={inputStyle}
-          type="text"
-          placeholder={placeholder}
-          value={value}
-          onSubmit={onSubmit}
-          onChange={_onChange}
-        />
-        <p className={errorClass} style={errorStyle}>
-          {errorText}
-        </p>
-      </div>
-    );
-  }
-);
-
-const UserMidFormMeeting = ({
+export const UserMidForm = ({
+  formType,
   searchCategory,
   setSearchCategory,
   addressOne,
@@ -110,6 +63,8 @@ const UserMidFormMeeting = ({
   setSearchResponses,
   addressTwoEmail,
   setAddressTwoEmail,
+  addressTwoManual,
+  setAddressTwoManual,
   userDefaultAddress,
   setUserDefaultAddress,
   defaultFormView,
@@ -122,7 +77,7 @@ const UserMidFormMeeting = ({
   setFailedFetch,
 }) => {
   const [formError, setFormError] = useState();
-  const [hasSearched, setHasSearched] = useState(false);
+  const [numSearches, setNumSearches] = useState(0);
   const [inputOneError, setInputOneError] = useState();
   const [inputTwoError, setInputTwoError] = useState();
   const ref = useRef();
@@ -186,56 +141,80 @@ const UserMidFormMeeting = ({
     setInputTwoError();
   };
 
+  const addressTwoHandlerManual = (value) => {
+    setAddressTwoManual(value);
+    setInputTwoError();
+  };
+
+  const addressTwo =
+    formType === FormType.Meeting ? addressTwoEmail : addressTwoManual;
+
+  const addressTwoHandler =
+    formType === FormType.Meeting
+      ? addressTwoHandlerEmail
+      : addressTwoHandlerManual;
+
   const submitUserForm = (e) => {
     localStorage.clear();
     setInputOneError();
     setInputTwoError();
+    setFormError();
     setFailedFetch(false);
-    if (!hasSearched) {
-      setHasSearched(true);
-    }
+    setNumSearches(numSearches + 1);
+
     e.preventDefault();
-    if (addressTwoEmail && addressOne) {
+    if (addressTwo && addressOne) {
       localStorage.setItem("addressOne", JSON.stringify(addressOne));
-      localStorage.setItem("addressTwoEmail", JSON.stringify(addressTwoEmail));
-      getGuestUser(token, addressTwoEmail)
+      localStorage.setItem(
+        formType === FormType.Meeting ? "addressTwoEmail" : "addressTwoManual",
+        JSON.stringify(addressTwo)
+      );
+
+      const getGetLocations = async () => {
+        let address;
+        if (formType === FormType.Meeting) {
+          try {
+            const { data } = await getGuestUser(token, addressTwoEmail);
+            address = data.attributes.address;
+          } catch {
+            setInputTwoError(InputError.EmailNotFound);
+          }
+        } else {
+          address = addressTwoManual;
+        }
+
+        return getLocations(addressOne, address, searchCategory);
+      };
+      getGetLocations()
         .then((data) => {
+          setSearchResponses(data.data.attributes.locations);
+          setSearchCenter(data.data.attributes.map_argument.map_center);
+          localStorage.setItem(
+            "searchResponses",
+            JSON.stringify(data.data.attributes.locations)
+          );
+          localStorage.setItem(
+            "searchCenter",
+            JSON.stringify(data.data.attributes.map_argument.map_center)
+          );
+          localStorage.setItem(
+            "searchCategory",
+            JSON.stringify(searchCategory)
+          );
           setInputOneError();
           setInputTwoError();
-          getLocations(addressOne, data.data.attributes.address, searchCategory)
-            .then((data) => {
-              setSearchResponses(data.data.attributes.locations);
-              setSearchCenter(data.data.attributes.map_argument.map_center);
-              localStorage.setItem(
-                "searchResponses",
-                JSON.stringify(data.data.attributes.locations)
-              );
-              localStorage.setItem(
-                "searchCenter",
-                JSON.stringify(data.data.attributes.map_argument.map_center)
-              );
-              localStorage.setItem(
-                "searchCategory",
-                JSON.stringify(searchCategory)
-              );
-              setInputOneError();
-              setInputTwoError();
-              setFailedFetch(false);
-            })
-            .then((data) => navigate(`/results`))
-            .catch((data) => {
-              setFailedFetch(true);
-              setFormError(FormError.NoResults);
-            });
+          setFailedFetch(false);
         })
-        .catch((data) => {
-          setInputTwoError(InputError.EmailNotFound);
+        .then(() => navigate(`/results`))
+        .catch(() => {
+          setFailedFetch(true);
+          setFormError(FormError.NoResults);
         });
     } else {
       if (!addressOne) {
         setInputOneError(InputError.InputNeeded);
       }
-      if (!addressTwoEmail) {
+      if (!addressTwo) {
         setInputTwoError(InputError.InputNeeded);
       }
     }
@@ -243,32 +222,22 @@ const UserMidFormMeeting = ({
 
   return (
     <section className="user-mid">
-      <h2>Meet another MiMMer.</h2>
-      <h3 className="subheading">Suggest a time and place.</h3>
+      {formType === FormType.Meeting ? (
+        <>
+          <h2>Meet another MiMMer.</h2>
+          <h3 className="subheading">Suggest a time and place.</h3>
+        </>
+      ) : (
+        <h2>Find a place in the middle.</h2>
+      )}
       <form>
         <p>
           <b>Your</b> starting point is...
         </p>
-        <div className="checkbox-option-container">
-          <div className="checkbox-div">
-            <input
-              id="checkbox"
-              type="radio"
-              name="checkbox"
-              onChange={useDefaultAddress}
-            />
-            <label className="checkbox-address">🏠 Use default address</label>
-          </div>
-          <div className="checkbox-div">
-            <input
-              id="checkbox"
-              type="radio"
-              name="checkbox"
-              onChange={handleCurrentLocation}
-            />
-            <label className="checkbox-address">📍 Use current location</label>
-          </div>
-        </div>
+        <CheckboxRow
+          useDefaultAddress={useDefaultAddress}
+          handleCurrentLocation={handleCurrentLocation}
+        />
         <InputBox
           labelClass="address-instructions"
           labelText="Or enter a complete address, a city + state, or a zip"
@@ -280,50 +249,46 @@ const UserMidFormMeeting = ({
           ref={ref}
         />
         <p className="second-address-label">
-          <b>Meet</b> with...
+          {formType === FormType.Meeting ? (
+            <>
+              <b>Meet</b> with...
+            </>
+          ) : (
+            <>
+              <b>Other</b> party's starting point is...
+            </>
+          )}
         </p>
         <InputBox
           labelClass="address-instructions"
-          labelText="Enter other party's email address"
-          placeholder="YourFriend@example.com"
+          labelText={
+            formType === FormType.Meeting
+              ? "Enter other party's email address"
+              : "Enter a complete address, a city + state, or a zip"
+          }
+          placeholder={
+            formType === FormType.Meeting
+              ? "YourFriend@example.com"
+              : "456 Their Street"
+          }
           inputClass="address-input"
-          onChange={addressTwoHandlerEmail}
+          onChange={addressTwoHandler}
           errorClass="input-error-message"
           errorText={getInputErrorText(inputTwoError)}
         />
         <p className="icon-label">Meet at a...</p>
-        <div className="category-icons">
-          <CafeIcon
-            setSearchCategory={_setSearchCategory}
-            searchCategory={searchCategory}
-          />
-          <RestaurantIcon
-            setSearchCategory={_setSearchCategory}
-            searchCategory={searchCategory}
-          />
-          <BarIcon
-            setSearchCategory={_setSearchCategory}
-            searchCategory={searchCategory}
-          />
-          <LibraryIcon
-            setSearchCategory={_setSearchCategory}
-            searchCategory={searchCategory}
-          />
-          <ParkIcon
-            setSearchCategory={_setSearchCategory}
-            searchCategory={searchCategory}
-          />
-        </div>
+        <IconRow
+          searchCategory={searchCategory}
+          setSearchCategory={_setSearchCategory}
+        />
         <button className="search-button" onClick={submitUserForm}>
           <strong>Search the Middle</strong>
         </button>
         <FormErrorTextComponent
           formError={formError}
-          searchCategory={hasSearched ? searchCategory : undefined}
+          searchCategory={numSearches > 1 ? searchCategory : undefined}
         />
       </form>
     </section>
   );
 };
-
-export default UserMidFormMeeting;
