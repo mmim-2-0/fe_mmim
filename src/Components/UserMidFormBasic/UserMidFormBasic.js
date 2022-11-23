@@ -15,6 +15,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 	const [errorMessageOneEmpty, setErrorMessageOneEmpty] = useState(false);
 	const [errorMessageTwoEmpty, setErrorMessageTwoEmpty] = useState(false);
 	const [currentLocation, setCurrentLocation] = useState('')
+	const [isLoading, setIsLoading] = useState(false)
 
 	let navigate = useNavigate();
 
@@ -45,9 +46,11 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 
   const handleCurrentLocation = (e) => {
    	if (e.target.checked === true) {
+   		document.body.style.cursor = 'wait'
    		navigator.geolocation.getCurrentPosition((position) =>  {
       var location = position.coords.latitude + "," + position.coords.longitude;
       getCurrentLocation(location).then(d => {setAddressOne(d.results[0].locations[0].street + " " + d.results[0].locations[0].adminArea5 + " " + d.results[0].locations[0].adminArea3 + " " +d.results[0].locations[0].adminArea1)})
+      document.body.style.cursor = ''
     })
     } else {
       setAddressOne("")
@@ -96,6 +99,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 	return (
 			<section className="user-mid">
 					<h2>Find a place in the middle.</h2>
+					{isLoading ? document.body.className = 'wait': document.body.className = '' }
 					<form>
 						<p><b>Your</b> starting point is...</p>
 						<div className='checkbox-option-container'>
