@@ -45,14 +45,14 @@ function App() {
   });
 
   return (
-    <div className="container">
+    <div className='container'>
       {loadingInProgress ? (
-        <div className="loader-container">
+        <div className='loader-container'>
           <ClipLoader color={"#fff"} size={150} />
         </div>
       ) : (
         <Router>
-          <div className="App">
+          <div className='App'>
             <Nav
               userEmail={userEmail}
               setUserEmail={setUserEmail}
@@ -70,7 +70,7 @@ function App() {
             />
             <Routes>
               <Route
-                path="/"
+                path='/'
                 element={
                   <Homepage
                     userEmail={userEmail}
@@ -102,7 +102,7 @@ function App() {
                 }
               />
               <Route
-                path="/results"
+                path='/results'
                 element={
                   <ResultsPage
                     searchCategory={searchCategory}
@@ -125,7 +125,7 @@ function App() {
                 }
               />
               <Route
-                path="/dashboard"
+                path='/dashboard'
                 element={
                   <DashboardPage
                     userMeetings={userMeetings}

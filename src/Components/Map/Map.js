@@ -13,17 +13,17 @@ const Map = ({ searchResponses, searchCenter }) => {
   const bounds = searchResponses.map((result) => result.coordinates);
 
   return (
-    <div className="map-div">
+    <div className='map-div'>
       <MapContainer
         style={{ height: "100%" }}
-        pxclassName="map-image"
+        pxclassName='map-image'
         center={searchCenter}
         bounds={bounds}
         scrollWheelZoom={true}
       >
         {searchMarkers}
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
       </MapContainer>

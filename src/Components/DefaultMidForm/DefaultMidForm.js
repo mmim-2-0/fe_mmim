@@ -81,41 +81,41 @@ const DefaultMidForm = ({
   };
 
   return (
-    <section className="default-mid">
-      <h2 className="default-title">Find a place in the middle.</h2>
+    <section className='default-mid'>
+      <h2 className='default-title'>Find a place in the middle.</h2>
       <form>
         <p>
           <b>Your</b> starting point is...
         </p>
-        <p className="address-instructions">
+        <p className='address-instructions'>
           Enter a complete address, a city + state, or a zip
         </p>
         {errorMessageOneEmpty && (
-          <p className="error-message">Please provide the required input.</p>
+          <p className='error-message'>Please provide the required input.</p>
         )}
         <input
-          className="default-input"
-          type="text"
-          placeholder="123 Your Street"
+          className='default-input'
+          type='text'
+          placeholder='123 Your Street'
           onChange={addressOneHandler}
         ></input>
-        <p className="second-address-label">
+        <p className='second-address-label'>
           <b>Other</b> party's starting point is...
         </p>
-        <p className="address-instructions">
+        <p className='address-instructions'>
           Enter a complete address, a city + state, or a zip
         </p>
         {errorMessageTwoEmpty && (
-          <p className="error-message">Please provide the required input.</p>
+          <p className='error-message'>Please provide the required input.</p>
         )}
         <input
-          className="default-input"
-          type="text"
-          placeholder="456 Their Street"
+          className='default-input'
+          type='text'
+          placeholder='456 Their Street'
           onChange={addressTwoHandler}
         ></input>
-        <p className="icon-label">Meet at a...</p>
-        <div className="category-icons">
+        <p className='icon-label'>Meet at a...</p>
+        <div className='category-icons'>
           <CafeIcon
             setSearchCategory={setSearchCategory}
             searchCategory={searchCategory}
@@ -137,11 +137,11 @@ const DefaultMidForm = ({
             searchCategory={searchCategory}
           />
         </div>
-        <button className="search-button" onClick={submitDefaultForm}>
+        <button className='search-button' onClick={submitDefaultForm}>
           <strong>Search the Middle</strong>
         </button>
         {failedFetch && (
-          <p className="failed-fetch-error">
+          <p className='failed-fetch-error'>
             Oh no! There are no results for this search, please try other
             locations.
           </p>

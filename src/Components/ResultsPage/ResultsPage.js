@@ -159,9 +159,9 @@ const ResultsPage = ({
 
   return (
     <div>
-      <div className="category-change-container">
-        <h1 className="category-text">Find a meeting location.</h1>
-        <div className="category-container">
+      <div className='category-change-container'>
+        <h1 className='category-text'>Find a meeting location.</h1>
+        <div className='category-container'>
           <CafeIcon
             setSearchCategory={updateCategory}
             searchCategory={searchCategory}
@@ -184,22 +184,22 @@ const ResultsPage = ({
           />
         </div>
       </div>
-      <div className="map-and-results">
-        <div className="map">
+      <div className='map-and-results'>
+        <div className='map'>
           <Map
             searchResponses={JSON.parse(retrievedSearchResponses)}
             searchCenter={JSON.parse(retrievedSearchCenter)}
           />
         </div>
-        <div className="title-and-results">
-          <h2 className="results-title">Results:</h2>
+        <div className='title-and-results'>
+          <h2 className='results-title'>Results:</h2>
           {retrievedAddressTwoEmail && (
-            <p className="email-instructions">
+            <p className='email-instructions'>
               Select up to three locations to send{" "}
               <strong>{JSON.parse(retrievedAddressTwoEmail)}</strong>
             </p>
           )}
-          <div className="results">
+          <div className='results'>
             <ResultsContainer
               searchResponses={JSON.parse(retrievedSearchResponses)}
               addressOne={addressOne}
@@ -215,26 +215,26 @@ const ResultsPage = ({
             />
           </div>
           {retrievedAddressTwoEmail ? (
-            <div className="meeting-invite-container">
-              <p className="meeting-invitation-instructions">
+            <div className='meeting-invite-container'>
+              <p className='meeting-invitation-instructions'>
                 Select a date / time and enter the other party's email for your
                 meeting invitation:
               </p>
               <Time meetingTime={meetingTime} setMeetingTime={setMeetingTime} />
               <button
-                className="invitation-button"
+                className='invitation-button'
                 onClick={postMeetingLocations}
               >
                 Send Meeting Invitation
               </button>
             </div>
           ) : (
-            <p className="login-text">
+            <p className='login-text'>
               Login to send a friend a meeting invite
             </p>
           )}
           {errorMessage && (
-            <p className="error-message">
+            <p className='error-message'>
               Please provide at least one possible meeting location to send an
               invitation.
             </p>

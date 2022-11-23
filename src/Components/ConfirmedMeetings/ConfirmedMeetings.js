@@ -56,13 +56,13 @@ const ConfirmedMeetings = ({
   );
 
   return (
-    <div className="all-confirmed-and-title">
-      <h2 className="confirmed-title">Confirmed meetings:</h2>
-      <div className="all-confirmed">
+    <div className='all-confirmed-and-title'>
+      <h2 className='confirmed-title'>Confirmed meetings:</h2>
+      <div className='all-confirmed'>
         {userConfirmedMeetings.length > 0 ? (
           displayConfirmedMeetings
         ) : (
-          <p className="no-meeting-notification">
+          <p className='no-meeting-notification'>
             You have no confirmed meetings at the moment.
           </p>
         )}

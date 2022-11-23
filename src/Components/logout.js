@@ -35,9 +35,9 @@ const Logout = ({
   };
 
   return (
-    <div id="signOutButton">
+    <div id='signOutButton'>
       <GoogleLogout
-        className="logout"
+        className='logout'
         clientId={clientId}
         buttonText={"Logout of Google"}
         onLogoutSuccess={onSuccess}

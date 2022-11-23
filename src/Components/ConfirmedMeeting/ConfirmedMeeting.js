@@ -56,9 +56,9 @@ const ConfirmedMeeting = ({
   // console.log(dayjs.tz(meetingInfo.attributes.time, timeZone)["$x"]["$timezone"])
 
   return (
-    <div className="individual-confirmed-meeting">
+    <div className='individual-confirmed-meeting'>
       <div>
-        <p className="individual-meeting-title">
+        <p className='individual-meeting-title'>
           <strong>
             {meetingInfo.attributes.host_name}'s meeting with{" "}
             {meetingInfo.attributes.guest_name}
@@ -70,7 +70,7 @@ const ConfirmedMeeting = ({
         </p>
         {displayLocationOptions(meetingInfo.attributes.locations)}
       </div>
-      <button className="cancel-button" onClick={(e) => cancelMeetingInvite(e)}>
+      <button className='cancel-button' onClick={(e) => cancelMeetingInvite(e)}>
         Cancel Meeting
       </button>
     </div>

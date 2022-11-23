@@ -38,11 +38,11 @@ const Login = ({
   };
 
   return (
-    <div id="signInButton">
+    <div id='signInButton'>
       <GoogleLogin
-        className="login"
+        className='login'
         clientId={clientId}
-        buttonText="Continue with Google"
+        buttonText='Continue with Google'
         onSuccess={onSuccess}
         onFailure={onFailure}
         cookiePolicy={"single_host_origin"}

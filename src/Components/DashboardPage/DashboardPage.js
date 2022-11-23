@@ -29,10 +29,10 @@ const DashboardPage = ({
   }, []);
 
   return (
-    <div className="dashboard-parent-div">
-      <div className="left-sidebar">
+    <div className='dashboard-parent-div'>
+      <div className='left-sidebar'>
         <button
-          className="dashboard-option-button"
+          className='dashboard-option-button'
           style={{
             backgroundColor: currentDisplay === "confirmed" ? "black" : "white",
             color: currentDisplay === "confirmed" ? "white" : "black",
@@ -42,7 +42,7 @@ const DashboardPage = ({
           Confirmed Meetings
         </button>
         <button
-          className="dashboard-option-button"
+          className='dashboard-option-button'
           style={{
             backgroundColor: currentDisplay === "pending" ? "black" : "white",
             color: currentDisplay === "pending" ? "white" : "black",
@@ -52,7 +52,7 @@ const DashboardPage = ({
           Pending Invites
         </button>
         <button
-          className="dashboard-option-button"
+          className='dashboard-option-button'
           style={{
             backgroundColor: currentDisplay === "myInfo" ? "black" : "white",
             color: currentDisplay === "myInfo" ? "white" : "black",

@@ -37,27 +37,27 @@ const Nav = ({
   };
 
   return (
-    <div className="Nav">
-      <div className="title-div">
-        <h1 className="page-title">MMiM</h1>
-        <div className="title-block"></div>
+    <div className='Nav'>
+      <div className='title-div'>
+        <h1 className='page-title'>MMiM</h1>
+        <div className='title-block'></div>
       </div>
-      <div className="home-button">
-        <button className="nav-button" onClick={navigateHome}>
+      <div className='home-button'>
+        <button className='nav-button' onClick={navigateHome}>
           home
         </button>
-        {pageTitle === "home" && <div className="home-bar"></div>}
+        {pageTitle === "home" && <div className='home-bar'></div>}
       </div>
       {/* <div className="about-button">
           <button className="nav-button" onClick={navigateAbout}>our team</button>
           {pageTitle === 'about' && <div className="about-bar"></div>}
         </div> */}
       {userEmail && (
-        <div className="dashboard-button">
-          <button className="nav-button" onClick={navigateHomePage}>
+        <div className='dashboard-button'>
+          <button className='nav-button' onClick={navigateHomePage}>
             meeting dashboard
           </button>
-          {pageTitle === "dashboard" && <div className="dashboard-bar"></div>}
+          {pageTitle === "dashboard" && <div className='dashboard-bar'></div>}
         </div>
       )}
       {!userEmail ? (

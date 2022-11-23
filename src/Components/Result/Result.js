@@ -36,51 +36,51 @@ const Result = ({
   };
 
   return (
-    <div className="individual-result">
-      <div className="result-image-div">
+    <div className='individual-result'>
+      <div className='result-image-div'>
         {info.photos[0] ? (
-          <img className="result-image" src={info.photos[0]} />
+          <img className='result-image' src={info.photos[0]} />
         ) : (
           <img
-            className="result-image"
-            src="https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-no-image-available-icon-flat-vector-illustration.jpg"
+            className='result-image'
+            src='https://previews.123rf.com/images/pavelstasevich/pavelstasevich1811/pavelstasevich181101032/112815935-no-image-available-icon-flat-vector-illustration.jpg'
           />
         )}
       </div>
-      <div className="result-info-container">
-        <p className="place-name">{info.name}</p>
-        <div className="row">
-          <p className="result-info">
+      <div className='result-info-container'>
+        <p className='place-name'>{info.name}</p>
+        <div className='row'>
+          <p className='result-info'>
             {" "}
             <repeatstar n={Math.round(info.rating)}></repeatstar>{" "}
           </p>
-          <p className="result-review-count"> {info.review_count} reviews</p>
+          <p className='result-review-count'> {info.review_count} reviews</p>
         </div>
         {info.categories.map((category) => (
-          <p className="result-category">{category}</p>
+          <p className='result-category'>{category}</p>
         ))}
-        <div className="row">
+        <div className='row'>
           {!info.is_open_now ? (
-            <p className="result-closed">Currently Closed</p>
+            <p className='result-closed'>Currently Closed</p>
           ) : (
-            <p className="result-open">Open Now</p>
+            <p className='result-open'>Open Now</p>
           )}
-          <p className="result-price">{info.price}</p>
+          <p className='result-price'>{info.price}</p>
         </div>
-        <p className="result-address">{info.address}</p>
+        <p className='result-address'>{info.address}</p>
         {addressTwoEmail && (
-          <div className="invite-info">
-            <div className="row">
-              <p className="more-info">
-                <a className="result-url" href={info.url} target="_blank">
+          <div className='invite-info'>
+            <div className='row'>
+              <p className='more-info'>
+                <a className='result-url' href={info.url} target='_blank'>
                   More info
                 </a>
               </p>
-              <div className="checkbox-info">
-                <p className="more-info">Meet here</p>
+              <div className='checkbox-info'>
+                <p className='more-info'>Meet here</p>
                 <input
-                  className="checkbox"
-                  type="checkbox"
+                  className='checkbox'
+                  type='checkbox'
                   id={id}
                   checked={checked}
                   onChange={handleCheckBox}
@@ -92,14 +92,14 @@ const Result = ({
         {!addressTwoEmail && (
           <p>
             <strong>
-              <a className="result-url" href={info.url} target="_blank">
+              <a className='result-url' href={info.url} target='_blank'>
                 More info
               </a>
             </strong>
           </p>
         )}
         {tooManyChecked && (
-          <p className="too-many-error">
+          <p className='too-many-error'>
             Please select no more than three location options.
           </p>
         )}

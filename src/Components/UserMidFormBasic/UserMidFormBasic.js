@@ -140,63 +140,63 @@ const UserMidFormBasic = ({
   };
 
   return (
-    <section className="user-mid">
+    <section className='user-mid'>
       <h2>Find a place in the middle.</h2>
       <form>
         <p>
           <b>Your</b> starting point is...
         </p>
-        <div className="checkbox-option-container">
-          <div className="checkbox-div">
+        <div className='checkbox-option-container'>
+          <div className='checkbox-div'>
             <input
-              id="checkbox"
-              type="radio"
-              name="checkbox"
+              id='checkbox'
+              type='radio'
+              name='checkbox'
               onChange={useDefaultAddress}
             />
-            <label className="checkbox-address"> 🏠 Use default address </label>
+            <label className='checkbox-address'> 🏠 Use default address </label>
           </div>
-          <div className="checkbox-div">
+          <div className='checkbox-div'>
             <input
-              id="checkbox"
-              type="radio"
-              name="checkbox"
+              id='checkbox'
+              type='radio'
+              name='checkbox'
               onChange={handleCurrentLocation}
             />
-            <label className="checkbox-address">📍 Use current location </label>
+            <label className='checkbox-address'>📍 Use current location </label>
           </div>
         </div>
-        <p className="address-instructions">
+        <p className='address-instructions'>
           Or enter a complete address, a city + state, or a zip
         </p>
         {errorMessageOneEmpty && (
-          <p className="error-message">Please provide the required input.</p>
+          <p className='error-message'>Please provide the required input.</p>
         )}
         <input
-          className="address-input"
-          type="text"
-          placeholder="123 Your Street"
+          className='address-input'
+          type='text'
+          placeholder='123 Your Street'
           value={addressOne}
           onChange={addressOneHandler}
         ></input>
-        <p className="second-address-label">
+        <p className='second-address-label'>
           <b>Other</b> party's starting point is...
         </p>
-        <p className="address-instructions">
+        <p className='address-instructions'>
           Enter a complete address, a city + state, or a zip
         </p>
         {errorMessageTwoEmpty && (
-          <p className="error-message">Please provide the required input.</p>
+          <p className='error-message'>Please provide the required input.</p>
         )}
         <input
-          className="address-input"
-          type="text"
-          placeholder="456 Their Street"
+          className='address-input'
+          type='text'
+          placeholder='456 Their Street'
           value={addressTwoManual}
           onChange={addressTwoHandlerManual}
         ></input>
-        <p className="icon-label">Meet at a...</p>
-        <div className="category-icons">
+        <p className='icon-label'>Meet at a...</p>
+        <div className='category-icons'>
           <CafeIcon
             setSearchCategory={setSearchCategory}
             searchCategory={searchCategory}
@@ -218,11 +218,11 @@ const UserMidFormBasic = ({
             searchCategory={searchCategory}
           />
         </div>
-        <button className="search-button" onClick={submitUserForm}>
+        <button className='search-button' onClick={submitUserForm}>
           <strong>Search the Middle</strong>
         </button>
         {failedFetch && (
-          <p className="failed-fetch-error">
+          <p className='failed-fetch-error'>
             Oh no! There are no results for this search, please try other
             locations.
           </p>

@@ -55,19 +55,19 @@ const Homepage = ({
   return (
     <div>
       <section>
-        <div className="homepage">
+        <div className='homepage'>
           <div
-            className="homepageImage"
-            alt="An aerial view of a city in gold and black, so distant it looks like a collection of fine copper wire and fairy lights against an ebony backdrop."
+            className='homepageImage'
+            alt='An aerial view of a city in gold and black, so distant it looks like a collection of fine copper wire and fairy lights against an ebony backdrop.'
           >
-            <div className="overlay-text">
-              <header className="overlay-h">Meet Me in the Middle</header>
+            <div className='overlay-text'>
+              <header className='overlay-h'>Meet Me in the Middle</header>
               <div>
-                <p className="overlay-p">
+                <p className='overlay-p'>
                   Whether you’re meeting a friend or buying a bike, Meet Me in
                   the Middle makes it easy.
                 </p>
-                <p className="overlay-p">
+                <p className='overlay-p'>
                   Use MMiM to find the right place between your two locations.
                 </p>
               </div>
@@ -91,8 +91,8 @@ const Homepage = ({
           ) : (
             <div>
               <button
-                className="tab"
-                id="tab-1"
+                className='tab'
+                id='tab-1'
                 onClick={() =>
                   handleHomepageDisplay("Basic Search", tab1, tab2)
                 }
@@ -100,8 +100,8 @@ const Homepage = ({
                 Search the middle
               </button>
               <button
-                className="tab"
-                id="tab-2"
+                className='tab'
+                id='tab-2'
                 onClick={() =>
                   handleHomepageDisplay("Meeting Search", tab2, tab1)
                 }
@@ -161,25 +161,25 @@ const Homepage = ({
               )}
             </div>
           )}
-          <div className="why-login">
-            <div className="why-login-text">
-              <h2 className="login-header">Simplify your</h2>
-              <h2 className="login-header">planning.</h2>
-              <h2 className="login-header">Protect your</h2>
-              <h2 className="login-header">privacy.</h2>
-              <p className="login-p first-p">
+          <div className='why-login'>
+            <div className='why-login-text'>
+              <h2 className='login-header'>Simplify your</h2>
+              <h2 className='login-header'>planning.</h2>
+              <h2 className='login-header'>Protect your</h2>
+              <h2 className='login-header'>privacy.</h2>
+              <p className='login-p first-p'>
                 When you login to MMIM, you can save a default address.
               </p>
-              <p className="login-p">
+              <p className='login-p'>
                 This allows you to suggest meeting places to others without
                 needing to know their address, or share yours.
               </p>
-              <p className="login-p">
+              <p className='login-p'>
                 It's simple and keeps your info private-perfect for local sales
                 and first dates.
               </p>
             </div>
-            <div className="why-login-image" alt="hand holding a phone"></div>
+            <div className='why-login-image' alt='hand holding a phone'></div>
           </div>
         </div>
       </section>

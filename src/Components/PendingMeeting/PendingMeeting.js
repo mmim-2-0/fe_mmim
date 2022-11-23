@@ -54,41 +54,41 @@ const PendingMeeting = ({
 
   const displayLocationOptions = (array) => {
     return array.map((location, index) => (
-      <div key={index} className="radio-div">
+      <div key={index} className='radio-div'>
         <input
-          className="location-input"
-          type="radio"
-          name="location"
+          className='location-input'
+          type='radio'
+          name='location'
           value={location.name}
           id={location.id}
           onChange={() => setSelectedLocation(location.id)}
         ></input>
-        <label className="location-label">{location.name}</label>
+        <label className='location-label'>{location.name}</label>
       </div>
     ));
   };
 
   return (
-    <div className="individual-meeting">
-      <p className="individual-meeting-title">
+    <div className='individual-meeting'>
+      <p className='individual-meeting-title'>
         {meetingInfo.attributes.host_name}'s meeting with{" "}
         {meetingInfo.attributes.guest_name}
       </p>
       <p>Time: {dayjs(meetingInfo.attributes.time).format("LLL")}</p>
-      <form className="pending-form">
-        <div className="choose-location-container">
-          <span className="form-instructions">Choose a Location:</span>
+      <form className='pending-form'>
+        <div className='choose-location-container'>
+          <span className='form-instructions'>Choose a Location:</span>
           {displayLocationOptions(meetingInfo.attributes.locations)}
         </div>
-        <div className="pending-button-container">
+        <div className='pending-button-container'>
           <button
-            className="accept-button"
+            className='accept-button'
             onClick={(e) => acceptMeetingInvite(e)}
           >
             Accept
           </button>
           <button
-            className="decline-button"
+            className='decline-button'
             onClick={(e) => declineMeetingInvite(e)}
           >
             Decline
