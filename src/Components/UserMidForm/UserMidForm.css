@@ -93,6 +93,7 @@ form {
 }
 
 .input-error-message {
+  display: flex;
   color: red;
   font-size: 0.8em;
   margin-left: 0.5vh;

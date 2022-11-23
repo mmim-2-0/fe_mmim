@@ -11,7 +11,8 @@ import './DefaultMidForm.css';
 
 const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, addressTwo, setAddressTwo, setSearchResponses, setSearchCenter, failedFetch, setFailedFetch }) => {
 
-	const [errorMessage, setErrorMessage] = useState(false);
+	const [errorMessageOneEmpty, setErrorMessageOneEmpty] = useState(false);
+	const [errorMessageTwoEmpty, setErrorMessageTwoEmpty] = useState(false);
 
 	useEffect(() => {
 			setAddressOne('')
@@ -33,11 +34,10 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 		e.preventDefault()
 		localStorage.clear()
 		if (addressOne && addressTwo) {
-				setErrorMessage(false)
+				setErrorMessageOneEmpty(false)
+				setErrorMessageTwoEmpty(false)
 				localStorage.setItem('addressOne', JSON.stringify(addressOne))
 				localStorage.setItem('addressTwo', JSON.stringify(addressTwo))
-		} else {
-				setErrorMessage(true)
 		}
 
 		if (addressOne && addressTwo) {
@@ -53,6 +53,12 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 				.then(data => navigate(`/results`))
 				.catch(data => setFailedFetch(true))
 		}
+		if (!addressOne) {
+			setErrorMessageOneEmpty(true)
+		}
+		if(!addressTwo) {
+			setErrorMessageTwoEmpty(true)
+		}
 	};
 
 	return (
@@ -61,9 +67,11 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 		<form>
 				<p><b>Your</b> starting point is...</p>
 				<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
+				{errorMessageOneEmpty && <p className="error-message">Please provide the required input.</p>}
 				<input className= 'default-input' type='text' placeholder='123 Your Street' onChange={addressOneHandler}></input>
 				<p className="second-address-label"><b>Other</b> party's starting point is...</p>
 				<p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
+				{errorMessageTwoEmpty && <p className="error-message">Please provide the required input.</p>}
 				<input className= 'default-input' type='text' placeholder='456 Their Street' onChange={addressTwoHandler}></input>
 				<p className="icon-label">Meet at a...</p>
 				<div className="category-icons">
@@ -74,7 +82,6 @@ const DefaultMidForm = ({ searchCategory, setSearchCategory, addressOne, setAddr
 						<ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
 				</div>
 				<button className="search-button" onClick={submitDefaultForm}><strong>Search the Middle</strong></button>
-				{errorMessage && <p className="error-message">Please provide the required input.</p>}
 				{failedFetch && <p className="failed-fetch-error">Oh no! There are no results for this search, please try other locations.</p>}
 			</form>
 		</section>
