@@ -1,28 +1,31 @@
-import React from 'react';
-import Result from '../Result/Result';
-import './ResultsContainer.css';
+import React from "react";
+import Result from "../Result/Result";
+import "./ResultsContainer.css";
 
-const ResultsContainer = ({ searchResponses, checkedMeetingLocations, setCheckedMeetingLocations, token, userId, addressTwoEmail, setPageTitle }) => {
-    
+const ResultsContainer = ({
+  searchResponses,
+  checkedMeetingLocations,
+  setCheckedMeetingLocations,
+  token,
+  userId,
+  addressTwoEmail,
+  setPageTitle,
+}) => {
   let displayedResults = searchResponses.map((response, index) => {
     return (
-      <Result 
-        info={response} 
+      <Result
+        info={response}
         id={index}
-        key={response.url} 
+        key={response.url}
         checkedMeetingLocations={checkedMeetingLocations}
         setCheckedMeetingLocations={setCheckedMeetingLocations}
         searchResponses={searchResponses}
         addressTwoEmail={addressTwoEmail}
       />
-    )
+    );
   });
 
-  return (
-    <div>
-      {displayedResults}
-    </div>
-  )
+  return <div>{displayedResults}</div>;
 };
 
 export default ResultsContainer;

@@ -1,7 +1,5 @@
 # Description
 
-
-
 ## Issues
 
 Closes #
@@ -14,14 +12,12 @@ Closes #
 - [ ] Cosmetic changes (changes to layout or visuals in CSS file)
 - [ ] Chore/Setup (no real logic)
 
-
 # How Has This Been Tested?
 
 - [ ] console.log()
 - [ ] dev tools
 - [ ] functionality check through web browser
 - [ ] tested by viewing the markdown file preview in Atom
-
 
 # Checklist:
 
