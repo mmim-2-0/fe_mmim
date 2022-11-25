@@ -26,12 +26,8 @@ const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, 
   return (
       <div className="Nav">
         <div className="title-div">
-          <h1 className="page-title">MMiM</h1>
+          <button className="nav-home-button" onClick={navigateHome}><h1 className="page-title">MMiM</h1></button>
           <div className="title-block"></div>
-        </div>
-        <div className="home-button">
-          <button className="nav-button" onClick={navigateHome}>home</button>
-          {pageTitle === 'home' && <div className="home-bar"></div>}
         </div>
         {/* <div className="about-button">
           <button className="nav-button" onClick={navigateAbout}>our team</button>
@@ -39,7 +35,7 @@ const Nav = ({ userEmail, setUserEmail, userName, setUserName, token, setToken, 
         </div> */}
         {userEmail && 
           <div className="dashboard-button">
-            <button className="nav-button" onClick={navigateHomePage}>meeting dashboard</button>
+            <button className="nav-button" onClick={navigateHomePage}>My dashboard</button>
             {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
           </div>
         } 
