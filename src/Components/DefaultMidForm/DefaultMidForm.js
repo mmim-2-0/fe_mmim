@@ -84,10 +84,10 @@ const DefaultMidForm = ({
           if (data.data.error.coord_1) {
             setErrorMessageOneInvalid(true)
           }
-          else if (data.data.error.coord_2){
+          if (data.data.error.coord_2){
             setErrorMessageTwoInvalid(true)
           }
-          else{
+          if (!data.data.error.coord_2 && !data.data.error.coord_1){
           setFailedFetch(true)
         }
         })
