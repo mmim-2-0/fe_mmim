@@ -8,7 +8,7 @@
 }
 
 .starting-point {
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 40px;
   margin-bottom: 5px;
 }
@@ -22,7 +22,7 @@
 .default-title {
   margin-top: 40px;
   margin-bottom: 50px;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .input {
@@ -79,7 +79,7 @@
   margin-top: 1.2em;
 }
 .icon-label-default {
-  font-size: 22px;
+  font-size: 18px;
   margin-top: 25px;
   margin-bottom: 10px;
 }
