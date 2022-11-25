@@ -12,7 +12,8 @@ import { useState } from 'react';
 
 const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAddressOne, setAddressTwo, searchResponses, setSearchResponses, addressTwoManual, setAddressTwoManual, userDefaultAddress, setUserDefaultAddress, defaultFormView, setDefaultFormView, userName, userEmail, token, setSearchCenter, failedFetch, setFailedFetch }) => {
 
-	const [errorMessage, setErrorMessage] = useState(false);
+	const [errorMessageOneEmpty, setErrorMessageOneEmpty] = useState(false);
+	const [errorMessageTwoEmpty, setErrorMessageTwoEmpty] = useState(false);
 	const [currentLocation, setCurrentLocation] = useState('')
 
 	let navigate = useNavigate();
@@ -26,7 +27,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 	const addressOneHandler = (e) => {
 		setAddressOne(e.target.value)
 		if (addressOne) {
-				setErrorMessage(false)
+				setErrorMessageOneEmpty(false)
 		}
 	};
 
@@ -38,7 +39,7 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 			e.target.checked = false;
     }
     if (addressOne) {
-        setErrorMessage(false)
+        setErrorMessageOneEmpty(false)
     }
   };
 
@@ -55,12 +56,13 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 
 	const addressTwoHandlerManual = (e) => {
 		setAddressTwoManual(e.target.value)
-		setErrorMessage(false)
+		setErrorMessageTwoEmpty(false)
 	};
 
 	const submitUserForm = (e) => {
 		localStorage.clear()
-		setErrorMessage(false)
+		setErrorMessageOneEmpty(false)
+		setErrorMessageTwoEmpty(false)
 		setFailedFetch(false)
 		e.preventDefault()
 		if (addressTwoManual && addressOne) {
@@ -73,7 +75,8 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 				localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
 				localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
 				localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
-				setErrorMessage(false)
+				setErrorMessageOneEmpty(false)
+				setErrorMessageTwoEmpty(false)
 				setFailedFetch(false)
 			})
 			.then(data => navigate(`/results`))
@@ -82,8 +85,11 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 				return null
 			})
 		}
-		else {
-			setErrorMessage(true)
+		if(!addressOne) {
+			setErrorMessageOneEmpty(true)
+		}
+		if(!addressTwoManual) {
+			setErrorMessageTwoEmpty(true)
 		}
 	};
 
@@ -103,9 +109,11 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 							</div>
 						</div>
 						<p className="address-instructions">Or enter a complete address, a city + state, or a zip</p>
-          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={useDefaultAddress, addressOneHandler}></input>
+					{errorMessageOneEmpty && <p className="error-message">Please provide the required input.</p>}
+          <input className="address-input" type='text' placeholder="123 Your Street" value={addressOne} onChange={addressOneHandler}></input>
           <p className="second-address-label"><b>Other</b> party's starting point is...</p>
           <p className="address-instructions">Enter a complete address, a city + state, or a zip</p>
+					{errorMessageTwoEmpty && <p className="error-message">Please provide the required input.</p>}
 					<input className="address-input" type='text' placeholder='456 Their Street' value={addressTwoManual} onChange={addressTwoHandlerManual}></input>
 					<p className="icon-label">Meet at a...</p>
 					<div className="category-icons">
@@ -116,7 +124,6 @@ const UserMidFormBasic = ({ searchCategory, setSearchCategory, addressOne, setAd
 							<ParkIcon setSearchCategory={setSearchCategory} searchCategory={searchCategory}/>
 					</div>
 					<button className="search-button" onClick={submitUserForm}><strong>Search the Middle</strong></button>
-					{errorMessage && <p className="error-message">Please provide the required input.</p>}
 					{failedFetch && <p className="failed-fetch-error">Oh no! There are no results for this search, please try other locations.</p>}
 			</form>
 	</section>
