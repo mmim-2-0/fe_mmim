@@ -42,6 +42,7 @@ const DefaultMidForm = ({
   const addressOneHandler = (e) => {
     setErrorMessageOneEmpty(false)
     setErrorMessageOneInvalid(false)
+    unselectCheckboxes()
     setAddressOne(e.target.value);
   };
 
@@ -148,6 +149,9 @@ const DefaultMidForm = ({
     setDefaultAddressChecked(false);
   };
 
+  const unselectCheckboxes = () => {
+    setDefaultAddressChecked(false)
+  }
 
 
   return (
@@ -191,13 +195,6 @@ const DefaultMidForm = ({
               	<p className="current-address-prompt">Use current location</p>
               </div>
             </label>
- 
-
-            {defaultAddressChecked &&
-              (<button className="clear-button" onClick={resetCheckboxes}>
-                <label className="checkbox-address-prompt">Clear</label>
-               </button>)
-            }
           </div>
         </div>
 
