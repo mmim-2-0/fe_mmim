@@ -24,6 +24,9 @@ const DefaultMidForm = ({
 }) => {
   const [errorMessageOneEmpty, setErrorMessageOneEmpty] = useState(false);
   const [errorMessageTwoEmpty, setErrorMessageTwoEmpty] = useState(false);
+  const [errorResponse, setErrorResponse]=useState('')
+  const [errorMessageOneInvalid, setErrorMessageOneInvalid]=useState(false)
+  const [errorMessageTwoInvalid, setErrorMessageTwoInvalid]=useState(false)
   const [defaultAddressChecked, setDefaultAddressChecked] = useState(false);
 
   useEffect(() => {
@@ -53,33 +56,47 @@ const DefaultMidForm = ({
     }
 
     if (addressOne && addressTwo) {
-      getLocations(addressOne, addressTwo, searchCategory)
-        .then((data) => {
-          setSearchResponses(data.data.attributes.locations);
-          setSearchCenter(data.data.attributes.map_argument.map_center);
-          localStorage.setItem(
-            "searchResponses",
-            JSON.stringify(data.data.attributes.locations)
-          );
-          localStorage.setItem(
-            "searchCenter",
-            JSON.stringify(data.data.attributes.map_argument.map_center)
-          );
-          localStorage.setItem(
-            "searchCategory",
-            JSON.stringify(searchCategory)
-          );
-          setFailedFetch(false);
+        getLocations(addressOne, addressTwo, searchCategory)
+        .then(data => {
+         if (data.data.attributes) {
+            setSearchResponses(data.data.attributes.locations)
+            setSearchCenter(data.data.attributes.map_argument.map_center)
+            localStorage.setItem('searchResponses', JSON.stringify(data.data.attributes.locations))
+            localStorage.setItem('searchCenter', JSON.stringify(data.data.attributes.map_argument.map_center))
+            localStorage.setItem('searchCategory', JSON.stringify(searchCategory))
+            setFailedFetch(false)
+            navigate(`/results`)
+          }
+          else {
+            return data
+          }
         })
-        .then((data) => navigate(`/results`))
-        .catch((data) => setFailedFetch(true));
-    }
+        .then(data => { 
+          console.log(data.data.error)
+          if (data.data.error.coord_1) {
+            setErrorMessageOneInvalid(true)
+          }
+          else if (data.data.error.coord_2){
+            setErrorMessageTwoInvalid(true)
+          }
+          else{
+          setFailedFetch(true)
+        }
+        })
+      }
+
     if (!addressOne) {
-      setErrorMessageOneEmpty(true);
+      setErrorMessageOneEmpty(true)
     }
-    if (!addressTwo) {
-      setErrorMessageTwoEmpty(true);
+    if(!addressTwo) {
+      setErrorMessageTwoEmpty(true)
     }
+    // if (errorResponse.coord_1) {
+    //   setErrorMessageOneInvalid(true)
+    // }
+    // if (errorResponse.coord_2) {
+    //   setErrorMessageTwoInvalid(true)
+    // }
   };
 
   const checkDefaultAddress = () => {
@@ -134,11 +151,13 @@ const DefaultMidForm = ({
         <p className="starting-point">
           <b>Your</b> starting point is...
         </p>
-       <div className="row">
-  
+        {errorMessageOneInvalid && (
+          <p className="error-message">Invalid address- please try again.</p>
+        )}
         {errorMessageOneEmpty && (
           <p className="error-message">Please provide the required input.</p>
         )}
+       <div className="row">
         <input
           className="default-input"
           type="text"
@@ -176,6 +195,9 @@ const DefaultMidForm = ({
         <p className="starting-point">
           <b>Other</b> party's starting point is...
         </p>
+        {errorMessageTwoInvalid && (
+          <p className="error-message">Invalid address- please try again.</p>
+        )}
         {errorMessageTwoEmpty && (
           <p className="error-message">Please provide the required input.</p>
         )}
