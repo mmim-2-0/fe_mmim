@@ -67,6 +67,8 @@
 
 .default-input {
   width: 280px;
+  border: none;
+  border-bottom: solid #cbcbcb;
 }
 .category-icons {
   display: flex;

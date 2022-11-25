@@ -70,6 +70,7 @@ form {
   border: none;
   font-size: 2vh;
   margin: 5vh;
+  margin-left: 0;
 }
 
 .default-address-button {
