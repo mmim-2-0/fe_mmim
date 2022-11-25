@@ -15,9 +15,9 @@ const Map = ({ searchResponses, searchCenter }) => {
         <Popup>
           <a href={result.url} target="_blank"> 
             {result.name} on Yelp
-            </a>
-          </Popup>
-      </Marker>
+          </a>
+        </Popup>
+    </Marker>
   ));
 
   const bounds = searchResponses.map(result => (
