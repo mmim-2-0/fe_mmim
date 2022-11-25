@@ -1,5 +1,6 @@
 import React from "react";
 import { getLocations, getCurrentLocation } from "../../apiCalls.js";
+import Expire from "../../assets/expire.js"
 import BarIcon from "../../assets/Bar icon.js";
 import CafeIcon from "../../assets/Cafe icon.js";
 import LibraryIcon from "../../assets/Library icon.js";
@@ -28,6 +29,7 @@ const DefaultMidForm = ({
   const [errorMessageOneInvalid, setErrorMessageOneInvalid]=useState(false)
   const [errorMessageTwoInvalid, setErrorMessageTwoInvalid]=useState(false)
   const [defaultAddressChecked, setDefaultAddressChecked] = useState(false);
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
     setAddressOne("");
@@ -38,16 +40,21 @@ const DefaultMidForm = ({
   let navigate = useNavigate();
 
   const addressOneHandler = (e) => {
+    setErrorMessageOneEmpty(false)
+    setErrorMessageOneInvalid(false)
     setAddressOne(e.target.value);
   };
 
   const addressTwoHandler = (e) => {
+    setErrorMessageTwoEmpty(false)
+    setErrorMessageTwoInvalid(false)
     setAddressTwo(e.target.value);
   };
 
   const submitDefaultForm = (e) => {
     e.preventDefault();
     localStorage.clear();
+    setKey(key+1)
     if (addressOne && addressTwo) {
       setErrorMessageOneEmpty(false);
       setErrorMessageTwoEmpty(false);
@@ -91,12 +98,6 @@ const DefaultMidForm = ({
     if(!addressTwo) {
       setErrorMessageTwoEmpty(true)
     }
-    // if (errorResponse.coord_1) {
-    //   setErrorMessageOneInvalid(true)
-    // }
-    // if (errorResponse.coord_2) {
-    //   setErrorMessageTwoInvalid(true)
-    // }
   };
 
   const checkDefaultAddress = () => {
@@ -111,6 +112,8 @@ const DefaultMidForm = ({
           var location =
             position.coords.latitude + "," + position.coords.longitude;
           getCurrentLocation(location).then((d) => {
+            setErrorMessageOneEmpty(false)
+            setErrorMessageOneInvalid(false)
             setAddressOne(
               d.results[0].locations[0].street +
                 ", " +
@@ -139,9 +142,13 @@ const DefaultMidForm = ({
   };
 
   const resetCheckboxes = () => {
+    setErrorMessageOneEmpty(false)
+    setErrorMessageOneInvalid(false)
     setAddressOne("");
     setDefaultAddressChecked(false);
   };
+
+
 
   return (
     <section className="default-mid">
@@ -152,10 +159,14 @@ const DefaultMidForm = ({
           <b>Your</b> starting point is...
         </p>
         {errorMessageOneInvalid && (
-          <p className="error-message">Invalid address- please try again.</p>
+          <Expire delay="1200" key={key}>
+            <p className="error-message">Invalid address- please try again.</p>
+          </Expire>
         )}
         {errorMessageOneEmpty && (
-          <p className="error-message">Please provide the required input.</p>
+          <Expire delay="1200" key={key}>
+            <p className="error-message">Please provide the required input.</p>
+          </Expire>
         )}
        <div className="row">
         <input
@@ -196,10 +207,15 @@ const DefaultMidForm = ({
           <b>Other</b> party's starting point is...
         </p>
         {errorMessageTwoInvalid && (
-          <p className="error-message">Invalid address- please try again.</p>
+          <Expire delay="1200" key={key}>
+            <p className="error-message">Invalid address- please try again.</p>
+          </Expire>
         )}
         {errorMessageTwoEmpty && (
-          <p className="error-message">Please provide the required input.</p>
+          <Expire delay="1200" key={key}>
+            <p className="error-message">Please provide the required input.</p>
+          </Expire>
+
         )}
         <input
           className="default-input"
@@ -234,10 +250,12 @@ const DefaultMidForm = ({
           <strong>Search the Middle</strong>
         </button>
         {failedFetch && (
-          <p className="failed-fetch-error">
-            Oh no! There are no results for this search, please try other
-            locations.
-          </p>
+          <Expire delay="1200" key={key}>
+            <p className="failed-fetch-error">
+              There are no results for this search, please try other
+              locations.
+            </p>
+          </Expire>
         )}
       </form>
     </section>
