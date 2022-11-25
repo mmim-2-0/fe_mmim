@@ -1,39 +1,90 @@
+
 .default-mid {
+  margin-left: 5px;
   display: flex;
   flex-direction: column;
   padding: 2vh;
-  height: 76vh;
+  height: 70vh;
 }
 
-input {
+.starting-point {
+  font-size: 22px;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+.row-current-address{
+  display: flex;
+  flex-direction: row;
+  margin-right: 1vh;
+  gap: 0vh;
+}
+.default-title {
+  margin-top: 120px;
+  margin-bottom: 50px;
+  font-size: 50px;
+}
+
+.input {
   width: 80%;
-  font-size: 2vh;
+  font-size: 3vh;
+  border: none;
+  border-bottom: 1px solid 
 }
 
 .checkbox-address-prompt {
-  font-size: 1.2vh;
+  font-size: 1vh;
   margin-left: 0.5vh;
   color: #3C9C9C;
 
 }
+
+.current-address-prompt {
+  font-size: 15px;
+  margin-left: 0.5vh;
+}
+
+
+
+.checkbox-div {
+  margin-bottom:0.0vh;
+  margin-right: 1vh;
+}
+
+.checkbox-clear-div {
+    margin-bottom:0.0vh;
+}
+.checkbox-option-container {
+  margin-bottom: 0.0vh;
+}
+
 .checkbox-address,
 .default-input,
 .address-instructions {
-  font-size: 1.2vh;
+  font-size: 1.4vh;
   margin-left: 0.5vh;
-  /* margin-bottom: 0; */
 }
 
+.default-input {
+  width: 280px;
+}
 .category-icons {
   display: flex;
 }
 
-.icon-label,
 .second-address-label {
-  margin-top: 1em;
+  font-size: 22px;
+  margin-top: 1.2em;
+}
+.icon-label-default {
+  font-size: 22px;
+  margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 .search-button {
+  margin-top:  80px;
+  margin-left: 0.5vh;
   background-color: #16c172;
   color: white;
   height: 1.6em;

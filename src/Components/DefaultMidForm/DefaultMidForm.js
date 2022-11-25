@@ -5,6 +5,7 @@ import CafeIcon from "../../assets/Cafe icon.js";
 import LibraryIcon from "../../assets/Library icon.js";
 import ParkIcon from "../../assets/Park icon.js";
 import RestaurantIcon from "../../assets/Restaurant icon.js";
+import MarkerIcon from "../../assets/Marker icon.js";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./DefaultMidForm.css";
@@ -81,8 +82,12 @@ const DefaultMidForm = ({
     }
   };
 
-  const handleCurrentLocation = (e) => {
-    if (e.target.checked === true) {
+  const checkDefaultAddress = () => {
+  	setDefaultAddressChecked(true)
+  }
+
+  const handleCurrentLocation = () => {
+  	  setDefaultAddressChecked(true);
       document.body.style.cursor = "wait";
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -91,18 +96,15 @@ const DefaultMidForm = ({
           getCurrentLocation(location).then((d) => {
             setAddressOne(
               d.results[0].locations[0].street +
-                " " +
+                ", " +
                 d.results[0].locations[0].adminArea5 +
-                " " +
+                ", " +
                 d.results[0].locations[0].adminArea3 +
-                " " +
-                d.results[0].locations[0].adminArea1
+                " " 
             );
           });
 
-          document.body.style.cursor = "";
-          setDefaultAddressChecked(true);
-        },
+          document.body.style.cursor = "";},
         (positionError) => {
           document.body.style.cursor = "";
           setDefaultAddressChecked(true);
@@ -117,9 +119,6 @@ const DefaultMidForm = ({
           }
         }
       );
-    } else {
-      setAddressOne("");
-    }
   };
 
   const resetCheckboxes = () => {
@@ -131,13 +130,23 @@ const DefaultMidForm = ({
     <section className="default-mid">
       <h2 className="default-title">Find a place in the middle.</h2>
       <form>
-        <p>
+
+        <p className="starting-point">
           <b>Your</b> starting point is...
         </p>
-        <p className="address-instructions">
-          Enter a complete address, a city + state, or a zip
-        </p>
-        <div className="checkbox-option-container">
+       <div className="row">
+  
+        {errorMessageOneEmpty && (
+          <p className="error-message">Please provide the required input.</p>
+        )}
+        <input
+          className="default-input"
+          type="text"
+          placeholder="123 Your Street, City, State OR Zip code"
+          value={addressOne}
+          onChange={addressOneHandler}
+        ></input>
+      <div className="checkbox-option-container">
           <div className="checkbox-div">
             <input
               id="checkbox"
@@ -147,36 +156,25 @@ const DefaultMidForm = ({
               checked={defaultAddressChecked}
             />
             <label className="checkbox-address">
-              📍 Use my current location
+              <div className="row-current-address">
+              	<MarkerIcon handleCurrentLocation={handleCurrentLocation} />
+              	<p className="current-address-prompt">Use current location</p>
+              </div>
             </label>
-          </div>
-          <div className="checkbox-div">
-            {defaultAddressChecked ? (
-              <button className="clear-button" onClick={resetCheckboxes}>
+ 
+
+            {defaultAddressChecked &&
+              (<button className="clear-button" onClick={resetCheckboxes}>
                 <label className="checkbox-address-prompt">Clear</label>
-              </button>
-            ) : (
-              <label className="checkbox-address-prompt">
-                Or enter an address
-              </label>
-            )}
+               </button>)
+            }
           </div>
         </div>
-        {errorMessageOneEmpty && (
-          <p className="error-message">Please provide the required input.</p>
-        )}
-        <input
-          className="default-input"
-          type="text"
-          placeholder="123 Your Street"
-          value={addressOne}
-          onChange={addressOneHandler}
-        ></input>
-        <p className="second-address-label">
+
+
+       </div>
+        <p className="starting-point">
           <b>Other</b> party's starting point is...
-        </p>
-        <p className="address-instructions">
-          Enter a complete address, a city + state, or a zip
         </p>
         {errorMessageTwoEmpty && (
           <p className="error-message">Please provide the required input.</p>
@@ -184,10 +182,10 @@ const DefaultMidForm = ({
         <input
           className="default-input"
           type="text"
-          placeholder="456 Their Street"
+          placeholder="456 Their Street, City, State OR Zip code"
           onChange={addressTwoHandler}
         ></input>
-        <p className="icon-label">Meet at a...</p>
+        <p className="icon-label-default">Meet at a...</p>
         <div className="category-icons">
           <CafeIcon
             setSearchCategory={setSearchCategory}
