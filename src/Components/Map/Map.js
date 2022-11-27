@@ -1,13 +1,22 @@
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useEffect } from "react";
-import "./Map.css";
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import { useEffect } from 'react';
+import './Map.css';
 
 const Map = ({ searchResponses, searchCenter }) => {
   useEffect(() => {}, [searchCenter]);
 
-  const searchMarkers = searchResponses.map((result) => (
-    <Marker key={result.url} position={result.coordinates} />
+  const searchMarkers = searchResponses.map(result => (
+    <Marker
+      key={result.url}
+      position={result.coordinates}>
+        <Tooltip>{result.name}</Tooltip>
+        <Popup>
+          <a href={result.url} target="_blank"> 
+            {result.name} on Yelp
+          </a>
+        </Popup>
+    </Marker>
   ));
 
   const bounds = searchResponses.map((result) => result.coordinates);
