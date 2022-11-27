@@ -70,7 +70,7 @@
   margin-left: 0.5vh;
 }
 
-.meeting-invitation-instructions, .email-instructions {
+.meeting-invitation-instructions,
+.email-instructions {
   font-size: 2vh;
 }
-
