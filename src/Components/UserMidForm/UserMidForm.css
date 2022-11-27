@@ -4,14 +4,18 @@
   padding: 2vh;
 } */
 
+.subheading {
+  margin-top: 0;
+}
+
 input {
   width: 80%;
   font-size: 0.8em;
   padding: 5px;
 }
 
-.checkbox-current-address{
-  font-size:
+.checkbox-current-address {
+  /* font-size: */
 }
 
 #checkbox {
@@ -20,18 +24,17 @@ input {
   padding: 0;
 }
 .address-input,
-.checkbox-option-container{
+.checkbox-option-container {
   display: flex;
   margin-left: 0.5vh;
 }
 
-.checkbox-div{
+.checkbox-div {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-right: 3vh;
 }
-
 
 p {
   font-size: 2vh;
@@ -74,6 +77,7 @@ form {
   border: none;
   font-size: 2vh;
   margin: 5vh;
+  margin-bottom: 2vh;
 }
 
 .default-address-button {
@@ -88,8 +92,21 @@ form {
   margin-top: 0.8em;
 }
 
-.error-message {
+.input-error-message {
+  display: flex;
   color: red;
+  font-size: 0.8em;
+  margin-left: 0.5vh;
+}
+
+.input-error-message:empty::before {
+  content: "";
+  display: inline-block;
+}
+
+.form-error-message {
+  color: red;
+  white-space: pre-wrap;
 }
 
 .user-mid {
@@ -98,16 +115,6 @@ form {
   padding: 2vh;
   padding-bottom: 0;
   height: 76vh;
-}
-
-.email-error-message {
-  color: red;
-  font-size: 1em;
-}
-
-.failed-fetch-error {
-  color: red;
-  margin-left: 1em;
 }
 
 .tab {

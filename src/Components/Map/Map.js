@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import './Map.css';
 
 const Map = ({ searchResponses, searchCenter }) => {
-
   useEffect(() => {}, [searchCenter]);
 
   const searchMarkers = searchResponses.map(result => (
@@ -20,21 +19,25 @@ const Map = ({ searchResponses, searchCenter }) => {
     </Marker>
   ));
 
-  const bounds = searchResponses.map(result => (
-    result.coordinates
-  ));
+  const bounds = searchResponses.map((result) => result.coordinates);
 
   return (
-    <div className="map-div">
-      <MapContainer style={{height:"100%"}} pxclassName="map-image" center={searchCenter} bounds={bounds} scrollWheelZoom={true}>
+    <div className='map-div'>
+      <MapContainer
+        style={{ height: "100%" }}
+        pxclassName='map-image'
+        center={searchCenter}
+        bounds={bounds}
+        scrollWheelZoom={true}
+      >
         {searchMarkers}
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
       </MapContainer>
     </div>
-  )
+  );
 };
 
 export default Map;
