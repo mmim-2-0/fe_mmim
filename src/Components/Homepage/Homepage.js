@@ -143,12 +143,6 @@ const Homepage = ({
               <h2 className="login-header">Simplify your</h2>
               <h1 className="login-header">planning.</h1>
               <h2 className="login-header">Protect your</h2>
-<<<<<<< HEAD
-              <h1 className="login-header">privacy.</h1>
-              <p className="login-p first-p">When you login to MMIM, you can save a default address.</p>
-              <p className="login-p">This allows you to suggest meeting places to others without needing to know their address, or share yours.</p>
-              <p className="login-p">It's simple and keeps your info private-perfect for local sales and first dates.</p>
-=======
               <h2 className="login-header">privacy.</h2>
               <p className="login-p first-p">
                 When you login to MMIM, you can save a default address.
@@ -161,7 +155,6 @@ const Homepage = ({
                 It's simple and keeps your info private-perfect for local sales
                 and first dates.
               </p>
->>>>>>> feature/move-input-error
             </div>
             <div className="why-login-image" alt="hand holding a phone"></div>
           </div>

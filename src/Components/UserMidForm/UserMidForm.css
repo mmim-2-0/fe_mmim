@@ -77,12 +77,8 @@ form {
   border: none;
   font-size: 2vh;
   margin: 5vh;
-<<<<<<< HEAD:src/Components/UserMidFormMeeting/UserMidFormMeeting.css
   margin-left: 0;
-
-=======
   margin-bottom: 2vh;
->>>>>>> feature/move-input-error:src/Components/UserMidForm/UserMidForm.css
 }
 
 .default-address-button {
