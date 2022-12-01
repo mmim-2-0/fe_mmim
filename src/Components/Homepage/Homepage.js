@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DefaultMidForm from "../DefaultMidForm/DefaultMidForm";
+import { DefaultMidForm } from "../DefaultMidForm";
 import { UserMidForm, FormType } from "../UserMidForm";
 import "./Homepage.css";
 
