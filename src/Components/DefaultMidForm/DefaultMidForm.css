@@ -7,10 +7,11 @@
   height: 70vh;
 }
 
+
 .starting-point {
-  font-size: 18px;
+  font-size: 22px;
   margin-top: 40px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .row-current-address{
@@ -19,65 +20,40 @@
   margin-right: 1vh;
   gap: 0vh;
 }
+
 .default-title {
   margin-top: 40px;
   margin-bottom: 50px;
   font-size: 40px;
 }
 
-.input {
-  width: 80%;
-  font-size: 3vh;
-  border: none;
-  border-bottom: 1px solid 
-}
-
-.checkbox-address-prompt {
-  font-size: 1vh;
-  margin-left: 0.5vh;
-  color: #3C9C9C;
-
-}
 
 .current-address-prompt {
-  font-size: 15px;
+  font-size: 12px;
   margin-left: 0.5vh;
+  color: #3C9C9C;
 }
-
 
 
 .checkbox-div {
   margin-bottom:0.0vh;
   margin-right: 1vh;
+  margin-top: 35px;
 }
 
-.checkbox-clear-div {
-    margin-bottom:0.0vh;
-}
-.checkbox-option-container {
-  margin-bottom: 0.0vh;
-}
 
 .checkbox-address,
-.default-input,
 .address-instructions {
-  font-size: 1.4vh;
+  font-size: 12px;
   margin-left: 0.5vh;
 }
 
-.default-input {
-  width: 280px;
-  border: none;
-  border-bottom: solid #cbcbcb;
-}
+
 .category-icons {
   display: flex;
 }
 
-.second-address-label {
-  font-size: 22px;
-  margin-top: 1.2em;
-}
+
 .icon-label-default {
   font-size: 18px;
   margin-top: 25px;
@@ -97,7 +73,3 @@
   font-size: 3vh;
 }
 
-.failed-fetch-error {
-  color: red;
-  margin-left: 1em;
-}
