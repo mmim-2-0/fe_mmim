@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DefaultMidForm from "../DefaultMidForm/DefaultMidForm";
+import { DefaultMidForm } from "../DefaultMidForm";
 import { UserMidForm, FormType } from "../UserMidForm";
 import "./Homepage.css";
 
@@ -141,7 +141,7 @@ const Homepage = ({
           <div className="why-login">
             <div className="why-login-text">
               <h2 className="login-header">Simplify your</h2>
-              <h2 className="login-header">planning.</h2>
+              <h1 className="login-header">planning.</h1>
               <h2 className="login-header">Protect your</h2>
               <h2 className="login-header">privacy.</h2>
               <p className="login-p first-p">

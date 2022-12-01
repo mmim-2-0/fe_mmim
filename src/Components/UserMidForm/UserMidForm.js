@@ -116,11 +116,11 @@ export const UserMidForm = ({
         var location =
           position.coords.latitude + "," + position.coords.longitude;
         getCurrentLocation(location).then((d) => {
-          setAddressOne(
-            `${d.results[0].locations[0].street} ${d.results[0].locations[0].adminArea5} ${d.results[0].locations[0].adminArea3} ${d.results[0].locations[0].adminArea1}`
-          );
+          var value = `${d.results[0].locations[0].street} ${d.results[0].locations[0].adminArea5} ${d.results[0].locations[0].adminArea3} ${d.results[0].locations[0].adminArea1}`
+          addressOneHandler(value)
+          ref.current.setValue(value)
+          });
         });
-      });
     } else {
       setAddressOne("");
     }

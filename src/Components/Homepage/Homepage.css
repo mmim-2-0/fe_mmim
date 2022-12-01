@@ -1,9 +1,9 @@
 .homepageImage {
   background-image: url("../../assets/homepageImage.jpg");
-  width: 60vw;
+  width: 55vw;
   height: 85vh;
   object-fit: cover;
-  margin-left: 4em;
+  margin-left: 2em;
   background-size: cover;
   display: flex;
   align-items: flex-start;
@@ -56,10 +56,11 @@
 }
 
 .why-login-text {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   width: 40vw;
-  height: 60vh;
+  height: 55vh;
   margin-left: 4em;
   overflow-y: scroll;
 }
