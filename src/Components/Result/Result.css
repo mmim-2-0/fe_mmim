@@ -14,12 +14,12 @@
   margin: 1em;
   background-color: #fafafa;
   width: 45vh;
-  height: 20vh;
+  height: 22vh;
 }
 
 .result-image {
-  width: 20vh;
-  height: 20vh;
+  width: 22vh;
+  height: 22vh;
   object-fit: fill;
   margin: 1em;
 }
@@ -73,7 +73,7 @@
 
 .result-address {
   display: inline-block;
-  height: 16px;
+  height: 14px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
@@ -83,8 +83,7 @@
 
 .result-open {
   display: inline-block;
-  height: 16px;
-
+  height: 14px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
@@ -95,8 +94,7 @@
 
 .result-closed {
   display: inline-block;
-  height: 16px;
-
+  height: 14px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
@@ -129,7 +127,7 @@
 
 .result-category {
   display: inline-block;
-  height: 16px;
+  height: 14px;
 
   font-family: "Open Sans";
   font-style: normal;
@@ -147,7 +145,7 @@
 
 .result-review-count {
   display: inline-block;
-  height: 22px;
+  height: 18px;
 
   font-family: "Open Sans";
   font-style: normal;
