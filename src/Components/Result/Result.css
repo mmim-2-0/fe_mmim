@@ -82,7 +82,7 @@
 }
 
 .result-open {
-  display: inline-block;
+  white-space: nowrap;
   height: 14px;
   font-family: "Open Sans";
   font-style: normal;
@@ -93,7 +93,7 @@
 }
 
 .result-closed {
-  display: inline-block;
+  white-space: nowrap;
   height: 14px;
   font-family: "Open Sans";
   font-style: normal;
