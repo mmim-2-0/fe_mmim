@@ -73,7 +73,7 @@
 
 .result-address {
   display: inline-block;
-  height: 16px;
+  height: 14px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
@@ -83,7 +83,7 @@
 
 .result-open {
   display: inline-block;
-  height: 16px;
+  height: 14px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
@@ -94,7 +94,7 @@
 
 .result-closed {
   display: inline-block;
-  height: 16px;
+  height: 14px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
@@ -127,7 +127,7 @@
 
 .result-category {
   display: inline-block;
-  height: 16px;
+  height: 14px;
 
   font-family: "Open Sans";
   font-style: normal;
@@ -145,7 +145,7 @@
 
 .result-review-count {
   display: inline-block;
-  height: 22px;
+  height: 18px;
 
   font-family: "Open Sans";
   font-style: normal;
