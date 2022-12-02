@@ -14,12 +14,12 @@
   margin: 1em;
   background-color: #fafafa;
   width: 45vh;
-  height: 20vh;
+  height: 24vh;
 }
 
 .result-image {
-  width: 20vh;
-  height: 20vh;
+  width: 24vh;
+  height: 24vh;
   object-fit: fill;
   margin: 1em;
 }
@@ -84,7 +84,6 @@
 .result-open {
   display: inline-block;
   height: 16px;
-
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
@@ -96,7 +95,6 @@
 .result-closed {
   display: inline-block;
   height: 16px;
-
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 700;
