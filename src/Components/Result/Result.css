@@ -14,12 +14,12 @@
   margin: 1em;
   background-color: #fafafa;
   width: 45vh;
-  height: 24vh;
+  height: 22vh;
 }
 
 .result-image {
-  width: 24vh;
-  height: 24vh;
+  width: 22vh;
+  height: 22vh;
   object-fit: fill;
   margin: 1em;
 }
