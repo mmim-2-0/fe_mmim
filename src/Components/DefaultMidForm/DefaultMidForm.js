@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { getLocations, getCurrentLocation } from "../../apiCalls.js";
-import Expire from "../../assets/expire.js"
 import MarkerIcon from "../../assets/Marker icon.js";
 import { InputBox } from "./InputBox.js";
 import { IconRow } from "./IconRow.js";
@@ -182,11 +181,9 @@ export const DefaultMidForm = ({
             onChange={addressOneHandler}
             ref={ref}
           />
-          <Expire delay="2000" key={key}>
-            <p className="input-error-message">
-              {getInputErrorText(inputOneError)}
-            </p>
-          </Expire>
+          <p className="input-error-message">
+            {getInputErrorText(inputOneError)}
+          </p>
         <p className="starting-point">
           <b>Other</b> party's starting point is...
         </p>
@@ -196,11 +193,9 @@ export const DefaultMidForm = ({
           inputClass="address-input"
           onChange={addressTwoHandler}
         />
-        <Expire delay="2000" key={key}>
-          <p className="input-error-message">
-            {getInputErrorText(inputTwoError)}
+        <p className="input-error-message">
+          {getInputErrorText(inputTwoError)}
           </p>
-        </Expire>
         <p className="icon-label-default">Meet at a...</p>
         <IconRow
           searchCategory={searchCategory}
@@ -209,12 +204,10 @@ export const DefaultMidForm = ({
         <button className="search-button" onClick={submitDefaultForm}>
           <strong>Search the Middle</strong>
         </button>
-          <Expire delay="2000" key={key}>
           <FormErrorTextComponent
             formError={formError}
             searchCategory={numSearches > 1 ? searchCategory : undefined}
           />
-        </Expire>
       </form>
     </section>
   );
