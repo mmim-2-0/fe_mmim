@@ -58,6 +58,7 @@ export const DefaultMidForm = ({
   const [inputOneError, setInputOneError] = useState();
   const [inputTwoError, setInputTwoError] = useState();
   const [key, setKey] = useState(0);
+  const [unselectMarker, setUnselectMarker] = useState(false);
   const ref = useRef();
 
   const navigate = useNavigate();
@@ -68,9 +69,12 @@ export const DefaultMidForm = ({
     setSearchCategory("cafe");
   }, []);
 
-  const addressOneHandler = (value) => {
+  const addressOneHandler = (value, isCurrentLocation=false) => {
     setAddressOne(value);
     setInputOneError();
+    if (unselectMarker === false && !isCurrentLocation){
+      setUnselectMarker(true);
+    }
   };
 
   const handleCurrentLocation = () => {
@@ -80,7 +84,7 @@ export const DefaultMidForm = ({
         position.coords.latitude + "," + position.coords.longitude;
       getCurrentLocation(location).then(d=> {
         var value = `${d.results[0].locations[0].street} ${d.results[0].locations[0].adminArea5} ${d.results[0].locations[0].adminArea3} ${d.results[0].locations[0].adminArea1}`
-        addressOneHandler(value)
+        addressOneHandler(value, true)
         ref.current.setValue(value)
         document.body.style.cursor = "";
       });
@@ -165,7 +169,7 @@ export const DefaultMidForm = ({
           <div className="checkbox-div">
             <label className="checkbox-address">
               <div className="row-current-address">
-                <MarkerIcon handleCurrentLocation={handleCurrentLocation} />
+                <MarkerIcon handleCurrentLocation={handleCurrentLocation} unselectMarker = {unselectMarker} setUnselectMarker= {setUnselectMarker}/>
                 <p className="current-address-prompt">Use current location</p>
               </div>
             </label>
