@@ -1,26 +1,19 @@
 import React, { useEffect, useState, useImperativeHandle } from 'react';
 
-export const MarkerIcon = ({handleCurrentLocation}) => {
+export const MarkerIcon = ({handleCurrentLocation, unselectMarker, setUnselectMarker}) => {
   const [iconColor, setIconColor] = useState("grey");
-  const [markerClicked, setMarkerClicked] = useState(false)
   const handleClick = (e) => {
     handleCurrentLocation()
-    setMarkerClicked(true)
+    setUnselectMarker(false)
+    setIconColor("black")
   }
 
-  useEffect(() => {
-    if (markerClicked === true) {
-      setIconColor("black");
-    } else {
-      setIconColor("grey")
-    }
-  });
 
-  const unselectIcon = async() => {
-    const result = await handleCurrentLocation()
-    console.log('happy')
+  if (unselectMarker === true && iconColor !== 'grey') {
+     setIconColor("grey")
   }
 
+  console.log(unselectMarker)
   return (
   <div onClick={(e) => handleClick(e)}>
 
