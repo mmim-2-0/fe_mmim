@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import Popup from "reactjs-popup";
+
 import "./Result.css";
 
 const Result = ({
@@ -94,6 +96,17 @@ const Result = ({
             <strong>
               <a className='result-url' href={info.url} target='_blank'>
                 More info
+              </a>
+            </strong>
+            <strong>
+              {console.log("info", info.directions)}
+              <a className='result-url' href={info.directions} target='_blank'>
+                Directions
+                <Popup>
+                  <a href={info.url} target='_blank'>
+                    {info.name} on Yelp
+                  </a>
+                </Popup>
               </a>
             </strong>
           </p>
