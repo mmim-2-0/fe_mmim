@@ -12,6 +12,8 @@ import "./UserMidForm.css";
 
 const InputError = Object.freeze({
   InputNeeded: "inputNeeded",
+  InputInvalid: "inputInvalid",
+  EmailInvalid: "emailInvalid",
   EmailNotFound: "emailNotFound",
   SameEmail: "sameEmail",
 });
@@ -19,6 +21,8 @@ const InputError = Object.freeze({
 const getInputErrorText = (inputError) => {
   const inputErrorText = Object.freeze({
     [InputError.InputNeeded]: "Please provide the required input.",
+    [InputError.InputInvalid]: "Invalid address- please use a different address.",
+    [InputError.EmailInvalid]: "Invalid email address- please try another email.",
     [InputError.EmailNotFound]:
       "We can't find a user associated with this email, please try again.",
     [InputError.SameEmail]: "Hey! Don't use your own email here please.",
@@ -33,9 +37,10 @@ const FormError = Object.freeze({
 
 const getFormErrorText = (formError, category) => {
   const formErrorText = Object.freeze({
+
     [FormError.NoResults]: category
-      ? `No results found for category ${category}`
-      : "No results found for category",
+      ? `No results found for category ${category} - please refine the addresses or search category.`
+      : "No results found for category - please refine the addresses or search category.",
   });
 
   return formErrorText[formError];
@@ -187,38 +192,51 @@ export const UserMidForm = ({
       };
       getGetLocations()
         .then((data) => {
-          setSearchResponses(data.data.attributes.locations);
-          setSearchCenter(data.data.attributes.map_argument.map_center);
-          localStorage.setItem(
-            "searchResponses",
-            JSON.stringify(data.data.attributes.locations)
-          );
-          localStorage.setItem(
-            "searchCenter",
-            JSON.stringify(data.data.attributes.map_argument.map_center)
-          );
-          localStorage.setItem(
-            "searchCategory",
-            JSON.stringify(searchCategory)
-          );
-          setInputOneError();
-          setInputTwoError();
-          setFailedFetch(false);
+          if (data.data.attributes) {
+            setSearchResponses(data.data.attributes.locations);
+            setSearchCenter(data.data.attributes.map_argument.map_center);
+            localStorage.setItem(
+              "searchResponses",
+              JSON.stringify(data.data.attributes.locations)
+            );
+            localStorage.setItem(
+              "searchCenter",
+              JSON.stringify(data.data.attributes.map_argument.map_center)
+            );
+            localStorage.setItem(
+              "searchCategory",
+              JSON.stringify(searchCategory)
+            );
+            setInputOneError();
+            setInputTwoError();
+            setFailedFetch(false);
+            navigate(`/results`)
+            }
+          else {
+            return data
+          }
         })
-        .then(() => navigate(`/results`))
-        .catch(() => {
-          setFailedFetch(true);
-          setFormError(FormError.NoResults);
+        .then(data => {
+          if (data.data.error.coord_1) {
+            setInputOneError(InputError.InputInvalid)
+          }
+          if (data.data.error.coord_2){
+            setInputTwoError(InputError.EmailInvalid)
+          }
+          if (data.data.error.invalid_search){
+            setFailedFetch(true);
+            setFormError(FormError.NoResults);
+          }
         });
-    } else {
-      if (!addressOne) {
-        setInputOneError(InputError.InputNeeded);
+      } else {
+        if (!addressOne) {
+          setInputOneError(InputError.InputNeeded);
+        }
+        if (!addressTwo) {
+          setInputTwoError(InputError.InputNeeded);
+        }
       }
-      if (!addressTwo) {
-        setInputTwoError(InputError.InputNeeded);
-      }
-    }
-  };
+    };
 
   return (
     <section className="user-mid">

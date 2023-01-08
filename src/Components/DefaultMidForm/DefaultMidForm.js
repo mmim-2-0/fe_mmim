@@ -27,8 +27,8 @@ const FormError = Object.freeze({
 const getFormErrorText = (formError, category) => {
   const formErrorText = Object.freeze({
     [FormError.NoResults]: category
-      ? `No results found for category ${category}`
-      : "No results found for category",
+      ? `No results found for category ${category} - please refine the addresses or search category.`
+      : "No results found for category - please refine the addresses or search category.",
   });
 
   return formErrorText[formError];
@@ -141,7 +141,7 @@ export const DefaultMidForm = ({
         if (data.data.error.coord_2){
           setInputTwoError(InputError.InputInvalid)
         }
-        if (!data.data.error.coord_2 && !data.data.error.coord_1){
+        if (data.data.error.invalid_search){
           setFailedFetch(true);
           setFormError(FormError.NoResults);
         }
