@@ -1,3 +1,5 @@
+
+
 const getLocations = (locationOne, locationTwo, category) => {
   return fetch(
     process.env.REACT_APP_API_ENDPOINT +
@@ -14,15 +16,16 @@ const getLocations = (locationOne, locationTwo, category) => {
       },
     }
   )
-    .then((response) => {
+    .then(async (response) => {
       if (!response.ok) {
-        throw Error(response.text);
+        throw await response.json();
       } else {
-        return response.json();
+        throw await response.json();
       }
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(errors => {
+      console.log(errors);
+      return errors;
     });
 };
 

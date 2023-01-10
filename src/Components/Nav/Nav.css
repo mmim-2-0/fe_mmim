@@ -24,6 +24,14 @@
   padding-bottom: 3vh;
 }
 
+.nav-home-button {
+  font-size: 2vh;
+  color: white;
+  background-color: #000000;
+  border: none;
+  padding-bottom: 0vh;
+}
+
 .title-block {
   height: 1vh;
   width: 100%;
