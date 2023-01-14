@@ -8,7 +8,7 @@
   margin-top: 0;
 }
 
-input {
+.address-input {
   width: 80%;
   font-size: 0.8em;
   padding: 5px;
@@ -20,20 +20,20 @@ input {
 
 #checkbox {
   /* margin-left: 8px; */
-  width: 13px;
+  width: 10px;
   padding: 0;
 }
-.address-input,
 .checkbox-option-container {
   display: flex;
   margin-left: 0.5vh;
 }
 
-.checkbox-div {
+.checkbox-div-user {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-right: 3vh;
+  margin-top: 0;
 }
 
 p {
@@ -111,11 +111,10 @@ form {
 }
 
 .user-mid {
-  display: flex;
-  flex-direction: column;
-  padding: 2vh;
-  padding-bottom: 0;
-  height: 76vh;
+  width:  22em;
+  font-size: 2.5vh;
+  margin-top: 3em;
+  margin-left: 0.5em;
 }
 
 .tab {

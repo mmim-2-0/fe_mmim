@@ -1,9 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import { getLocations, getCurrentLocation } from "../../apiCalls.js";
-import MarkerIcon from "../../assets/Marker icon.js";
+import {LocationIcon, MarkerIcon} from "../../assets";
 import { InputBox } from "./InputBox.js";
 import { IconRow } from "./IconRow.js";
 import { useNavigate } from "react-router-dom";
+import Tooltip from '@mui/material/Tooltip';
 import "./DefaultMidForm.css";
 
 const InputError = Object.freeze({
@@ -162,16 +163,15 @@ export const DefaultMidForm = ({
       <h2 className="default-title">Find a place in the middle.</h2>
       <form>
         <div className="row">
-          <p className="starting-point">
-            <b>Your</b> starting point is...
-          </p>
           <div className="checkbox-div">
-            <label className="checkbox-address">
-              <div className="row-current-address">
-                <MarkerIcon handleCurrentLocation={handleCurrentLocation} unselectMarker = {unselectMarker} setUnselectMarker= {setUnselectMarker}/>
-                <p className="current-address-prompt">Use current location</p>
-              </div>
-            </label>
+            <p className="starting-point">
+              <b>Your</b> starting point is...
+            </p>
+            <div className="marker-div">
+              <Tooltip title="Use current location" placement="top">
+                <MarkerIcon handleLocation={handleCurrentLocation} unselectMarker = {unselectMarker} setUnselectMarker= {setUnselectMarker}/>
+              </Tooltip>
+            </div>
           </div>
         </div>
           <InputBox
