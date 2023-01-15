@@ -58,7 +58,7 @@ export const DefaultMidForm = ({
   const [inputOneError, setInputOneError] = useState();
   const [inputTwoError, setInputTwoError] = useState();
   const [key, setKey] = useState(0);
-  const [unselectMarker, setUnselectMarker] = useState(false);
+  const [unselectMarkerIcon, setUnselectMarkerIcon] = useState(false);
   const ref = useRef();
 
   const navigate = useNavigate();
@@ -72,8 +72,8 @@ export const DefaultMidForm = ({
   const addressOneHandler = (value, isCurrentLocation=false) => {
     setAddressOne(value);
     setInputOneError();
-    if (unselectMarker === false && !isCurrentLocation){
-      setUnselectMarker(true);
+    if (unselectMarkerIcon === false && !isCurrentLocation){
+      setUnselectMarkerIcon(true);
     }
   };
 
@@ -164,12 +164,12 @@ export const DefaultMidForm = ({
       <form>
         <div className="row">
           <div className="checkbox-div">
-            <p className="starting-point">
+            <span>
               <b>Your</b> starting point is...
-            </p>
+            </span>
             <div className="marker-div">
               <Tooltip title="Use current location" placement="top">
-                <MarkerIcon handleLocation={handleCurrentLocation} unselectMarker = {unselectMarker} setUnselectMarker= {setUnselectMarker}/>
+                <LocationIcon handleLocation={handleCurrentLocation} unselectMarker = {unselectMarkerIcon} Icon={MarkerIcon}></LocationIcon>
               </Tooltip>
             </div>
           </div>

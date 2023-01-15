@@ -11,5 +11,4 @@ export const HouseIcon = ({iconColor}) => {
     return <span class="material-symbols-outlined" style={{color:iconColor}}>
 			 home
 			</span>
-
 }
