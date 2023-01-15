@@ -50,7 +50,6 @@ h3 {
 }
 
 form {
-  height: 66vh;
   display: flex;
   flex-direction: column;
 }
