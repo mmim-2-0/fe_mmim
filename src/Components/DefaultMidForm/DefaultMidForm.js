@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import { getLocations, getCurrentLocation } from "../../apiCalls.js";
-import Expire from "../../assets/expire.js"
-import MarkerIcon from "../../assets/Marker icon.js";
+import {LocationIcon, MarkerIcon} from "../../assets";
 import { InputBox } from "./InputBox.js";
 import { IconRow } from "./IconRow.js";
 import { useNavigate } from "react-router-dom";
+import Tooltip from '@mui/material/Tooltip';
 import "./DefaultMidForm.css";
 
 const InputError = Object.freeze({
@@ -28,8 +28,8 @@ const FormError = Object.freeze({
 const getFormErrorText = (formError, category) => {
   const formErrorText = Object.freeze({
     [FormError.NoResults]: category
-      ? `No results found for category ${category}`
-      : "No results found for category",
+      ? `No results found for category ${category} - please refine the addresses or search category.`
+      : "No results found for category - please refine the addresses or search category.",
   });
 
   return formErrorText[formError];
@@ -58,7 +58,7 @@ export const DefaultMidForm = ({
   const [inputOneError, setInputOneError] = useState();
   const [inputTwoError, setInputTwoError] = useState();
   const [key, setKey] = useState(0);
-  const [unselectMarker, setUnselectMarker] = useState(false);
+  const [unselectMarkerIcon, setUnselectMarkerIcon] = useState(false);
   const ref = useRef();
 
   const navigate = useNavigate();
@@ -72,8 +72,8 @@ export const DefaultMidForm = ({
   const addressOneHandler = (value, isCurrentLocation=false) => {
     setAddressOne(value);
     setInputOneError();
-    if (unselectMarker === false && !isCurrentLocation){
-      setUnselectMarker(true);
+    if (unselectMarkerIcon === false && !isCurrentLocation){
+      setUnselectMarkerIcon(true);
     }
   };
 
@@ -142,7 +142,7 @@ export const DefaultMidForm = ({
         if (data.data.error.coord_2){
           setInputTwoError(InputError.InputInvalid)
         }
-        if (!data.data.error.coord_2 && !data.data.error.coord_1){
+        if (data.data.error.invalid_search){
           setFailedFetch(true);
           setFormError(FormError.NoResults);
         }
@@ -163,16 +163,15 @@ export const DefaultMidForm = ({
       <h2 className="default-title">Find a place in the middle.</h2>
       <form>
         <div className="row">
-          <p className="starting-point">
-            <b>Your</b> starting point is...
-          </p>
           <div className="checkbox-div">
-            <label className="checkbox-address">
-              <div className="row-current-address">
-                <MarkerIcon handleCurrentLocation={handleCurrentLocation} unselectMarker = {unselectMarker} setUnselectMarker= {setUnselectMarker}/>
-                <p className="current-address-prompt">Use current location</p>
-              </div>
-            </label>
+            <span>
+              <b>Your</b> starting point is...
+            </span>
+            <div className="marker-div">
+              <Tooltip title="Use current location" placement="top">
+                <LocationIcon handleLocation={handleCurrentLocation} unselectMarker = {unselectMarkerIcon} Icon={MarkerIcon}></LocationIcon>
+              </Tooltip>
+            </div>
           </div>
         </div>
           <InputBox
@@ -182,25 +181,21 @@ export const DefaultMidForm = ({
             onChange={addressOneHandler}
             ref={ref}
           />
-          <Expire delay="2000" key={key}>
-            <p className="input-error-message">
-              {getInputErrorText(inputOneError)}
-            </p>
-          </Expire>
-        <p className="starting-point">
+          <p className="input-error-message">
+            {getInputErrorText(inputOneError)}
+          </p>
+        <span className="starting-point">
           <b>Other</b> party's starting point is...
-        </p>
+        </span>
         <InputBox
           labelClass="address-instructions"
           labelText="Enter a complete address, a city + state, or a zip"
           inputClass="address-input"
           onChange={addressTwoHandler}
         />
-        <Expire delay="2000" key={key}>
-          <p className="input-error-message">
-            {getInputErrorText(inputTwoError)}
+        <p className="input-error-message">
+          {getInputErrorText(inputTwoError)}
           </p>
-        </Expire>
         <p className="icon-label-default">Meet at a...</p>
         <IconRow
           searchCategory={searchCategory}
@@ -209,12 +204,10 @@ export const DefaultMidForm = ({
         <button className="search-button" onClick={submitDefaultForm}>
           <strong>Search the Middle</strong>
         </button>
-          <Expire delay="2000" key={key}>
           <FormErrorTextComponent
             formError={formError}
             searchCategory={numSearches > 1 ? searchCategory : undefined}
           />
-        </Expire>
       </form>
     </section>
   );

@@ -24,7 +24,6 @@ const getLocations = (locationOne, locationTwo, category) => {
       }
     })
     .catch(errors => {
-      console.log(errors);
       return errors;
     });
 };
