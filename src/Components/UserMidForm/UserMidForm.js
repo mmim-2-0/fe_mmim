@@ -287,7 +287,7 @@ export const UserMidForm = ({
           errorText={getInputErrorText(inputOneError)}
           ref={ref}
         />
-        <p className="second-address-label">
+        <span className="second-address-label">
           {formType === FormType.Meeting ? (
             <>
               <b>Meet</b> with...
@@ -297,7 +297,7 @@ export const UserMidForm = ({
               <b>Other</b> party's starting point is...
             </>
           )}
-        </p>
+        </span>
         <InputBox
           labelClass="address-instructions"
           labelText={

@@ -184,9 +184,9 @@ export const DefaultMidForm = ({
           <p className="input-error-message">
             {getInputErrorText(inputOneError)}
           </p>
-        <p className="starting-point">
+        <span className="starting-point">
           <b>Other</b> party's starting point is...
-        </p>
+        </span>
         <InputBox
           labelClass="address-instructions"
           labelText="Enter a complete address, a city + state, or a zip"
