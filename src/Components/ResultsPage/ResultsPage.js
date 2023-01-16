@@ -17,6 +17,7 @@ import "./ResultsPage.css";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 
+
 const ResultsPage = ({
   searchCategory,
   setSearchCategory,
@@ -193,6 +194,12 @@ const ResultsPage = ({
         </div>
         <div className='title-and-results'>
           <h2 className='results-title'>Results:</h2>
+          {retrievedAddressOne && retrievedAddressTwo &&(
+          <div className="address-text-column">
+              <div className='address-text'>Address 1:  {retrievedAddressOne.replace('"', ' ').replace('"', ' ')}</div>
+              <div className='address-text'>Address 2: {retrievedAddressTwo.replace('"', ' ').replace('"', ' ')}</div>
+          </div>
+          )}
           {retrievedAddressTwoEmail && (
             <p className='email-instructions'>
               Select up to three locations to send{" "}

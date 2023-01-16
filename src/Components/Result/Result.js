@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import Popup from "reactjs-popup";
+import Tooltip from '@mui/material/Tooltip';
 import "./Result.css";
 
 const Result = ({
@@ -57,7 +59,7 @@ const Result = ({
           <p className='result-review-count'> {info.review_count} reviews</p>
         </div>
         {info.categories.map((category) => (
-          <p className='result-category'>{category}</p>
+          <p className='result-category'> {category}</p>
         ))}
         <div className='row'>
           {!info.is_open_now ? (
@@ -90,13 +92,33 @@ const Result = ({
           </div>
         )}
         {!addressTwoEmail && (
-          <p>
-            <strong>
-              <a className='result-url' href={info.url} target='_blank'>
-                More info
-              </a>
-            </strong>
-          </p>
+          <div class="row">
+            <Tooltip title="Go to yelp page" placement="bottom">
+              <p>
+                <a className='result-url' href={info.url} target='_blank'>
+                  More info
+                </a>
+              </p>
+            </Tooltip>
+            <Tooltip title="View directions on Google Maps" placement="bottom">
+              <p>
+                  <Popup trigger={<a className="result-url">Directions</a>} position="right">
+                    <div className="directions-column">
+                    <div>
+                      <a className='direction-url' href={info.directions.direction_1} target='_blank'>
+                        Direction from address 1
+                      </a>
+                    </div>
+                    <div>
+                      <a className='direction-url' href={info.directions.direction_2} target='_blank'>
+                        Direction from address 2
+                      </a>
+                    </div>
+                    </div>
+                  </Popup>
+              </p>
+            </Tooltip>
+          </div>
         )}
         {tooManyChecked && (
           <p className='too-many-error'>
