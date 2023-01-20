@@ -6,6 +6,7 @@ const clientId =
   "514096567087-on7cssmi56nj26j0dbf1gnaakv3o5gq4.apps.googleusercontent.com";
 
 const Login = ({
+  shouldHide,
   userEmail,
   setUserEmail,
   userName,
@@ -38,7 +39,7 @@ const Login = ({
   };
 
   return (
-    <div id='signInButton'>
+    <div id='signInButton' style={{opacity: shouldHide? 0:1}}>
       <GoogleLogin
         className='login'
         clientId={clientId}

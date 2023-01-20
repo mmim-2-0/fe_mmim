@@ -66,9 +66,8 @@ export const UserMidForm = ({
   formType,
   searchCategory,
   setSearchCategory,
-  addressOne,
-  setAddressOne,
-  setAddressTwo,
+  setAddressOne:setGlobalAddressOne,
+  setAddressTwo:setGlobalAddressTwo,
   searchResponses,
   setSearchResponses,
   addressTwoEmail,
@@ -94,6 +93,8 @@ export const UserMidForm = ({
   const [unselectHouseIcon, setUnselectHouseIcon] = useState(false);
   const ref = useRef();
   const [currentLocation, setCurrentLocation] = useState("");
+  const [addressOne, setAddressOne] = useState("");
+  const [addressTwo, setAddressTwo] = useState("");
 
   const navigate = useNavigate();
 
@@ -166,13 +167,13 @@ export const UserMidForm = ({
     setInputTwoError();
   };
 
-  const addressTwo =
-    formType === FormType.Meeting ? addressTwoEmail : addressTwoManual;
 
-  const addressTwoHandler =
+  const addressTwoHandler = (value) => {
+    setAddressTwo(value);
     formType === FormType.Meeting
-      ? addressTwoHandlerEmail
-      : addressTwoHandlerManual;
+      ? addressTwoHandlerEmail(value)
+      : addressTwoHandlerManual(value);
+  }
 
   const submitUserForm = (e) => {
     localStorage.clear();
@@ -184,6 +185,8 @@ export const UserMidForm = ({
 
     e.preventDefault();
     if (addressTwo && addressOne) {
+      setGlobalAddressOne(addressOne)
+      setGlobalAddressTwo(addressTwo)
       localStorage.setItem("addressOne", JSON.stringify(addressOne));
       localStorage.setItem(
         formType === FormType.Meeting ? "addressTwoEmail" : "addressTwoManual",

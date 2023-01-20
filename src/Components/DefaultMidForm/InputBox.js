@@ -28,7 +28,6 @@ export const InputBox = React.forwardRef(
     useImperativeHandle(ref, () => ({
       setValue,
     }));
-    console.log(value)
     
     return (
       <div className={className}>

@@ -16,7 +16,7 @@ import Time from "../Time/Time";
 import "./ResultsPage.css";
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
-
+import { useAddresses } from "./useAddresses"
 
 const ResultsPage = ({
   searchCategory,
@@ -25,8 +25,8 @@ const ResultsPage = ({
   searchResponses,
   setSearchCenter,
   searchCenter,
-  addressOne,
-  addressTwo,
+  addressOne:globalAddressOne,
+  addressTwo:globalAddressTwo,
   addressTwoManual,
   checkedMeetingLocations,
   setCheckedMeetingLocations,
@@ -36,6 +36,7 @@ const ResultsPage = ({
   addressTwoEmail,
   setPageTitle,
 }) => {
+  const {addressOne, addressTwo} = useAddresses(globalAddressOne, globalAddressTwo)
   const [meetingTime, setMeetingTime] = useState("");
   const [errorMessage, setErrorMessage] = useState(false);
   const [retrievedAddressOne, setRetrievedAddressOne] = useState(
@@ -158,6 +159,9 @@ const ResultsPage = ({
   // console.log(dayjs(new Date()).format('YYYY-MM-DD'))
   // console.log("retrievedSearchResponses", retrievedSearchResponses)
 
+console.log(addressOne)
+console.log(addressTwo)
+
   return (
     <div>
       <div className='category-change-container'>
@@ -194,10 +198,10 @@ const ResultsPage = ({
         </div>
         <div className='title-and-results'>
           <h2 className='results-title'>Results:</h2>
-          {retrievedAddressOne && retrievedAddressTwo &&(
+          {addressOne && addressTwo &&(
           <div className="address-text-column">
-              <div className='address-text'>Address 1:  {retrievedAddressOne.replace('"', ' ').replace('"', ' ')}</div>
-              <div className='address-text'>Address 2: {retrievedAddressTwo.replace('"', ' ').replace('"', ' ')}</div>
+              <div className='address-text'>Address 1:  {addressOne.replace('"', ' ').replace('"', ' ')}</div>
+              <div className='address-text'>Address 2: {addressTwo.replace('"', ' ').replace('"', ' ')}</div>
           </div>
           )}
           {retrievedAddressTwoEmail && (

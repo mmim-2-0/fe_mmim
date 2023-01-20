@@ -23,17 +23,19 @@ const Nav = ({
 
   const navigateHomePage = () => {
     navigate(`/dashboard`);
-    setPageTitle("dashboard");
+    // setPageTitle("dashboard");
+    window.location.reload();
   };
 
   const navigateHome = () => {
     navigate(`/`);
-    setPageTitle("home");
+    // setPageTitle("home");
+    window.location.reload();
   };
 
   const navigateAbout = () => {
     navigate(`/about`);
-    setPageTitle("about");
+    // setPageTitle("about");
   };
 
   return (
@@ -52,7 +54,8 @@ const Nav = ({
             {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
           </div>
         } 
-        {!userEmail ? (<Login
+        { !userEmail ? (<Login 
+          shouldHide= {!userEmail && window.location.pathname !== "/"}
           userEmail={userEmail}
           setUserEmail={setUserEmail}
           userName={userName}
@@ -61,7 +64,7 @@ const Nav = ({
           setToken={setToken}
           setUserDefaultAddress={setUserDefaultAddress}
           setUserId={setUserId}
-        userId={userId}
+          userId={userId}
           userMeetings={userMeetings}
           setUserMeetings={setUserMeetings}
         />
