@@ -9,3 +9,5 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.join('build', 'index.html'));
     });
   }
+
+const path =  require("path");
