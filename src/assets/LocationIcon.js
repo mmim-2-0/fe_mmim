@@ -12,7 +12,6 @@ export const LocationIcon = React.forwardRef(({handleLocation, unselectMarker, I
      setIconColor("grey")
   }
 
-  console.log(unselectMarker)
   return (
   <div onClick={(e) => handleClick(e)} {...props} ref={ref}>
     <Icon iconColor={iconColor}/>
