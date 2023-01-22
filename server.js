@@ -6,7 +6,8 @@ app.listen(process.env.PORT || 8080);
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('build'));
     app.get('*', (req, res) => {
-      res.sendFile('public/index.html', { root: __dirname });
+      const index = path.join(__dirname, 'build', 'index.html');
+      res.sendFile(index);
     });
   }
 
