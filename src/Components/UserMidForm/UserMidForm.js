@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import {LocationIcon, MarkerIcon, HouseIcon } from "../../assets";
 import { InputBox } from "./InputBox.js";
 import { IconRow } from "./IconRow.js";
-import { CheckboxRow } from "./CheckboxRow.js";
 import "./UserMidForm.css";
 import Tooltip from '@mui/material/Tooltip';
 
