@@ -91,9 +91,6 @@
 }
 
 #tab-1 {
-  background-color: dimgray;
-}
-
-#tab-2 {
-  background-color: silver;
+  background-color: black;
+  color: white;
 }

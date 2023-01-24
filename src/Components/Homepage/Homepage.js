@@ -42,6 +42,7 @@ const Homepage = ({
     focusTab.style.color="white";
     focusTab.style.backgroundColor = "black";
     unfocusTab.style.cssText = "none";
+    unfocusTab.style.color="grey";
     unfocusTab.style.backgroundColor = "white";
     setCurrentDisplay(display);
   };
