@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import Login from "../login";
 import Logout from "../logout";
 import { useNavigate } from "react-router-dom";
 import "./Nav.css";
+import Popup from "reactjs-popup"; 
+
 
 const Nav = ({
   userEmail,
@@ -37,7 +39,7 @@ const Nav = ({
     navigate(`/about`);
     // setPageTitle("about");
   };
-
+  const popupRef = useRef();  
   return (
       <div className="Nav">
         <div className="title-div">
@@ -48,40 +50,44 @@ const Nav = ({
           <button className="nav-button" onClick={navigateAbout}>our team</button>
           {pageTitle === 'about' && <div className="about-bar"></div>}
         </div> */}
-        {userEmail && 
-          <div className="dashboard-button">
-            <button className="nav-button" onClick={navigateHomePage}>My dashboard</button>
-            {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
-          </div>
-        } 
-        { !userEmail ? (<Login 
-          shouldHide= {!userEmail && window.location.pathname !== "/"}
-          userEmail={userEmail}
-          setUserEmail={setUserEmail}
-          userName={userName}
-          setUserName={setUserName}
-          token={token}
-          setToken={setToken}
-          setUserDefaultAddress={setUserDefaultAddress}
-          setUserId={setUserId}
-          userId={userId}
-          userMeetings={userMeetings}
-          setUserMeetings={setUserMeetings}
-        />
-      ) : (
-        <Logout
-          userEmail={userEmail}
-          setUserEmail={setUserEmail}
-          userName={userName}
-          setUserName={setUserName}
-          token={token}
-          setToken={setToken}
-          setUserDefaultAddress={setUserDefaultAddress}
-          setUserId={setUserId}
-          setUserMeetings={setUserMeetings}
-          setPageTitle={setPageTitle}
-        />
-      )}
+        <div className="login-container"><a className="login-button" onClick={()=> popupRef?.toggle()}>{!userEmail ? "Login":"Logout"}</a>
+        <Popup trigger={<button class="login-popup-trigger"></button>} ref={popupRef} position="left">
+          {userEmail && 
+            <div className="dashboard-button">
+              <button className="nav-button" onClick={navigateHomePage}>My dashboard</button>
+              {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
+            </div>
+          } 
+          { !userEmail ? (<Login 
+            shouldHide= {!userEmail && window.location.pathname !== "/"}
+            userEmail={userEmail}
+            setUserEmail={setUserEmail}
+            userName={userName}
+            setUserName={setUserName}
+            token={token}
+            setToken={setToken}
+            setUserDefaultAddress={setUserDefaultAddress}
+            setUserId={setUserId}
+            userId={userId}
+            userMeetings={userMeetings}
+            setUserMeetings={setUserMeetings}
+          />
+        ) : (
+          <Logout
+            userEmail={userEmail}
+            setUserEmail={setUserEmail}
+            userName={userName}
+            setUserName={setUserName}
+            token={token}
+            setToken={setToken}
+            setUserDefaultAddress={setUserDefaultAddress}
+            setUserId={setUserId}
+            setUserMeetings={setUserMeetings}
+            setPageTitle={setPageTitle}
+          />
+          )}
+          </Popup></div>
+
     </div>
   );
 };
