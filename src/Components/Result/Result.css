@@ -205,3 +205,10 @@ repeatstar[n="4"]:before {
 repeatstar[n="5"]:before {
   content: "★★★★★";
 }
+
+
+@media screen and (max-width: 768px){
+  .individual-result {
+    display: block;
+  }
+}
