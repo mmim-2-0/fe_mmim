@@ -19,9 +19,9 @@
 .nav-button {
   font-size: 2vh;
   color: white;
-  background-color: #000000;
+  background: none;
   border: none;
-  padding-bottom: 3vh;
+  padding-bottom: 2vh;
 }
 
 .nav-home-button {
@@ -80,6 +80,7 @@
   max-width: 100px;
   height: 24px;
   margin-right: 8px;
+  padding-bottom: 2vh;
 }
 .login-popup-trigger {
   position: absolute;
@@ -89,6 +90,7 @@
   right:0;
   z-index: 2;
   opacity: 0;
+  padding-bottom: 2vh;
 }
 @media screen and (max-width: 768px){
   .title-div {
@@ -98,9 +100,7 @@
   .page-title {
     font-size: 3vh;
   }
-  .nav-button {
-    padding-bottom: 2vh;
-}
+
   .dashboard-bar {
     width: 20vw;
   }
