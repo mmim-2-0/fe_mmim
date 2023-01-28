@@ -75,7 +75,7 @@ const Homepage = ({
               </div>
             </div>
           </div>
-          {!userEmail ? (
+          {!token ? (
             <DefaultMidForm
               searchCategory={searchCategory}
               setSearchCategory={setSearchCategory}
@@ -91,7 +91,7 @@ const Homepage = ({
               setFailedFetch={setFailedFetch}
             />
           ) : (
-            <div style={{ flex: 1, maxWidth: "50%" }}>
+            <div className="tab-rows">
               <button
                 className="tab"
                 id="tab-1"

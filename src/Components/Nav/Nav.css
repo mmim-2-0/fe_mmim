@@ -91,9 +91,18 @@
   opacity: 0;
 }
 @media screen and (max-width: 768px){
-  .title-div 
-  {
+  .title-div {
     margin-left: 0;
   } 
+
+  .page-title {
+    font-size: 3vh;
+  }
+  .nav-button {
+    padding-bottom: 2vh;
+}
+  .dashboard-bar {
+    width: 20vw;
+  }
 }
 
