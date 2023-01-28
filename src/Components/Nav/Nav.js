@@ -50,15 +50,16 @@ const Nav = ({
           <button className="nav-button" onClick={navigateAbout}>our team</button>
           {pageTitle === 'about' && <div className="about-bar"></div>}
         </div> */}
-        <div className="login-container"><a className="login-button" onClick={()=> popupRef?.toggle()}>{!userEmail ? "Login":"Logout"}</a>
-        <Popup trigger={<button class="login-popup-trigger"></button>} ref={popupRef} position="left">
-          {userEmail && 
+        {token && 
             <div className="dashboard-button">
               <button className="nav-button" onClick={navigateHomePage}>My dashboard</button>
               {pageTitle === 'dashboard' && <div className="dashboard-bar"></div>}
             </div>
-          } 
-          { !userEmail ? (<Login 
+        } 
+        <div className="login-container"><a className="login-button" onClick={()=> popupRef?.toggle()}>{!token ? "Login":"Logout"}</a>
+ 
+        <Popup trigger={<button class="login-popup-trigger"></button>} ref={popupRef} position="left">
+          { !token ? (<Login 
             shouldHide= {!userEmail && window.location.pathname !== "/"}
             userEmail={userEmail}
             setUserEmail={setUserEmail}

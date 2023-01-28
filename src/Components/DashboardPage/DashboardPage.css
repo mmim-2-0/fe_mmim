@@ -16,3 +16,21 @@
   border-radius: 4px;
   font-family: "Playfair Display", serif;
 }
+
+@media screen and (max-width: 768px){
+  .dashboard-parent-div {
+    display: block;
+  }
+  .left-sidebar {
+    flex-direction: row;
+    width: 80%;
+  }
+  .dashboard-option-button {
+    width: 90px;
+  }
+  .myinfo-title, .all-confirmed-and-title,
+  .all-pending-and-title {
+    margin-left: 20px;
+  }
+}
+

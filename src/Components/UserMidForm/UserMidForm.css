@@ -120,3 +120,12 @@ form {
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
+.tab-rows {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px){
+  .address-instructions {
+    font-size: 11px;
+  }
+}
