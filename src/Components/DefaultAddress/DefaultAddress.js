@@ -24,6 +24,7 @@ const DefaultAddress = ({
       );
 
       setUserDefaultAddress(newAddress);
+      localStorage.setItem("userDefaultAddress", newAddress);
       setAddressOne(newAddress);
       setLocalDefault("");
       setDefaultAddressError(false);

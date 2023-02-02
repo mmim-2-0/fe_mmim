@@ -1,20 +1,18 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { useEffect } from 'react';
-import './Map.css';
+import React from "react";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useEffect } from "react";
+import "./Map.css";
 
 const Map = ({ searchResponses, searchCenter }) => {
   useEffect(() => {}, [searchCenter]);
 
-  const searchMarkers = searchResponses.map(result => (
-    <Marker
-      key={result.url}
-      position={result.coordinates}>
-        <Popup>
-          <a href={result.url} target="_blank"> 
-            {result.name} on Yelp
-          </a>
-        </Popup>
+  const searchMarkers = searchResponses.map((result) => (
+    <Marker key={result.url} position={result.coordinates}>
+      <Popup>
+        <a href={result.url} target='_blank'>
+          {result.name} on Yelp
+        </a>
+      </Popup>
     </Marker>
   ));
 
@@ -24,7 +22,7 @@ const Map = ({ searchResponses, searchCenter }) => {
     <div className='map-div'>
       <MapContainer
         style={{ height: "100%" }}
-        pxclassName='map-image'
+        className='map-image'
         center={searchCenter}
         bounds={bounds}
         scrollWheelZoom={true}
