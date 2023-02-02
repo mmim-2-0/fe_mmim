@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Popup from "reactjs-popup";
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from "@mui/material/Tooltip";
 import "./Result.css";
 
 const Result = ({
@@ -92,30 +92,41 @@ const Result = ({
           </div>
         )}
         {!addressTwoEmail && (
-          <div class="row">
-            <Tooltip title="Go to yelp page" placement="bottom">
+          <div className='row'>
+            <Tooltip title='Go to yelp page' placement='bottom'>
               <p>
                 <a className='result-url' href={info.url} target='_blank'>
                   More info
                 </a>
               </p>
             </Tooltip>
-            <Tooltip title="View directions on Google Maps" placement="bottom">
+            <Tooltip title='View directions on Google Maps' placement='bottom'>
               <p>
-                  <Popup trigger={<a className="result-url">Directions</a>} position="right">
-                    <div className="directions-column">
+                <Popup
+                  trigger={<a className='result-url'>Directions</a>}
+                  position='right'
+                >
+                  <div className='directions-column'>
                     <div>
-                      <a className='direction-url' href={info.directions.direction_1} target='_blank'>
+                      <a
+                        className='direction-url'
+                        href={info.directions.direction_1}
+                        target='_blank'
+                      >
                         Direction from address 1
                       </a>
                     </div>
                     <div>
-                      <a className='direction-url' href={info.directions.direction_2} target='_blank'>
+                      <a
+                        className='direction-url'
+                        href={info.directions.direction_2}
+                        target='_blank'
+                      >
                         Direction from address 2
                       </a>
                     </div>
-                    </div>
-                  </Popup>
+                  </div>
+                </Popup>
               </p>
             </Tooltip>
           </div>

@@ -27,7 +27,16 @@ const Login = ({
       localStorage.setItem("token", JSON.stringify(data.data.attributes.token));
       setUserDefaultAddress(data.data.attributes.address);
       setUserId(data.data.id);
+      localStorage.setItem("userEmail", JSON.stringify(res.profileObj.email));
+      localStorage.setItem(
+        "userName",
+        JSON.stringify(res.profileObj.givenName)
+      );
       localStorage.setItem("userId", JSON.stringify(data.data.id));
+      localStorage.setItem(
+        "userDefaultAddress",
+        JSON.stringify(data.data.attributes.address)
+      );
       getUserMeetings(data.data.id, data.data.attributes.token).then(
         (response) => setUserMeetings(response.data)
       );
@@ -39,7 +48,7 @@ const Login = ({
   };
 
   return (
-    <div id='signInButton' style={{opacity: shouldHide? 0:1}}>
+    <div id='signInButton' style={{ opacity: shouldHide ? 0 : 1 }}>
       <GoogleLogin
         className='login'
         clientId={clientId}
