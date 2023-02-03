@@ -31,7 +31,6 @@ const Logout = ({
       setUserMeetings([]);
       navigate(`/`);
       setPageTitle("home");
-      localStorage.clear();
     });
   };
 

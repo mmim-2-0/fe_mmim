@@ -11,12 +11,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
-  const [userEmail, setUserEmail] = useState(
-    JSON.parse(localStorage.getItem("userEmail")) || null
-  );
-  const [userName, setUserName] = useState(
-    JSON.parse(localStorage.getItem("userName")) || null
-  );
+  const [userEmail, setUserEmail] = useState(null);
+  const [userName, setUserName] = useState(null);
   const [userId, setUserId] = useState(
     JSON.parse(localStorage.getItem("userId"))
   );
@@ -30,9 +26,7 @@ function App() {
   const [addressTwoEmail, setAddressTwoEmail] = useState("");
   const [addressTwoManual, setAddressTwoManual] = useState("");
   const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
-  const [userDefaultAddress, setUserDefaultAddress] = useState(
-    JSON.parse(localStorage.getItem("userDefaultAddress")) || null
-  );
+  const [userDefaultAddress, setUserDefaultAddress] = useState(null);
   const [defaultFormView, setDefaultFormView] = useState(false);
   const [checkedMeetingLocations, setCheckedMeetingLocations] = useState([]);
   const [userMeetings, setUserMeetings] = useState([]);
@@ -41,7 +35,7 @@ function App() {
 
   useEffect(() => {
     function start() {
-      gapi.auth2.init({
+      gapi.client.init({
         clientId: clientId,
         scope: "",
       });
@@ -52,10 +46,7 @@ function App() {
 
   return (
     <div className='container'>
-      <link
-        rel='stylesheet'
-        href='https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'
-      />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       {loadingInProgress ? (
         <div className='loader-container'>
           <ClipLoader color={"#fff"} size={150} />

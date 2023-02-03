@@ -86,7 +86,6 @@ const DashboardPage = ({
           token={token}
           userName={userName}
           userEmail={userEmail}
-          userId={userId}
           userDefaultAddress={userDefaultAddress}
           setUserDefaultAddress={setUserDefaultAddress}
           setAddressOne={setAddressOne}
