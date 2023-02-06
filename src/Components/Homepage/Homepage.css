@@ -10,6 +10,7 @@
   justify-content: flex-start;
 }
 
+
 .homepage {
   display: flex;
   flex-wrap: wrap;
@@ -81,20 +82,80 @@
 }
 
 .tab {
-  color: white;
+  color: grey;
+  background-color: white;
   height: 5vh;
   display: inline-block;
-  border-radius: 10px;
-  box-shadow: 0px 3px 6px #00000052;
   border: none;
   font-size: 2vh;
   margin: 1%;
 }
 
 #tab-1 {
-  background-color: dimgray;
+  background-color: black;
+  color: white;
 }
 
-#tab-2 {
-  background-color: silver;
+@media screen and (max-width: 768px){
+  .homepageImage
+  {
+    object-fit: cover;
+    width: 100vw;
+    margin-left: 0;
+    height: 70vh;
+  } 
+  .overlay-text {
+    background-color: transparent;
+    width: 100vw;
+    margin-left: 0;
+  }
+  .why-login{
+    position:relative;
+  }
+
+  .why-login-image {
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom:0;
+    right:0;
+    z-index: 1;
+    width: auto;
+    filter: brightness(60%);
+  }
+  .why-login-text{
+    margin: unset;
+    margin-top: 20px;
+    margin-left:10px;
+    margin-right:20px;
+
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom:0;
+    right:0;
+    z-index: 2;
+    width: auto;
+  }
+
+  .login-header{
+    font-size: 30px;
+    color: white;
+  }
+  .login-p{
+    font-size: 12px;
+    color: white;
+  }
+
+  .default-mid{
+    height:auto;
+  }
+  .overlay-p {
+    font-size: 15px;
+    color: white;
+  }
+
+  .overlay-h {
+    font-size: 30px;
+  }
 }

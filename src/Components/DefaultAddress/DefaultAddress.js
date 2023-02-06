@@ -24,7 +24,11 @@ const DefaultAddress = ({
       );
 
       setUserDefaultAddress(newAddress);
-      setAddressOne(newAddress);
+      localStorage.setItem(
+        "userDefaultAddress",
+        '"' + newAddress.replace(/"/g, "") + '"'
+      );
+      setAddressOne(newAddress.replace(/"/g, ""));
       setLocalDefault("");
       setDefaultAddressError(false);
     } catch (err) {
@@ -38,6 +42,9 @@ const DefaultAddress = ({
 
   const deleteAddressHandler = async () => {
     await updateAddress({ deleteAddress: true });
+    localStorage.removeItem("userDefaultAddress");
+    setLocalDefault("");
+    setDefaultAddressError(false);
   };
 
   const handleLocalDefault = (e) => {

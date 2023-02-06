@@ -74,3 +74,40 @@
 .email-instructions {
   font-size: 2vh;
 }
+
+@media screen and (max-width: 768px){
+  .map-and-results {
+    display: block;
+    justify-content: space-between;
+  }
+  .leaflet-container{
+    width:auto;
+    margin-top: 4em;
+  }
+  .title-and-results {
+    margin-right: 0;
+  }
+  .result-image {
+    margin-left: 0;
+  }
+  .result-info-container {
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .results, .results-title, .address-text{
+    margin-left: 2.5vw;
+  }
+  .address-text-column {
+    margin-top: 0;
+  }
+  .category-change-container {
+    display:block;
+  }
+  .category-text {
+    font-size: 13px;
+  }
+  .category-container {
+    height: auto;
+  }
+
+}

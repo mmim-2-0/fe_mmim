@@ -5,20 +5,28 @@ import {
   getCurrentLocation,
 } from "../../apiCalls.js";
 import { useNavigate } from "react-router-dom";
+import {LocationIcon, MarkerIcon, HouseIcon } from "../../assets";
 import { InputBox } from "./InputBox.js";
 import { IconRow } from "./IconRow.js";
-import { CheckboxRow } from "./CheckboxRow.js";
 import "./UserMidForm.css";
+import Tooltip from '@mui/material/Tooltip';
+
 
 const InputError = Object.freeze({
   InputNeeded: "inputNeeded",
+  InputInvalid: "inputInvalid",
+  EmailInvalid: "emailInvalid",
   EmailNotFound: "emailNotFound",
+  DefaultAddressMissing: "defaultAddressMissing",
   SameEmail: "sameEmail",
 });
 
 const getInputErrorText = (inputError) => {
   const inputErrorText = Object.freeze({
     [InputError.InputNeeded]: "Please provide the required input.",
+    [InputError.DefaultAddressMissing]: "You haven't set up your default address - please update this in your dashboard.",
+    [InputError.InputInvalid]: "Invalid address- please use a different address.",
+    [InputError.EmailInvalid]: "Invalid email address- please try another email.",
     [InputError.EmailNotFound]:
       "We can't find a user associated with this email, please try again.",
     [InputError.SameEmail]: "Hey! Don't use your own email here please.",
@@ -33,9 +41,10 @@ const FormError = Object.freeze({
 
 const getFormErrorText = (formError, category) => {
   const formErrorText = Object.freeze({
+
     [FormError.NoResults]: category
-      ? `No results found for category ${category}`
-      : "No results found for category",
+      ? `No results found for category ${category} - please refine the addresses or search category.`
+      : "No results found for category - please refine the addresses or search category.",
   });
 
   return formErrorText[formError];
@@ -56,9 +65,8 @@ export const UserMidForm = ({
   formType,
   searchCategory,
   setSearchCategory,
-  addressOne,
-  setAddressOne,
-  setAddressTwo,
+  setAddressOne:setGlobalAddressOne,
+  setAddressTwo:setGlobalAddressTwo,
   searchResponses,
   setSearchResponses,
   addressTwoEmail,
@@ -80,8 +88,12 @@ export const UserMidForm = ({
   const [numSearches, setNumSearches] = useState(0);
   const [inputOneError, setInputOneError] = useState();
   const [inputTwoError, setInputTwoError] = useState();
+  const [unselectMarkerIcon, setUnselectMarkerIcon] = useState(false);
+  const [unselectHouseIcon, setUnselectHouseIcon] = useState(false);
   const ref = useRef();
   const [currentLocation, setCurrentLocation] = useState("");
+  const [addressOne, setAddressOne] = useState("");
+  const [addressTwo, setAddressTwo] = useState("");
 
   const navigate = useNavigate();
 
@@ -91,39 +103,47 @@ export const UserMidForm = ({
     setSearchCategory("cafe");
   }, []);
 
-  const addressOneHandler = (value) => {
+  const addressOneHandler = (value, isPopulatedLocation=false) => {
     setAddressOne(value);
-    if (value) {
-      setInputOneError();
+    ref.current.setValue(value);
+    setInputOneError();
+    if (unselectMarkerIcon === false && !isPopulatedLocation){
+      setUnselectMarkerIcon(true);
+    }
+    if (unselectHouseIcon === false && !isPopulatedLocation){
+      setUnselectHouseIcon(true);
     }
   };
 
-  const useDefaultAddress = (e) => {
-    if (e.target.checked === true) {
-      setAddressOne(userDefaultAddress);
-      ref.current.setValue(userDefaultAddress ?? "");
-      if (userDefaultAddress) {
-        setInputOneError();
+  const handleDefaultAddress = (e) => {
+      if (!unselectMarkerIcon) {
+        setUnselectMarkerIcon(true)
       }
-    } else {
-      setAddressOne("");
-    }
+      if (userDefaultAddress) {
+        addressOneHandler(userDefaultAddress, true)
+        setUnselectHouseIcon(false)
+      } else {
+        setInputOneError(InputError.DefaultAddressMissing);
+      }
+
   };
 
-  const handleCurrentLocation = (e) => {
-    if (e.target.checked === true) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        var location =
-          position.coords.latitude + "," + position.coords.longitude;
-        getCurrentLocation(location).then((d) => {
-          var value = `${d.results[0].locations[0].street} ${d.results[0].locations[0].adminArea5} ${d.results[0].locations[0].adminArea3} ${d.results[0].locations[0].adminArea1}`
-          addressOneHandler(value)
-          ref.current.setValue(value)
-          });
-        });
-    } else {
-      setAddressOne("");
+  const handleCurrentLocation = () => {
+    if (!unselectHouseIcon) {
+      setUnselectHouseIcon(true)
     }
+    document.body.style.cursor = "wait";
+    navigator.geolocation.getCurrentPosition((position) => {
+      var location =
+        position.coords.latitude + "," + position.coords.longitude;
+      getCurrentLocation(location).then(d=> {
+        var value = `${d.results[0].locations[0].street} ${d.results[0].locations[0].adminArea5} ${d.results[0].locations[0].adminArea3} ${d.results[0].locations[0].adminArea1}`
+        addressOneHandler(value, true)
+        document.body.style.cursor = "";
+      });
+    });
+    setInputOneError();
+    setUnselectMarkerIcon(false)
   };
 
   const _setSearchCategory = (category) => {
@@ -146,13 +166,13 @@ export const UserMidForm = ({
     setInputTwoError();
   };
 
-  const addressTwo =
-    formType === FormType.Meeting ? addressTwoEmail : addressTwoManual;
 
-  const addressTwoHandler =
+  const addressTwoHandler = (value) => {
+    setAddressTwo(value);
     formType === FormType.Meeting
-      ? addressTwoHandlerEmail
-      : addressTwoHandlerManual;
+      ? addressTwoHandlerEmail(value)
+      : addressTwoHandlerManual(value);
+  }
 
   const submitUserForm = (e) => {
     localStorage.clear();
@@ -164,6 +184,8 @@ export const UserMidForm = ({
 
     e.preventDefault();
     if (addressTwo && addressOne) {
+      setGlobalAddressOne(addressOne)
+      setGlobalAddressTwo(addressTwo)
       localStorage.setItem("addressOne", JSON.stringify(addressOne));
       localStorage.setItem(
         formType === FormType.Meeting ? "addressTwoEmail" : "addressTwoManual",
@@ -187,68 +209,87 @@ export const UserMidForm = ({
       };
       getGetLocations()
         .then((data) => {
-          setSearchResponses(data.data.attributes.locations);
-          setSearchCenter(data.data.attributes.map_argument.map_center);
-          localStorage.setItem(
-            "searchResponses",
-            JSON.stringify(data.data.attributes.locations)
-          );
-          localStorage.setItem(
-            "searchCenter",
-            JSON.stringify(data.data.attributes.map_argument.map_center)
-          );
-          localStorage.setItem(
-            "searchCategory",
-            JSON.stringify(searchCategory)
-          );
-          setInputOneError();
-          setInputTwoError();
-          setFailedFetch(false);
+          if (data.data.attributes) {
+            setSearchResponses(data.data.attributes.locations);
+            setSearchCenter(data.data.attributes.map_argument.map_center);
+            localStorage.setItem(
+              "searchResponses",
+              JSON.stringify(data.data.attributes.locations)
+            );
+            localStorage.setItem(
+              "searchCenter",
+              JSON.stringify(data.data.attributes.map_argument.map_center)
+            );
+            localStorage.setItem(
+              "searchCategory",
+              JSON.stringify(searchCategory)
+            );
+            setInputOneError();
+            setInputTwoError();
+            setFailedFetch(false);
+            navigate(`/results`)
+            }
+          else {
+            return data
+          }
         })
-        .then(() => navigate(`/results`))
-        .catch(() => {
-          setFailedFetch(true);
-          setFormError(FormError.NoResults);
+        .then(data => {
+          if (data.data.error.coord_1) {
+            setInputOneError(InputError.InputInvalid)
+          }
+          if (data.data.error.coord_2){
+            setInputTwoError(InputError.EmailInvalid)
+          }
+          if (data.data.error.invalid_search){
+            setFailedFetch(true);
+            setFormError(FormError.NoResults);
+          }
         });
-    } else {
-      if (!addressOne) {
-        setInputOneError(InputError.InputNeeded);
+      } else {
+        if (!addressOne) {
+          setInputOneError(InputError.InputNeeded);
+        }
+        if (!addressTwo) {
+          setInputTwoError(InputError.InputNeeded);
+        }
       }
-      if (!addressTwo) {
-        setInputTwoError(InputError.InputNeeded);
-      }
-    }
-  };
+    };
 
   return (
     <section className="user-mid">
       {formType === FormType.Meeting ? (
         <>
           <h2>Meet another MiMMer.</h2>
-          <h3 className="subheading">Suggest a time and place.</h3>
         </>
       ) : (
         <h2>Find a place in the middle.</h2>
       )}
       <form>
-        <p>
-          <b>Your</b> starting point is...
-        </p>
-        <CheckboxRow
-          useDefaultAddress={useDefaultAddress}
-          handleCurrentLocation={handleCurrentLocation}
-        />
+        <div className="checkbox-div-user">
+          <span>
+            <b>Your</b> starting point is...
+          </span>
+            <div className="marker-div">
+              <Tooltip title="Use current location" placement="top">
+                <LocationIcon handleLocation={handleCurrentLocation} unselectMarker = {unselectMarkerIcon} Icon={MarkerIcon}></LocationIcon>
+              </Tooltip>
+            </div>
+            <div className="marker-div">
+              <Tooltip title="Use default location" placement="top">
+                <LocationIcon handleLocation={handleDefaultAddress} unselectMarker = {unselectHouseIcon}  Icon={HouseIcon}></LocationIcon>
+              </Tooltip>
+            </div>
+          </div>
         <InputBox
           labelClass="address-instructions"
-          labelText="Or enter a complete address, a city + state, or a zip"
-          placeholder="123 Your Street"
+          labelText="Enter a complete address, a city + state, or a zip"
           inputClass="address-input"
           onChange={addressOneHandler}
           errorClass="input-error-message"
           errorText={getInputErrorText(inputOneError)}
           ref={ref}
         />
-        <p className="second-address-label">
+        <span className="second-address-label">
           {formType === FormType.Meeting ? (
             <>
               <b>Meet</b> with...
@@ -258,18 +299,13 @@ export const UserMidForm = ({
               <b>Other</b> party's starting point is...
             </>
           )}
-        </p>
+        </span>
         <InputBox
           labelClass="address-instructions"
           labelText={
             formType === FormType.Meeting
-              ? "Enter other party's email address"
+              ? "Enter other party's email address, example@email.com"
               : "Enter a complete address, a city + state, or a zip"
-          }
-          placeholder={
-            formType === FormType.Meeting
-              ? "YourFriend@example.com"
-              : "456 Their Street"
           }
           inputClass="address-input"
           onChange={addressTwoHandler}

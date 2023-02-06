@@ -38,8 +38,12 @@ const Homepage = ({
   const tab2 = document.getElementById("tab-2");
 
   const handleHomepageDisplay = (display, focusTab, unfocusTab) => {
-    focusTab.style.backgroundColor = "dimgray";
-    unfocusTab.style.backgroundColor = "silver";
+    focusTab.style.cssText = "border-bottom:  2px solid black";
+    focusTab.style.color="white";
+    focusTab.style.backgroundColor = "black";
+    unfocusTab.style.cssText = "none";
+    unfocusTab.style.color="grey";
+    unfocusTab.style.backgroundColor = "white";
     setCurrentDisplay(display);
   };
 
@@ -71,7 +75,7 @@ const Homepage = ({
               </div>
             </div>
           </div>
-          {!userEmail ? (
+          {!token ? (
             <DefaultMidForm
               searchCategory={searchCategory}
               setSearchCategory={setSearchCategory}
@@ -87,7 +91,7 @@ const Homepage = ({
               setFailedFetch={setFailedFetch}
             />
           ) : (
-            <div style={{ flex: 1, maxWidth: "50%" }}>
+            <div className="tab-rows">
               <button
                 className="tab"
                 id="tab-1"

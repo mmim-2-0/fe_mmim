@@ -81,6 +81,16 @@
   line-height: 16px;
 }
 
+.address-text-column {
+  margin-top: 2vh;
+}
+
+.address-text {
+  margin-left: 2vh;
+  front-size: 12px;
+  font-family: "Open Sans";
+}
+
 .result-open {
   white-space: nowrap;
   height: 14px;
@@ -89,7 +99,6 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: #16c172;
 }
 
 .result-closed {
@@ -112,7 +121,6 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
-  color: #3c9c9c;
 }
 .more-info {
   display: inline-block;
@@ -128,7 +136,6 @@
 .result-category {
   display: inline-block;
   height: 14px;
-
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
@@ -143,16 +150,28 @@
   color: #000000;
 }
 
+.direction-url {
+  color: white;
+  font-size: 12px;
+}
+.directions-column {
+  display: inline-block;
+  margin-left: 4vh;
+  background: #808080;
+  margin-top: 1vh;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+
 .result-review-count {
   display: inline-block;
   height: 18px;
-
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  color: #3c9c9c;
 }
 
 repeatstar {
@@ -185,4 +204,11 @@ repeatstar[n="4"]:before {
 
 repeatstar[n="5"]:before {
   content: "★★★★★";
+}
+
+
+@media screen and (max-width: 768px){
+  .individual-result {
+    display: block;
+  }
 }

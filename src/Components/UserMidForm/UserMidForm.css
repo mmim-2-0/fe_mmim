@@ -8,7 +8,7 @@
   margin-top: 0;
 }
 
-input {
+.address-input {
   width: 80%;
   font-size: 0.8em;
   padding: 5px;
@@ -20,20 +20,20 @@ input {
 
 #checkbox {
   /* margin-left: 8px; */
-  width: 13px;
+  width: 10px;
   padding: 0;
 }
-.address-input,
 .checkbox-option-container {
   display: flex;
   margin-left: 0.5vh;
 }
 
-.checkbox-div {
+.checkbox-div-user {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-right: 3vh;
+  margin-top: 0;
 }
 
 p {
@@ -50,7 +50,6 @@ h3 {
 }
 
 form {
-  height: 66vh;
   display: flex;
   flex-direction: column;
 }
@@ -76,9 +75,8 @@ form {
   box-shadow: 0px 3px 6px #00000052;
   border: none;
   font-size: 2vh;
-  margin: 5vh;
+  margin-top: 5vh;
   margin-left: 0;
-  margin-bottom: 2vh;
 }
 
 .default-address-button {
@@ -111,15 +109,23 @@ form {
 }
 
 .user-mid {
-  display: flex;
-  flex-direction: column;
-  padding: 2vh;
-  padding-bottom: 0;
-  height: 76vh;
+  width:  22em;
+  font-size: 2.5vh;
+  margin-top: 3em;
+  margin-left: 0.5em;
 }
 
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+}
+.tab-rows {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px){
+  .address-instructions {
+    font-size: 11px;
+  }
 }
