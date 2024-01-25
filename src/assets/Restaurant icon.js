@@ -4,11 +4,11 @@ const RestaurantIcon = ({ setSearchCategory, searchCategory }) => {
   const [iconColor, setIconColor] = useState("green");
 
   const handleClick = (e) => {
-    setSearchCategory("restaurant");
+    setSearchCategory("food");
   };
 
   useEffect(() => {
-    if (searchCategory === "restaurant") {
+    if (searchCategory === "food") {
       setIconColor("green");
     } else {
       setIconColor("black");
